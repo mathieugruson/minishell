@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/15 19:03:34 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/15 19:24:51 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,17 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+/*
 
- /* utils */
+comment :
+pour l'instant il gere bien les parentheses. Il faura voir son 
+comportement lorsque 
+
+
+*/
+
+
+/* utils */
  
 char	*ft_bzero(void *s, size_t n)
 {
@@ -134,7 +143,7 @@ static char	**ft_taboftab(char const *s, char c, char **s1)
 				count++;
 			}
 		}
-		printf("count : %d\n", count);
+		// printf("count : %d\n", count);
 		if (count != 0)
 		{
 			s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
@@ -229,7 +238,7 @@ char	**ft_split(char const *s)
 
 int main(int argc, char **argv)
 {
-	printf("argc : %s\n", argv[1]);
+	// printf("argc : %s\n", argv[1]);
 	ft_split(argv[1]);
 	return (0);
 }
