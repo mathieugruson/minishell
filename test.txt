@@ -1,0 +1,11 @@
+tesa tesa tesa | tesa tesa tesa
+l"s" l"s" | le
+"test | test" "test 'la'" | ls
+"l""s"
+ls | grep
+ls|grep
+test"te't'"
+te"'t'" '"e"'
+te"'t'"'"e"'
+te"'t'"6'"e"'
+te't''5"e"'

@@ -24,8 +24,11 @@ MAGENTA = \033[0;35m
 CYAN = \033[0;36m
 NC = \033[0m
 
-SRCS = minishell.c	\
-
+SRCS = 	minishell.c	\
+		ft_parsing.c \
+		mathieu_utils.c \
+		is_cmdline_valid.c \
+		clean_quote.c \
 
 
 BONUS = \
