@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 12:11:08 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:00:10 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,43 @@ static int	ft_tab(char const *s, char c)
 
 	i = 0;
 	count = 0;
+	printf("ft_tan c1\n");
 	while (s[i])
 	{
 		if (s[i] && s[i] != c)
 		{	
 			count++;
 		}	
-		while (s[i] && (s[i] != c))
+		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')
 		{
 			if (s[i] && s[i] == 34)
 			{
 				i++;
 				while(s[i] != 34)
 					i++;
+				i++;
 			}
+			printf("char c : %c\n", s[i]);
 			if (s[i] && s[i] == 39)
 			{
 				i++;
 				while(s[i] != 39)
 					i++;
-			}
-			if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
-			{
-				count = count + 2;
-				i = i + 2;
-			}
-			if (s[i] == '|' || s[i] == '<' || s[i] == '>')
-			{
-				count = count + 1;
 				i++;
 			}
-			if (s[i] != 0)	
+			printf("char c2 : %c\n", s[i]);
+			if (s[i] != 0 && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '>' && s[i] != '<')	
 				i++;
+		}
+		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
+		{
+			count++;
+			i = i + 2;
+		}
+		if (s[i] == '|' || s[i] == '<' || s[i] == '>')
+		{
+			count++;
+			i++;
 		}
 		while (s[i] && s[i] == c)
 			i++;
@@ -169,10 +174,10 @@ static char	**fill_args(char const *s, char c, char **s1)
 	l = 0;
 	i = 0;
 	t = 0;
-	// printf("c1\n");
+	printf("c1\n");
 	while (s[i] && s[i] !='\n')
 	{
-		while (s[i] && s[i] == c)
+		while (s[i] && s[i] == c && s[i] != '|' && s[i] != '<' && s[i] != '>')
 			i++;
 		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
 		{
@@ -215,7 +220,7 @@ static char	**fill_args(char const *s, char c, char **s1)
 				s1[t][l++] = s[i++];
 			}
 			// printf("c3 %c\n", s[i]);
-			if (s[i] && s[i] != c && s[i] != '\n' && s[i] != 34 && s[i] != 39)
+			if (s[i] && s[i] != c && s[i] != '\n' && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '<' && s[i] != '>' )
 			{
 				// printf("atm : t %i l %i i %i\n", t, l, i);
 				s1[t][l++] = s[i++];
@@ -253,12 +258,14 @@ int	we_are_in_quote(char *str, int i)
 	int	quote;
 
 	quote = 0;
-	while (i > 0)
+	while (i >= 0)
 	{
+		printf("waiq : str[i] = %c\n", str[i]);
 		if (str[i] == 34 || str[i] == 39)
 			quote++;
 		i--;
-	}	
+	}
+	printf("quote : %i\n", quote);	
 	return(quote % 2);
 }
 
@@ -307,7 +314,7 @@ char ***fill_test(char ***test, char **args)
 		if (counter > 0)
 		{
 			test[j] = malloc(sizeof(char *) * (counter + 1));
-			// printf("counter test : %i\n", counter);
+			printf("counter test : %i\n", counter);
 			test[j][counter] = NULL;
 			j++;
 			counter = 0;
@@ -367,9 +374,9 @@ char	**ft_parsing(char *s)
 	if (!*args)
 		return (NULL);	
 	args = fill_args(s, ' ', args);
-	// printf("c1bis\n");	
+	printf("c1bis\n");	
 	triple_pointer_len = ft_triple_pointer_len(s);
-	// printf("c1ter\n");	
+	printf("tpl : %i\n", triple_pointer_len);	
 	test = malloc(sizeof(char **) * triple_pointer_len + 1);
 	if (!test)
 		return (NULL);
@@ -377,8 +384,8 @@ char	**ft_parsing(char *s)
 	printf("before test :\n");
 	ft_putdoubletab(args);	
 	test = fill_test(test, args);
-	// printf("triple tab before cleaning :\n");
-	// ft_puttripletab(test);	
+	printf("triple tab before cleaning :\n");
+	ft_puttripletab(test);	
 	test = clean_quote(test);
 	printf("triple tab after cleaning :\n");
 	ft_puttripletab(test);

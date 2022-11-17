@@ -10,6 +10,10 @@ ls>>grep
 test"te't'"
 te"'t'" '"e"'
 te"'t'"'"e"'
+te'"t"'"'e'"
 te"'t'"6'"e"'
 te't''5"e"'
 """"""
+"test | test"
+"l""s"
+"l">"s"

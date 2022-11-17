@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 11:56:37 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 12:52:04 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char *clear_quote(char *str)
 	if (j == 0)
 		return (str);
 	i = 0;
-	// printf("c1\n");
+	printf("c1\n");
 	// printf("str[i]: %c", str[i]);
 	while(str[i])
 	{
@@ -81,10 +81,10 @@ char *clear_quote(char *str)
 				dq = 0;
 				sq = 0;
 				i = i - 2;
+				printf("str : %s, i: %i\n", str, i);
 			}
 		}
-		// i++;
-		if (str[i] == 39)
+		else if (str[i] == 39)
 		{
 			// printf("c3\n");			
 			sq++;
@@ -111,7 +111,7 @@ char ***clean_quote(char ***test)
 	while(test[i])
 	{
 		j = 0;
-		// printf("c4\n");	
+		printf("c4\n");	
 		while(test[i][j])
 		{
 			test[i][j] = clear_quote(test[i][j]);

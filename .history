@@ -257,3 +257,83 @@ ls>>ms
 ls>>ms
 ls>>ms
 ls>>ms test | "ok |ok"
+l"s" l"s" | le
+te"'t'"6'"e"'
+te"'t'"'"e"'
+te"'t'"'"e"'
+l"s"
+l"s"
+l"s"
+l"s"
+te"'t'"'"e"'
+te'"t"'"'e'"
+l"s"
+"test"
+"test | test"
+"l""s"
+"l""s"
+"l""s"
+l"s"
+te'"t"'"'e'"
+"ls"
+l"s"
+te"'t'"6'"e"'
+te"'t'"6'"e"'
+l"s"
+"l""s"
+te't''5"e"'
+""""""
+"test | test"
+ls|grep
+"l">"s"
+"l">"s>
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+"s">"l"
+"l""s"
+"l""s"
+"ls">"grep"
+"ls"|"grep"
+ls|grep
+"ls"|"grep"
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+tesa tesa tesa | tesa tesa tesa
+"test | test" "test 'la'" | ls
+"l">"s"
+"l">"s"
+"l">"s"
+"test | test" "test 'la'" | ls
+ls>>grep
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+test test test
+test | test
+"l
+"l">"s"
+"l">"s"
+"l">"s"
+"l">"s"
+"l""s"
+"test | test"
+""""""
+tesa tesa tesa | tesa tesa tesa
+l"s" l"s" | le
+"test | test" "test 'la'" | ls
+"l""s"
+ls | grep
+ls|grep
+ls>>grep
+test"te't'"
+te"'t'" '"e"'
+te"'t'"'"e"'
+te"'t'"6'"e"'
