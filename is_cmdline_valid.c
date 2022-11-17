@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/16 17:06:06 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:38:32 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,24 @@ int quote_are_closed(char *str)
 	return (1);	
 }
 
+int pipe_redirection(char *str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '|' && (str[i + 1] == '|' || str[i + 1] == '>' || str[i + 1] == '<'))
+			return (0);
+		if (str[i] == '>' && (str[i + 1] == '<' || str[i + 1] == '|' || str[i + 2] == '>'))
+			return (0);
+		if (str[i] == '<' && (str[i + 1] == '>' || str[i + 1] == '|' || str[i + 2] == '<'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	are_pipe_and_redir_correct(char *str)
 {
 	int i;
@@ -119,6 +137,8 @@ int	are_pipe_and_redir_correct(char *str)
 		len--;
 	if (str[len] == '|' || str[len] == '|' || str[len] == '|')
 		return (write(1, "wrong end string\n", 17), 0);
+	if (!pipe_redirection(str))
+		return (write(1, "review pipe and redirection\n", 28), 0);		
 	return (1);	
 }
 

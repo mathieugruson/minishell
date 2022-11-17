@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:36:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 11:48:40 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:20:27 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_puttripletab(char ***test)
 	int i ; 
 
 	i = 0;
+	if (!test)
+		return ;
 	while(test[i])
 	{
 		ft_putdoubletab(test[i]);
@@ -49,5 +51,3 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-
-

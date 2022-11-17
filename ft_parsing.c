@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 13:00:10 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:22:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_tab(char const *s, char c)
 
 	i = 0;
 	count = 0;
-	printf("ft_tan c1\n");
+	// printf("ft_tab c1\n");
 	while (s[i])
 	{
 		if (s[i] && s[i] != c)
@@ -42,7 +42,7 @@ static int	ft_tab(char const *s, char c)
 					i++;
 				i++;
 			}
-			printf("char c : %c\n", s[i]);
+			// printf("char c : %c\n", s[i]);
 			if (s[i] && s[i] == 39)
 			{
 				i++;
@@ -50,7 +50,7 @@ static int	ft_tab(char const *s, char c)
 					i++;
 				i++;
 			}
-			printf("char c2 : %c\n", s[i]);
+			// printf("char c2 : %c\n", s[i]);
 			if (s[i] != 0 && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '>' && s[i] != '<')	
 				i++;
 		}
@@ -67,7 +67,7 @@ static int	ft_tab(char const *s, char c)
 		while (s[i] && s[i] == c)
 			i++;
 	}
-	printf("nombre de double pointeur : %d\n", count);
+	// printf("nombre de double pointeur : %d\n", count);
 	return (count);
 }
 
@@ -97,7 +97,7 @@ static char	**ft_taboftab(char const *s, char c, char **s1)
 			i++;
 		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
 		{
-			printf("count string pipe : 2\n");
+			// printf("count string pipe : 2\n");
 			s1[t] = (char *)ft_calloc((2 + 1), sizeof(char));
 			if (!s1[t++])
 			{
@@ -152,7 +152,7 @@ static char	**ft_taboftab(char const *s, char c, char **s1)
 		// printf("l\n");
 		if (count != 0)
 		{
-			printf("count string : %i\n", count);
+			// printf("count string : %i\n", count);
 			s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
 			if (!s1[t++])
 			{
@@ -174,7 +174,7 @@ static char	**fill_args(char const *s, char c, char **s1)
 	l = 0;
 	i = 0;
 	t = 0;
-	printf("c1\n");
+	// printf("c1\n");
 	while (s[i] && s[i] !='\n')
 	{
 		while (s[i] && s[i] == c && s[i] != '|' && s[i] != '<' && s[i] != '>')
@@ -260,12 +260,12 @@ int	we_are_in_quote(char *str, int i)
 	quote = 0;
 	while (i >= 0)
 	{
-		printf("waiq : str[i] = %c\n", str[i]);
+		// printf("waiq : str[i] = %c\n", str[i]);
 		if (str[i] == 34 || str[i] == 39)
 			quote++;
 		i--;
 	}
-	printf("quote : %i\n", quote);	
+	// printf("quote : %i\n", quote);	
 	return(quote % 2);
 }
 
@@ -314,7 +314,7 @@ char ***fill_test(char ***test, char **args)
 		if (counter > 0)
 		{
 			test[j] = malloc(sizeof(char *) * (counter + 1));
-			printf("counter test : %i\n", counter);
+			// printf("counter test : %i\n", counter);
 			test[j][counter] = NULL;
 			j++;
 			counter = 0;
@@ -357,7 +357,7 @@ char ***fill_test(char ***test, char **args)
 	return (test);
 }
 
-char	**ft_parsing(char *s)
+char	***ft_parsing(char *s)
 {
 	char	***test;
 	char	**args;
@@ -365,8 +365,9 @@ char	**ft_parsing(char *s)
 
 
 	(void)triple_pointer_len;
-	if (!s)
+	if (!s || s[0] == '\n')
 		return (NULL);
+	// printf("c0\n");
 	if (!is_cmdline_valid(s))
 		return (NULL);
 	// printf("c1\n");	
@@ -374,20 +375,20 @@ char	**ft_parsing(char *s)
 	if (!*args)
 		return (NULL);	
 	args = fill_args(s, ' ', args);
-	printf("c1bis\n");	
+	// printf("c1bis\n");	
 	triple_pointer_len = ft_triple_pointer_len(s);
-	printf("tpl : %i\n", triple_pointer_len);	
+	// printf("tpl : %i\n", triple_pointer_len);	
 	test = malloc(sizeof(char **) * triple_pointer_len + 1);
 	if (!test)
 		return (NULL);
 	test[triple_pointer_len] = NULL;
-	printf("before test :\n");
-	ft_putdoubletab(args);	
+	// printf("before test :\n");
+	// ft_putdoubletab(args);	
 	test = fill_test(test, args);
-	printf("triple tab before cleaning :\n");
-	ft_puttripletab(test);	
+	// printf("triple tab before cleaning :\n");
+	// ft_puttripletab(test);	
 	test = clean_quote(test);
-	printf("triple tab after cleaning :\n");
-	ft_puttripletab(test);
-	return (args);
+	// printf("triple tab after cleaning :\n");
+	// ft_puttripletab(test);
+	return (test);
 }

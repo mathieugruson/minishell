@@ -73,7 +73,7 @@ void	ft_init_commands_history(t_m *var)
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
-	char **args;
+	char ***args;
 
 	(void)argv;
 	(void)envp;
@@ -82,7 +82,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_init_commands_history(&var);
 		ft_printf("Command is :%s", var.args_line);
 		args = ft_parsing(var.args_line);
-		// ft_putdoubletab(args);
+		ft_puttripletab(args);
 		(void)args;
 		// free(var.args_line);
 	}

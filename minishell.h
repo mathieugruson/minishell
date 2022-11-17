@@ -18,7 +18,7 @@ typedef struct s_minishell
 
 /* ft_parsing.c */
 
-char	**ft_parsing(char *s);
+char	***ft_parsing(char *s);
 
 /* mathieu_utils.c */
 

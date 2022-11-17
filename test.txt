@@ -17,3 +17,8 @@ te't''5"e"'
 "test | test"
 "l""s"
 "l">"s"
+ls|ls|ls|ls|ls|
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+	(taper sur entree directement)
+ $ (juste un espace)
+ 

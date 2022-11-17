@@ -337,3 +337,24 @@ test"te't'"
 te"'t'" '"e"'
 te"'t'"'"e"'
 te"'t'"6'"e"'
+ls|ls|ls|ls|ls
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+test | test
+ls | grep Make
+ls | grep make
+cd ..
+
+
+
+
+ 
+
+ 
+ $
+||
+test || test
+ls >>> tests
+ls >>< test
+ls||grep Make
+ls>>>grep
+ls||>grep
