@@ -2,11 +2,22 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <fcntl.h>
-# include <errno.h>
-# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stdlib.h>
 # include <unistd.h>
-// # include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/time.h>
+# include <sys/resource.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/ioctl.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <dirent.h>
+# include <string.h>
+# include <termios.h>
+# include <sys/wait.h>
 # include "libs/libft/includes/libft.h"
 # include "libs/libft/includes/ft_printf.h"
 

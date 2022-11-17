@@ -1,0 +1,24 @@
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+Subject : Reproduction of cd function
+- cd par des chemins relatifs (cd .., cd dir_after)
+- cd par chemin absolu
+int	ft_strlen(const char *str)
+char	*ft_strjoin(char *s1, char *s2)
+	char	*s3;
+	s3 = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+int	ft_strcmp(char *s1, char *s2)
+int ft_cd(char **argv, int i)
+	char	*path;
+	char	*newpath;
+	path = getcwd(path, 0);
+		if (chdir(path) != 0)
+		if (chdir(argv[i]) != 0)
+	printf("c1\n");
+	newpath = getcwd(newpath, 0);
+int main(int argc, char **argv)
+	ft_cd(argv, (i + 1));

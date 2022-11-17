@@ -59,12 +59,12 @@ ${NAME} : ${OBJ}
 
 ${OBJ_DIR}%.o : %.c | $(OBJF)
 	@echo "${BLUE}###${NC}Creation du fichier ${@:%.c=%.o}${BLUE}###${ORANGE}"
-	@${CC} ${FLAGS} -c $< -o $@
+	@${CC} ${FLAGS} -c $< -o $@ 
 	@echo "${NC}"
 
 ${SOFT_NAME} :
 	@echo "${BLUE}###${NC}Creation du fichier ${SOFT_NAME}${BLUE}###${ORANGE}"
-	@${CC} ${NAME} ${FLAGS} -o ${SOFT_NAME}
+	@${CC} ${NAME} ${FLAGS} -o ${SOFT_NAME} -lreadline
 	@echo "${NC}"
 
 $(OBJF) :

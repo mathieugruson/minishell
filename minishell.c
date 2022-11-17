@@ -1,5 +1,7 @@
 
 #include "minishell.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 void	ft_cleanhistory_fd(char *str, char *buffer, int fd)
 {
@@ -70,6 +72,15 @@ void	ft_init_commands_history(t_m *var)
 	return (ft_cleanhistory_fd(str, buffer, (*var).history_fd));
 }
 
+void	signal_int(int unused)
+{
+	(void)unused;
+	rl_on_new_line();
+	write(2, "\n", 1);
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
@@ -77,6 +88,10 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	(void)envp;
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, signal_int); // mettre une fonction a la place qui donne une autre ligne
+
+
 	if (argc == 1)
 	{
 		ft_init_commands_history(&var);

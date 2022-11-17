@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:36:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 13:20:27 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/17 14:58:29 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void	ft_putdoubletab(char **tab)
 	i = 0;
 	if (!tab)
 		return ;
-	printf("resultat %i :\n", j++);
+	printf("command %i :\n", j++);
 	while (tab[i])
 	{
-		printf("%s\n", tab[i]);
+		ft_putstr(tab[i]);
+		write(1, "\n", 1);
 		i++;
 	}	
 }
