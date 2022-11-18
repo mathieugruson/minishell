@@ -26,3 +26,9 @@ test '- ' ' -' 'RAS'  "' '" testeur de parsing == SEGFAULT
 ls '- ' ' -' '$LANG'  "' '" testeur de parsing == SEGFAULT
 
 ok '- ' ' -' 'test'  "' '" testeur de parsing
+
+
+
+
+
+

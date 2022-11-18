@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/18 16:44:27 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/18 17:18:14 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int are_handled_special_char(char *str)
 				return (0);
 			}
 		}
-		printf("s[i] %c\n", str[i]);
 		if (!is_handled_special_char(str, i))
 		{
 			write(1, "Error : there are non handled special character\n", 48);

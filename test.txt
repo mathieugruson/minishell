@@ -25,3 +25,6 @@ ls mathieu |"ls | ma" "|"ls|ls|ls|
 echo "$LANG" '$LANG' "$LANG"
 /usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\'][=-" "' '" testeur de parsing => marche pas c'est normal
 
+
+WARNING : it is normal that there are some difference between sheel and minishell as
+some case dont need to be hand

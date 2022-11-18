@@ -29,7 +29,8 @@ SRCS = 	minishell.c	\
 		mathieu_utils.c \
 		is_cmdline_valid.c \
 		clean_quote.c \
-
+		replace_env_var.c \
+		
 
 BONUS = \
 

@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/18 16:48:12 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/18 20:05:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,72 +19,27 @@
 // 	int		triple_tab;
 // }	t_pointer;
 
-// static int	ft_tab(char const *s, char c)
-// {
-// 	int	i;
-// 	int	count;
-// 	int first;
-
-// 	first = 0;
-// 	i = 0;
-// 	count = 0;
-// 	while (s[i])
-// 	{
-// 		while (s[i] && s[i] == c)
-// 			i++;
-// 		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')
-// 		{		
-// 			// printf("c0 i : %i\n", i);
-// 			if (first++ == 0)
-// 				count++;
-// 			i++;
-// 		}
-// 		// printf("c1 i : %i\n", i);
-// 		first = 0;
-// 		while (s[i] && (s[i] == '|' || s[i] == '>' || s[i] == '<'))
-// 		{
-// 			// printf("c2 i : %i\n", i);
-// 			if (first++ == 0)
-// 			{
-// 				count++;
-// 				// printf("c3 count %i\n", count);
-// 			}
-// 			i++;
-// 		}
-// 		first = 0;
-// 	}
-// 	printf("c4 count : %i\n", count);	
-// 	return (count);	
-// }
-
 static int	ft_tab(char const *s, char c)
 {
 	int	i;
 	int	count;
-
+	int k = 0;
+	char e;
+	
 	i = 0;
 	count = 0;
 	// printf("ft_tab c1\n");
 	while (s[i])
 	{
-		if (s[i] && s[i] != c)
-		{	
-			count++;
-		}	
 		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')
 		{
-			if (s[i] && s[i] == 34)
+			if (k++ == 0)
+				count++;
+			if (s[i] && (s[i] == 34 || s[i] == 39))
 			{
+				e = s[i];
 				i++;
-				while(s[i] != 34)
-					i++;
-				i++;
-			}
-			// printf("char c : %c\n", s[i]);
-			if (s[i] && s[i] == 39)
-			{
-				i++;
-				while(s[i] != 39)
+				while(s[i] != e)
 					i++;
 				i++;
 			}
@@ -92,20 +47,25 @@ static int	ft_tab(char const *s, char c)
 			if (s[i] != 0 && s[i] != c && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '>' && s[i] != '<')	
 				i++;
 		}
+		k = 0;
 		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
 		{
-			count++;
+			if (k++ == 0)
+				count++;
 			i = i + 2;
 		}
+		k = 0;
 		if (s[i] == '|' || s[i] == '<' || s[i] == '>')
 		{
-			count++;
+			if (k++ == 0) 
+				count++;
 			i++;
 		}
+		k = 0;
 		while (s[i] && s[i] == c)
 			i++;
 	}
-	// printf("nombre de double pointeur : %d\n", count);
+	printf("nombre de double pointeur : %d\n", count);
 	return (count);
 }
 
@@ -295,21 +255,27 @@ int we_are_in_quote(char *str, int i)
 {
 	int j = 0;
 
-	while(str[j])
+	while(str[j] && j < i)
 	{
-		if (str[j] && str[j] == 34)
+		if (str[j] && str[j] == 34 && j < i)
 		{	
 			while(str[j] && str[j] != 34)
 				j++;
 			if (str[j] != 0 && j > i)
+			{
+				printf("waiq str[j] %c\n", str[j]);
 				return (1);
+			}
 		}
-		if (str[j] && str[j] == 39)
+		if (str[j] && str[j] == 39 && j < i)
 		{	
 			while(str[j] && str[j] != 39)
 				j++;
 			if (str[j] != 0 && j > i)
+			{
+				printf("waiq str[j] %c\n", str[j]);
 				return (1);
+			}
 		}
 		j++;
 	}
@@ -415,6 +381,35 @@ char ***fill_test(char ***test, char **args)
 	return (test);
 }
 
+// char **handle_ev(char **tab)
+// {
+// 	static int j = 0;
+// 	int	i;
+
+// 	i = 0;
+// 	if (!tab)
+// 		return ;
+// 	while (tab[i])
+// 	{
+// 		handle_environment_variables(tab[i])
+// 		i++;
+// 	}		
+// }
+
+// char ***get_env_var(char ***args)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	if (!args)
+// 		return ;
+// 	while(args[i])
+// 	{
+// 		handle_ev(args[i]);
+// 		i++;
+// 	}
+// }
+
 char	***ft_parsing(char *s)
 {
 	char	***test;
@@ -448,6 +443,7 @@ char	***ft_parsing(char *s)
 	// ft_puttripletab(test);	
 	// printf("c10\n");
 	test = clean_quote(test);
+	// test = get_env_var(test);
 	// printf("triple tab after cleaning :\n");
 	// ft_puttripletab(test);
 	return (test);
