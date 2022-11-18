@@ -30,6 +30,7 @@ typedef struct s_minishell
 /* ft_parsing.c */
 
 char	***ft_parsing(char *s);
+int	we_are_in_quote(char *str, int i);
 
 /* mathieu_utils.c */
 

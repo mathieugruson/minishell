@@ -387,3 +387,190 @@ LS
 ls\q
 
 
+/usr/b"i"n/echo '- ' ' -' "$LANG"  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG"  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+
+rgertg4t
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+echo "$LANG" '$LANG' "$LANG"
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+test test test test test
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+			printf("s : %s", args[i]);	
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+test[j][counter]
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+			printf("j %i k %i i %i\n", j, k, i);
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+			printf("s : %s\n", args[i]);	
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+echo "$LANG" '$LANG' "$LANG"
+test test test test test
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+test '- ' ' -' '$LANG'  "' '" testeur de parsing
+test '- ' ' -' '$LANG'  "' '" testeur de parsing
+test '- ' ' -' '$LANG'  "' '" testeur de parsing
+ls '- ' ' -' '$LANG'  "' '" testeur de parsing == SEGFAULT
+ls '- ' ' -' '$LANG'  "' '" testeur de parsing
+ok '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+ok '- ' ' -' 'test'  "' '" testeur de parsing
+test '- ' ' -' 'RAS'  "' '" testeur de parsing == SEGFAULT
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing == SEGFAULT
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing
+ok '- ' ' -' 'RAS'  "' '" testeur de parsing
+test test test
+echo test test test
+echo $LANG
+/usr/b"i"n/echo $LANG
+/usr/b"i"n/echo '- '
+/usr/b"i"n/echo '- ' ' -'
+/usr/b"i"n/echo '- ' ' -' '$LANG'
+/usr/b"i"n/echo '- ' ' -' '$LANG'
+/usr/b"i"n/echo '- ' ' -' '$LANG'
+/usr/b"i"n/echo '- '
+/usr/b"i"n/echo '- ' ' -'
+/usr/b"i"n/echo '- ' ' -' '$LANG'
+/usr/b"i"n/echo '- ' ' -'
+/usr/b"i"n/echo '- ' ' -' '$LANG'
+/usr/b"i"n/echo '- ' ' -'
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG"  "' '" testeur de parsing
+echo "$LANG" '$LANG' "$LANG"
+echo "$LANG" '$LANG' "$LANG"
+echo "$LANG" '$LANG' "$LANG"
+echo "$LANG" '$LANG' "$LANG"
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+"test | test" "test 'la'" | ls
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+"test"
+"test
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+./m	
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'][=-' "' '"
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\'][=-" "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\'][=-" "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\'][=-" "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|"
+/usr/b"i"n/echo '- ' ' -' "$LANG" "!@#$%^&*()_+}{|":?><~/.,\'][=-" "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|":?><~/.,\'
+syntax error near unexpected token `)'
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][=-' "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\''][
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"'
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,
+/usr/b"i"n/echo '- ' ' -' "$LANG" '!@#$%^&*()_+}{|"':?~/.,\
+echo ||
+echo ||
+echo |
+echo
+test | test
+test | test
+test || test
+echo || test
+echo | test
+ls ~
+echo "
+echo fefwf>>test1>>test2>>test3
+echo "
+echo "test"
+echo "tets
+test test test
+ls|grep
+ls|grep Male
+ls|grep
+ls | grep
+tst tst
+ls|grep
+ls|grep
+test test test
+test | test
+test | test
+test | test
+test | test
+ls | grep
+ls|grep
+ls | grep
+"test | test"
+test "test"
+test "test
+te't''5"e"'
+te't''5"e"'
+te't''5"e"'
+te't''5"e"'
+te'"t"'"'e'"
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+"l""s"
+"test | test" "test 'la'" | ls
+echo "$LANG" '$LANG' "$LANG"

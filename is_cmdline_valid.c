@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/17 13:38:32 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/18 16:44:27 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 int	is_handled_special_char(char *str, int i)
 {	
-	if (str[i] == ';' || str[i] == '(' || str[i] == ')'\
-	||str[i] == '&' || str[i] == 92 || str[i] == '*'\
-	|| str[i] == '[' || str[i] == ']' || str[i] == '\t')
+	// if (str[i] == ';' || str[i] == '(' || str[i] == ')'
+	// ||str[i] == '&' || str[i] == 92 || str[i] == '*' || str[i] == '\t')
+	// 	return (printf("syntax error near unexpected token '%c'", str[i]), 0);
+	// if (str[i] == '?')
+	// {	
+	// 	if (!str[i - 1] && str[i - 1] != '$')
+	// 		return (0);
+	// }
+	if (str[i] == '|' && (str[i + 1] == '|' || str[i + 1] == '>' || str[i + 1] == '<') && !we_are_in_quote(str, i))
 		return (0);
-	if (str[i] == '?')
-	{	
-		if (!str[i - 1] && str[i - 1] != '$')
-			return (0);
-	}
+	if (str[i] == '>' && (str[i + 1] == '<' || str[i + 1] == '|' || str[i + 2] == '>') && !we_are_in_quote(str, i))
+		return (0);
+	if (str[i] == '<' && (str[i + 1] == '>' || str[i + 1] == '|' || str[i + 2] == '<') && !we_are_in_quote(str, i))
+		return (0);
 	return (1);	
 }
 		
@@ -55,6 +60,7 @@ int are_handled_special_char(char *str)
 				return (0);
 			}
 		}
+		printf("s[i] %c\n", str[i]);
 		if (!is_handled_special_char(str, i))
 		{
 			write(1, "Error : there are non handled special character\n", 48);
@@ -111,11 +117,11 @@ int pipe_redirection(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|' && (str[i + 1] == '|' || str[i + 1] == '>' || str[i + 1] == '<'))
+		if (str[i] == '|' && (str[i + 1] == '|' || str[i + 1] == '>' || str[i + 1] == '<') && !we_are_in_quote(str, i))
 			return (0);
-		if (str[i] == '>' && (str[i + 1] == '<' || str[i + 1] == '|' || str[i + 2] == '>'))
+		if (str[i] == '>' && (str[i + 1] == '<' || str[i + 1] == '|' || str[i + 2] == '>') && !we_are_in_quote(str, i))
 			return (0);
-		if (str[i] == '<' && (str[i + 1] == '>' || str[i + 1] == '|' || str[i + 2] == '<'))
+		if (str[i] == '<' && (str[i + 1] == '>' || str[i + 1] == '|' || str[i + 2] == '<') && !we_are_in_quote(str, i))
 			return (0);
 		i++;
 	}

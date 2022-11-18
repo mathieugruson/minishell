@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:12:41 by chillion          #+#    #+#             */
-/*   Updated: 2022/09/02 17:43:04 by chillion         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:47:12 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void	ft_putstr(char *str)
 {
@@ -22,4 +23,5 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	
 }
