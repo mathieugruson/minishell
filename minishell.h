@@ -27,6 +27,25 @@ typedef struct s_minishell
 	char	*args_line;
 }	t_m;
 
+typedef struct s_index
+{
+	int i;
+	int i1;
+	int i2;
+	int i3;
+	int j;
+	int j1;
+	int j2;
+	int j3;
+	int start;
+	int end;
+	int count;
+	int k;
+	int t;
+	int l;
+	int counter;	
+}	t_index;
+
 /* fill_args.c*/
 
 char	**fill_args(char *s, char c, char **s1);
@@ -62,5 +81,9 @@ void handle_environment_variables(char **argv, char **envp);
 /* we_are_in_quote.c  */
 
 int we_are_in_quote(char *str, int i);
+
+/* initialize_index.c */
+
+t_index initialize_index();
 
 #endif

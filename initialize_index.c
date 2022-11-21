@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   initialize_index.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 13:59:14 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 19:18:15 by mgruson          ###   ########.fr       */
+/*   Created: 2022/11/21 16:55:46 by mgruson           #+#    #+#             */
+/*   Updated: 2022/11/21 16:56:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv)
+t_index initialize_index()
 {
-	int i = 0;
+	t_index	i;
 
-	if (argv[1][i] == 'T' && i++ > -1)
-		printf("test\n");
-	printf("i : %i\n", i);
+	i.i = 0;
+	i.i1 = 0;
+	i.i2 = 0;
+	i.i3 = 0;
+	i.j = 0;
+	i.j1 = 0;
+	i.j2 = 0;
+	i.j3 = 0;
+	i.start = 0;
+	i.end = 0;
+	i.count = 0;
+	i.k = 0;
+	i.t = 0;
+	i.l = 0;
+	i.counter = 0;	
+	return (i);
 }

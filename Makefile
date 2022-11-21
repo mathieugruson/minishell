@@ -32,6 +32,7 @@ SRCS = 	minishell.c	\
 		replace_env_var.c \
 		fill_args.c \
 		we_are_in_quote.c \
+		initialize_index.c \
 
 
 BONUS = \

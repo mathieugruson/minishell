@@ -722,3 +722,71 @@ ls|grep
 ls>>grep
 "test | test" "test 'la'" | ls
 ls mathieu |"ls | ma" "|"ls|ls|ls|
+test
+ls | | lss
+ls>>ks
+ls >> >> ls
+ls >>       >> ls
+ls | | ls
+ls > > ls
+ls >                    > ls
+ls >                       > ls
+ls >         > ls
+ls|>ls
+"ls>">
+"ls>">ls
+"ls<"<
+"ls<"
+"ls<"<ls
+"ls<"<ls
+"ls<"<ls
+"ls<"|ls
+"ls>" | ls
+"ls" | ls
+ls | Lls
+"ls>"|ls
+ls | sl
+ls | ls
+ls | ls
+ls | ls
+"ls>">ls
+ls | | ls
+ls | | ls
+ls | | ls
+ls || ls
+ls | | ls
+ls | | ls
+ls | ls
+ls | | ls
+ls | | ls
+ls | | ls
+ls | | ls
+ls | | ls
+ls || ls
+ls |                  | ls
+ls |          | ls
+ls |            | ls
+ls || ls
+ls >> ls
+"ls>"|ls
+ls>>>ls
+ls >>                     | ls
+ls | ls
+ls | | ls
+ls | | ls
+ls |                 ls
+ls     |        ls
+ls >> ls
+ls >> ls
+ls >> ls
+ls >> ls
+ls >> ls
+"ls<"<ls
+ls >              > ls
+ls          |          ls
+ls || ls
+ls >>> ls
+ls >| ls
+ls >< ls
+ls |           <
+ls <        > ls
