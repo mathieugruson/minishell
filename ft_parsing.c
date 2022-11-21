@@ -6,87 +6,72 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 13:48:14 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 14:20:16 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int we_are_in_quote(char *str, int i)
+typedef struct s_index
 {
-	int j = 0;
+	int i;
+	int i1;
+	int i2;
+	int i3;
+	int j;
+	int j1;
+	int j2;
+	int j3;
+	int start;
+	int end;
+	int count;
+	int k;	
+}	t_index;
 
-	while(str[j] && j < i)
-	{
-		if (str[j] && str[j] == 34 && j < i)
-		{	
-			j++;
-			while(str[j] && str[j] != 34)
-				j++;
-			// printf("1 waiq s[j] : %c  j : %i\n", str[j], j);	
-			if (str[j] != 0 && j > i)
-			{
-				// printf("1 in quote str[j] %c\n", str[j]);
-				return (1);
-			}
-		}
-		if (str[j] && str[j] == 39 && j < i)
-		{	
-			j++;
-			while(str[j] && str[j] != 39)
-				j++;
-			// printf("2 waiq s[j] : %c  j : %i\n", str[j], j);	
-			if (str[j] != 0 && j > i)
-			{
-				// printf("2 in quote str[j] %c\n", str[j]);
-				return (1);
-			}
-		}
-		j++;
-	}
-	// printf("not in quote\n");
-	return (0);
+t_index initialize_index()
+{
+	t_index	i;
+
+	i.i = 0;
+	i.i1 = 0;
+	i.i2 = 0;
+	i.i3 = 0;
+	i.j = 0;
+	i.j1 = 0;
+	i.j2 = 0;
+	i.j3 = 0;
+	i.start = 0;
+	i.end = 0;
+	i.count = 0;
+	i.k = 0;	
+	return (i);
 }
-
 
 int	double_pointer_nbr(char *s, char c) // ft_tab
 {
-	int	i;
-	int	count;
-	int k;
-	
-	k = 0;
-	i = 0;
-	count = 0;
-	while (s[i])
+	t_index i;
+
+	i = initialize_index();
+	while (s[i.i])
 	{
-		while ((s[i] && (((s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')) || we_are_in_quote(s, i))))
+		while ((s[i.i] && (((s[i.i] != c && s[i.i] != '|' && s[i.i] != '>' && s[i.i] != '<')) || we_are_in_quote(s, i.i))))
 		{
-			if (k++ == 0)
-			{
-				count++;
-			}
-			// printf("1 s[i] : %c  i : %i\n", s[i], i);	
-			i++;
-			// printf("1bis s[i] : %c  i : %i\n", s[i], i);	
+			if (i.k++ == 0)
+				i.count++;
+			i.i++;
 		}
-		// printf("c2\n");
-		k = 0;
-		while (s[i] == '>' || s[i] == '<' || s[i] == '|')
+		i.k = 0;
+		while (s[i.i] == '>' || s[i.i] == '<' || s[i.i] == '|')
 		{
-			if (k++ == 0)
-			{
-				count++;
-			}
-			// printf("2 s[i] : %c\n", s[i]);
-			i++;
+			if (i.k++ == 0)
+				i.count++;
+			i.i++;
 		}
-		k = 0;
-		while (s[i] && s[i] == c)
-			i++;
+		i.k = 0;
+		while (s[i.i] && s[i.i] == c)
+			i.i++;
 	}
-	printf("double pointeur cree: %i\n", count);
-	return (count);
+	return (i.count);
 }
 
 static char	**ft_free_tab(char **s, int t)
@@ -132,7 +117,6 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 		if (count != 0)
 		{	
 			s1[t] = malloc_simple_pointer(count, t, s1);
-			printf("t : %i, count %i\n", t, count);
 			t++;
 			count = 0;			
 		}
@@ -141,10 +125,8 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 			count++;
 			i++;
 		}
-		// printf("l\n");
 		if (count != 0)
 		{
-			printf("t : %i, count %i\n", t, count);
 			s1[t] = malloc_simple_pointer(count, t, s1);
 			t++;
 			count = 0;
@@ -186,7 +168,7 @@ int	ft_triple_pointer_len(char *s)
 		i++;
 	}
 	count = count + (count + 1) ;
-	// printf("triple pointer len : %i\n", count);
+	printf("triple pointer len : %i\n", count);
 	return (count);
 	
 }
@@ -223,7 +205,7 @@ char	***ft_parsing(char *s)
 	// printf("triple tab before cleaning :\n");
 	// ft_puttripletab(test);	
 	// printf("c10\n");
-	test = clean_quote(test);
+	test = clean_args(test);
 	// test = get_env_var(test);
 	// printf("triple tab after cleaning :\n");
 	// ft_puttripletab(test);

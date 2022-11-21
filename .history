@@ -706,3 +706,8 @@ ls mathieu |"ls | ma" "|"ls|ls|ls|
 "  |  "
 /usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
 /usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+ls>>ls
+" test | test"
