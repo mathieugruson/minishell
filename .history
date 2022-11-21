@@ -713,3 +713,12 @@ ls>>ls
 " test | test"
 test | test
 test
+test
+"l"s
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+te"'t'"'"e"'
+ls|grep
+ls>>grep
+"test | test" "test 'la'" | ls
+ls mathieu |"ls | ma" "|"ls|ls|ls|

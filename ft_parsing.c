@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 16:29:37 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 16:48:58 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_index
 	int end;
 	int count;
 	int k;
-	int t;	
+	int t;
+	int l;	
 }	t_index;
 
 t_index initialize_index()
@@ -45,7 +46,8 @@ t_index initialize_index()
 	i.end = 0;
 	i.count = 0;
 	i.k = 0;
-	i.t = 0;	
+	i.t = 0;
+	i.l = 0;	
 	return (i);
 }
 

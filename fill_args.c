@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 12:43:50 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 16:50:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,73 +15,28 @@
 
 char	**fill_args(char *s, char c, char **s1)
 {
-	int	l;
-	int	i;
-	int	t;
+	t_index i;
 
-	l = 0;
-	i = 0;
-	t = 0;
-	// printf("c1\n");
-	while (s[i] && s[i] !='\n')
+	i = initialize_index();
+	while (s[i.i] && s[i.i] !='\n')
 	{
-		while (s[i] && s[i] == c && s[i] != '|' && s[i] != '<' && s[i] != '>')
-			i++;
-		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
-		{
-			// t++;
-			l = 0;
-			s1[t][l++] = s[i++];
-			s1[t][l++] = s[i++];
-			// printf("string %s\n", s1[t]);
-			if (s[i] != c)
-				t++;
-			l = 0;
+		while (s[i.i] && s[i.i] == c)
+			i.i++;
+		i.l = 0;
+		while ((s[i.i] == '>' || s[i.i] == '<' || s[i.i] == '|'))
+		{	
+			s1[i.t][i.l++] = s[i.i++];
 		}
-		if (s[i] == '|' || s[i] == '<' || s[i] == '>')
+		if (i.l != 0 && i.t++ > -1)
+			i.l = 0;	
+		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || we_are_in_quote(s, i.i)))
 		{
-			// t++;
-			l = 0;
-			// printf("atm %i l %i i %i\n", t, l, i);
-			s1[t][l++] = s[i++];
-			// printf("string %s\n", s1[t]);
-			// printf("c2quater t %i l %i i %i\n", t, l, i);				
-			if (s[i] != c)
-				t++;
-			l = 0;
-		}		
-		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '<' && s[i] != '>' && s[i] != '\n')
-		{
-			// printf("c2\n");
-			if (s[i] && s[i] == 34)
-			{
-				s1[t][l++] = s[i++];
-				while(s[i] != 34)
-					s1[t][l++] = s[i++];
-				s1[t][l++] = s[i++];
-			}
-			if (s[i] && s[i] == 39)
-			{
-				s1[t][l++] = s[i++];
-				while(s[i] != 39)
-					s1[t][l++] = s[i++];
-				s1[t][l++] = s[i++];
-			}
-			// printf("c3 %c\n", s[i]);
-			if (s[i] && s[i] != c && s[i] != '\n' && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '<' && s[i] != '>' )
-			{
-				// printf("atm : t %i l %i i %i\n", t, l, i);
-				s1[t][l++] = s[i++];
-				// printf("atm 1 : %s\n", s1[t]);
-			}	
-			// printf("string %s\n", s1[t]);
+			s1[i.t][i.l++] = s[i.i++];
 		}
-		t++;	
-		l = 0;
+		if (i.l != 0 && i.t++ > -1)
+			i.l = 0;	
 	}
-	// printf("c4\n");
-	s1[t] = NULL;
-	// ft_putdoubletab(s1);
+	s1[i.t] = NULL;
 	return (s1);
 }
 
