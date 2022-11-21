@@ -797,3 +797,11 @@ ls || ls
 ls |         | ls
 ls >> ls
 ls > > ls
+ls ls ls
+ls | ls
+ls | ls
+ls | ls
+ls | ls
+ls | ls
+ls | | ls
+"L""S"

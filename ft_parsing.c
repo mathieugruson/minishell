@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 19:53:40 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:57:26 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ char	***ft_parsing(char *s)
 	// printf("before test :\n");
 	// ft_putdoubletab(args);
 	// write(1, "c2\n", 3);
-	test = malloc_test(test, args, s);	
+	test = malloc_test(test, args);	
 	test = fill_test(test, args);
 	// printf("triple tab before cleaning :\n");
 	// ft_puttripletab(test);	

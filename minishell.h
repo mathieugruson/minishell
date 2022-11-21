@@ -50,6 +50,7 @@ typedef struct s_index
 
 char	**fill_args(char *s, char c, char **s1);
 char ***fill_test(char ***test, char **args);
+char ***malloc_test(char ***test, char **args);
 
 /* ft_parsing.c */
 

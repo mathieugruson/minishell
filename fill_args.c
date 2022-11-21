@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 19:54:42 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 20:14:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,46 @@ char	**fill_args(char *s, char c, char **s1)
 	return (s1);
 }
 
-char ***malloc_test(char ***test, char **args, char *s)
+char **malloc_double_pointer(char **tab, int count)
 {
-	t_index i;
-
-	i = initialize_index();	
+	tab = malloc(sizeof(char *) * (count + 1));
+	tab[count] = NULL;
+	return (tab);
 }
-char ***fill_test(char ***test, char **args)
+
+char ***malloc_test(char ***test, char **args)
 {
 	t_index i;
 
 	i = initialize_index();
 	while(args[i.i])
 	{
-		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>'))
-		{
-
+		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
 			i.counter++;	
-			i.i++;
-		}
 		if (i.counter > 0)
 		{
-			test[i.j] = malloc(sizeof(char *) * (i.counter + 1));
-			test[i.j][i.counter] = NULL;
+			test[i.j] = malloc_double_pointer(test[i.j], i.counter);
 			i.j++;
 			i.counter = 0;
 		}
-		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' || args[i.i][0] == '>'))
-		{		
+		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' || args[i.i][0] == '>') && i.i++ > -1)	
 			i.counter++;
-			i.i++;
-		}
 		if (i.counter > 0)
 		{
-			test[i.j] = malloc(sizeof(char *) * (i.counter + 1));
-			test[i.j][i.counter] = NULL;
+			test[i.j] = malloc_double_pointer(test[i.j], i.counter);
 			i.j++;
 			i.counter = 0;
 		}
-	}
+	}	
+	return (test);
+}
+
+char ***fill_test(char ***test, char **args)
+{
+	t_index i;
+
+	i = initialize_index();
+
 	i.i = 0;
 	i.j = 0;
 	i.k = 0;
