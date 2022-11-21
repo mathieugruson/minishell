@@ -619,3 +619,90 @@ ls | ls
 te"'t'"'"e"'
 ls|ls
 ls|ls
+ls | | ls
+ls|ls
+"l""s"
+"test | test" "test 'la'" | ls
+echo "$LANG" '$LANG' "$LANG"
+ls>>grep
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+ls | | ls
+l"s" l"s" | le
+l"s" l"s" | le
+"test | test" "test 'la'" | ls
+ls|ls|ls|ls|ls|
+"l">"s"
+l"s" l"s" | le
+"l""s"
+ls
+"l""s"
+te'"t"'"'e'"
+ls>>grep
+ls>grep
+ls<ls
+ls<<ls
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+echo "$LANG" '$LANG' "$LANG"
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+"test | test" "test 'la'" | ls
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+ls>>grep
+ls mathieu |"ls | ma" "|"ls|ls|ls|
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+			printf("s[i] : %c\n", s[i]);
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+				printf("s[i] : %c  i : %i\n", s[i], i);	
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+" /"
+"/"
+"   /   "
+"   |   "
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+" < ?
+" < "
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+"        "
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+" |<>"
+" >> "
+">"">"
+" > " " > "
+" | "
+" | "
+" | "
+			printf("test\n");
+"  |  "
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+"  |  "
+				printf("2 s[i] : %c\n", s[i]);
+"  |  "
+"  |  "
+"  |  "
+"  |  "
+"  | ""
+"  |  "
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing
+/usr/b"i"n/echo '- ' ' -' '$LANG'  "' '" testeur de parsing

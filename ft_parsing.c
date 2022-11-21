@@ -6,66 +6,86 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/18 20:05:03 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 13:48:14 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// typedef struct s_minishell
-// {
-// 	int		simple_tab;
-// 	int		double_tab;
-// 	int		triple_tab;
-// }	t_pointer;
+int we_are_in_quote(char *str, int i)
+{
+	int j = 0;
 
-static int	ft_tab(char const *s, char c)
+	while(str[j] && j < i)
+	{
+		if (str[j] && str[j] == 34 && j < i)
+		{	
+			j++;
+			while(str[j] && str[j] != 34)
+				j++;
+			// printf("1 waiq s[j] : %c  j : %i\n", str[j], j);	
+			if (str[j] != 0 && j > i)
+			{
+				// printf("1 in quote str[j] %c\n", str[j]);
+				return (1);
+			}
+		}
+		if (str[j] && str[j] == 39 && j < i)
+		{	
+			j++;
+			while(str[j] && str[j] != 39)
+				j++;
+			// printf("2 waiq s[j] : %c  j : %i\n", str[j], j);	
+			if (str[j] != 0 && j > i)
+			{
+				// printf("2 in quote str[j] %c\n", str[j]);
+				return (1);
+			}
+		}
+		j++;
+	}
+	// printf("not in quote\n");
+	return (0);
+}
+
+
+int	double_pointer_nbr(char *s, char c) // ft_tab
 {
 	int	i;
 	int	count;
-	int k = 0;
-	char e;
+	int k;
 	
+	k = 0;
 	i = 0;
 	count = 0;
-	// printf("ft_tab c1\n");
 	while (s[i])
 	{
-		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')
+		while ((s[i] && (((s[i] != c && s[i] != '|' && s[i] != '>' && s[i] != '<')) || we_are_in_quote(s, i))))
 		{
 			if (k++ == 0)
-				count++;
-			if (s[i] && (s[i] == 34 || s[i] == 39))
 			{
-				e = s[i];
-				i++;
-				while(s[i] != e)
-					i++;
-				i++;
+				count++;
 			}
-			// printf("char c2 : %c\n", s[i]);
-			if (s[i] != 0 && s[i] != c && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '>' && s[i] != '<')	
-				i++;
+			// printf("1 s[i] : %c  i : %i\n", s[i], i);	
+			i++;
+			// printf("1bis s[i] : %c  i : %i\n", s[i], i);	
 		}
+		// printf("c2\n");
 		k = 0;
-		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
+		while (s[i] == '>' || s[i] == '<' || s[i] == '|')
 		{
 			if (k++ == 0)
+			{
 				count++;
-			i = i + 2;
-		}
-		k = 0;
-		if (s[i] == '|' || s[i] == '<' || s[i] == '>')
-		{
-			if (k++ == 0) 
-				count++;
+			}
+			// printf("2 s[i] : %c\n", s[i]);
 			i++;
 		}
 		k = 0;
 		while (s[i] && s[i] == c)
 			i++;
 	}
-	printf("nombre de double pointeur : %d\n", count);
+	printf("double pointeur cree: %i\n", count);
 	return (count);
 }
 
@@ -80,7 +100,18 @@ static char	**ft_free_tab(char **s, int t)
 	return (s);
 }
 
-static char	**ft_taboftab(char const *s, char c, char **s1)
+char *malloc_simple_pointer(int count, int t, char **s1)
+{
+	s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
+	if (!s1[t])
+	{
+		s1 = ft_free_tab(s1, t);
+		return (s1[t]);
+	}
+	return (s1[t]);
+}
+
+char	**simple_pointer_nbr(char *s, char c, char **s1)
 {
 	int	i;
 	int	count;
@@ -93,145 +124,32 @@ static char	**ft_taboftab(char const *s, char c, char **s1)
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
+		while (s[i] == '>' || s[i] == '<' || s[i] == '|')
 		{
-			// printf("count string pipe : 2\n");
-			s1[t] = (char *)ft_calloc((2 + 1), sizeof(char));
-			if (!s1[t++])
-			{
-				s1 = ft_free_tab(s1, t);
-				return (s1);
-			}
-			i = i + 2;			
-		}			
-		if (s[i] == '|' || s[i] == '>' || s[i] == '<')
-		{
-			// printf("count string pipe : 1\n");
-			s1[t] = (char *)ft_calloc((1 + 1), sizeof(char));
-			if (!s1[t++])
-			{
-				s1 = ft_free_tab(s1, t);
-				return (s1);
-			}
-			i++;			
+			count++;
+			i++;	
 		}
-		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '<' && s[i] != '>' && s[i] != '\n')
+		if (count != 0)
+		{	
+			s1[t] = malloc_simple_pointer(count, t, s1);
+			printf("t : %i, count %i\n", t, count);
+			t++;
+			count = 0;			
+		}
+		while (s[i] && ((s[i] != c && s[i] != '|' && s[i] != '<' && s[i] != '>' && s[i] != '\n') || we_are_in_quote(s, i)))
 		{
-			if (s[i] && s[i] == 34)
-			{
-				i++;
-				count++;
-				while(s[i] != 34)
-				{	
-					i++;
-					count++;
-				}
-				// count--;	
-			}
-			if (s[i] && s[i] == 39)
-			{
-				i++;
-				count++;
-				while(s[i] != 39)
-				{
-					count++;	
-					i++;
-				}
-				// count--;
-			}
-			if (s[i] != 0 && s[i] != '\n')			
-			{
-				// printf("i %i", i);
-				i++;
-				count++;
-				// printf("t\n");
-			}
+			count++;
+			i++;
 		}
 		// printf("l\n");
 		if (count != 0)
 		{
-			// printf("count string : %i\n", count);
-			s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
-			if (!s1[t++])
-			{
-				s1 = ft_free_tab(s1, t);
-				return (s1);
-			}
+			printf("t : %i, count %i\n", t, count);
+			s1[t] = malloc_simple_pointer(count, t, s1);
+			t++;
 			count = 0;
 		}
 	}
-	return (s1);
-}
-
-static char	**fill_args(char const *s, char c, char **s1)
-{
-	int	l;
-	int	i;
-	int	t;
-
-	l = 0;
-	i = 0;
-	t = 0;
-	// printf("c1\n");
-	while (s[i] && s[i] !='\n')
-	{
-		while (s[i] && s[i] == c && s[i] != '|' && s[i] != '<' && s[i] != '>')
-			i++;
-		if ((s[i] == '>' && s[i+1] == '>') || (s[i] == '<' && s[i+1] == '<'))
-		{
-			// t++;
-			l = 0;
-			s1[t][l++] = s[i++];
-			s1[t][l++] = s[i++];
-			// printf("string %s\n", s1[t]);
-			if (s[i] != c)
-				t++;
-			l = 0;
-		}
-		if (s[i] == '|' || s[i] == '<' || s[i] == '>')
-		{
-			// t++;
-			l = 0;
-			// printf("atm %i l %i i %i\n", t, l, i);
-			s1[t][l++] = s[i++];
-			// printf("string %s\n", s1[t]);
-			// printf("c2quater t %i l %i i %i\n", t, l, i);				
-			if (s[i] != c)
-				t++;
-			l = 0;
-		}		
-		while (s[i] && s[i] != c && s[i] != '|' && s[i] != '<' && s[i] != '>' && s[i] != '\n')
-		{
-			// printf("c2\n");
-			if (s[i] && s[i] == 34)
-			{
-				s1[t][l++] = s[i++];
-				while(s[i] != 34)
-					s1[t][l++] = s[i++];
-				s1[t][l++] = s[i++];
-			}
-			if (s[i] && s[i] == 39)
-			{
-				s1[t][l++] = s[i++];
-				while(s[i] != 39)
-					s1[t][l++] = s[i++];
-				s1[t][l++] = s[i++];
-			}
-			// printf("c3 %c\n", s[i]);
-			if (s[i] && s[i] != c && s[i] != '\n' && s[i] != 34 && s[i] != 39 && s[i] != '|' && s[i] != '<' && s[i] != '>' )
-			{
-				// printf("atm : t %i l %i i %i\n", t, l, i);
-				s1[t][l++] = s[i++];
-				// printf("atm 1 : %s\n", s1[t]);
-			}	
-			// printf("string %s\n", s1[t]);
-		}
-		t++;	
-		l = 0;
-	}
-	// printf("c4\n");
-	s1[t] = NULL;
-	// ft_putdoubletab(s1);
 	return (s1);
 }
 
@@ -240,46 +158,15 @@ char **malloc_args(char *s, char c)
 	char	**args;
 	
 	args = NULL;
-	args = (char **)ft_calloc((ft_tab(s, c) + 1), sizeof(char *));
+	args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *));
 	if (!args)
 		return (NULL);
-	args = ft_taboftab(s, c, args);
+	args = simple_pointer_nbr(s, c, args);
 	if (!*args)
 	{
 		return (args);
 	}
 	return (args);
-}
-
-int we_are_in_quote(char *str, int i)
-{
-	int j = 0;
-
-	while(str[j] && j < i)
-	{
-		if (str[j] && str[j] == 34 && j < i)
-		{	
-			while(str[j] && str[j] != 34)
-				j++;
-			if (str[j] != 0 && j > i)
-			{
-				printf("waiq str[j] %c\n", str[j]);
-				return (1);
-			}
-		}
-		if (str[j] && str[j] == 39 && j < i)
-		{	
-			while(str[j] && str[j] != 39)
-				j++;
-			if (str[j] != 0 && j > i)
-			{
-				printf("waiq str[j] %c\n", str[j]);
-				return (1);
-			}
-		}
-		j++;
-	}
-	return (0);
 }
 
 int	ft_triple_pointer_len(char *s)
@@ -303,112 +190,6 @@ int	ft_triple_pointer_len(char *s)
 	return (count);
 	
 }
-
-char ***fill_test(char ***test, char **args)
-{
-	int	i; 
-	int	j;
-	int k;
-	int counter;
-	
-	i = 0;
-	k = 0;
-	j = 0;
-	counter = 0;
-	// printf("c1\n");
-	while(args[i])
-	{
-		while (args[i] && (args[i][0] != '|' && args[i][0] != '<' && args[i][0] != '>'))
-		{
-			// printf("s : %s\n", args[i]);	
-			// printf("c3 i : %i\n", i);
-			counter++;	
-			i++;
-		}
-		// printf("args[i] : %s, i : %i\n", args[i], i);
-		// printf("c2\n");
-		if (counter > 0)
-		{
-			test[j] = malloc(sizeof(char *) * (counter + 1));
-			// printf("counter test : %i\n", counter);
-			test[j][counter] = NULL;
-			// printf(" test[j][counter] : %s\n", test[j][counter]);
-			j++;
-			counter = 0;
-		}
-		// printf("c2bis\n");
-		while (args[i] && (args[i][0] == '|' || args[i][0] == '<' || args[i][0] == '>'))
-		{		
-			counter++;
-			i++;
-		}
-		// printf("c2ter\n");
-		if (counter > 0)
-		{
-			// printf("counter test 2 : %i\n", counter);
-			test[j] = malloc(sizeof(char *) * (counter + 1));
-			test[j][counter] = NULL;
-			j++;
-			counter = 0;
-		}
-	}
-	i = 0;
-	j = 0;
-	k = 0;
-	// printf("c4\n");
-	while(args[i])
-	{
-		while (args[i] != NULL && (args[i][0] != '|' && args[i][0] != '<' && args[i][0] != '>'))
-		{	
-			// printf("j %i k %i i %i\n", j, k, i);
-			// printf("s : %s\n", args[i]);	
-			test[j][k] = args[i];
-			k++;
-			i++;
-		}
-		// printf("c4bis1\n");
-		// ft_putdoubletab(test[j]);
-		j++;
-		k = 0;
-		while (args[i] && (args[i][0] == '|' || args[i][0] == '<' || args[i][0] == '>'))
-			test[j][k++] = args[i++];
-		// if (k > 0)
-			// ft_putdoubletab(test[j]);
-		j++;
-		k = 0;
-	}
-	// printf("c4ter\n");
-	return (test);
-}
-
-// char **handle_ev(char **tab)
-// {
-// 	static int j = 0;
-// 	int	i;
-
-// 	i = 0;
-// 	if (!tab)
-// 		return ;
-// 	while (tab[i])
-// 	{
-// 		handle_environment_variables(tab[i])
-// 		i++;
-// 	}		
-// }
-
-// char ***get_env_var(char ***args)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	if (!args)
-// 		return ;
-// 	while(args[i])
-// 	{
-// 		handle_ev(args[i]);
-// 		i++;
-// 	}
-// }
 
 char	***ft_parsing(char *s)
 {

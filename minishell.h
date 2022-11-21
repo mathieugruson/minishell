@@ -43,10 +43,20 @@ typedef struct s_minishell
 
 // } t_index;
 
+/* fill_args.c*/
+
+char	**fill_args(char *s, char c, char **s1);
+char ***fill_test(char ***test, char **args);
+
 /* ft_parsing.c */
 
 char	***ft_parsing(char *s);
 int	we_are_in_quote(char *str, int i);
+int	double_pointer_nbr(char *s, char c);
+char *malloc_simple_pointer(int count, int t, char **s1);
+char	**simple_pointer_nbr(char *s, char c, char **s1);
+char **malloc_args(char *s, char c);
+int	ft_triple_pointer_len(char *s);
 
 /* mathieu_utils.c */
 
