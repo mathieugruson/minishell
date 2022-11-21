@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 16:55:30 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:53:40 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	double_pointer_nbr(char *s, char c)
 	i = initialize_index();
 	while (s[i.i])
 	{
-		while ((s[i.i] && (((s[i.i] != c && s[i.i] != '|' && s[i.i] != '>' && s[i.i] != '<')) || we_are_in_quote(s, i.i))))
+		while ((s[i.i] && (((s[i.i] != c && s[i.i] != '|' && s[i.i] != '>' && s[i.i] != '<')) || is_in_quote(s, i.i))))
 		{
 			if (i.k++ == 0)
 				i.count++;
@@ -78,7 +78,7 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 			i.t++;
 			i.count = 0;			
 		}
-		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || we_are_in_quote(s, i.i)) && i.count++ > -1)
+		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || is_in_quote(s, i.i)) && i.count++ > -1)
 			i.i++;
 		if (i.count != 0)
 		{
@@ -115,7 +115,7 @@ int	ft_triple_pointer_len(char *s)
 	count = 0;
 	while (s[i])
 	{
-		if ((s[i] == '|' || s[i] == '>' || s[i] == '<') && !we_are_in_quote(s, i))
+		if ((s[i] == '|' || s[i] == '>' || s[i] == '<') && !is_in_quote(s, i))
 		{
 			count++;	
 			i = i + 2;
@@ -155,7 +155,8 @@ char	***ft_parsing(char *s)
 	test[triple_pointer_len] = NULL;
 	// printf("before test :\n");
 	// ft_putdoubletab(args);
-	// write(1, "c2\n", 3);	
+	// write(1, "c2\n", 3);
+	test = malloc_test(test, args, s);	
 	test = fill_test(test, args);
 	// printf("triple tab before cleaning :\n");
 	// ft_puttripletab(test);	

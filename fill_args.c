@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 16:54:51 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:54:42 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**fill_args(char *s, char c, char **s1)
 		}
 		if (i.l != 0 && i.t++ > -1)
 			i.l = 0;	
-		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || we_are_in_quote(s, i.i)))
+		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || is_in_quote(s, i.i)))
 		{
 			s1[i.t][i.l++] = s[i.i++];
 		}
@@ -39,6 +39,12 @@ char	**fill_args(char *s, char c, char **s1)
 	return (s1);
 }
 
+char ***malloc_test(char ***test, char **args, char *s)
+{
+	t_index i;
+
+	i = initialize_index();	
+}
 char ***fill_test(char ***test, char **args)
 {
 	t_index i;

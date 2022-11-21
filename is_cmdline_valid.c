@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 19:41:01 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:49:18 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,22 @@ int	is_handled_special_char(char *str, int i)
 	sup = 0;
 	bar = 0;
 	space = 0;
-	while((str[i] == '|' || (str[i] == ' ' && (inf > 0 || sup > 0 || bar > 0)) || str[i] == '>' || str[i] == '<' ) && !we_are_in_quote(str, i))
+	while((str[i] == '|' || (str[i] == ' ' && (inf > 0 || sup > 0 || bar > 0))\
+	|| str[i] == '>' || str[i] == '<' ) && !is_in_quote(str, i))
 	{
-		if (str[i] == '|' && i++ > -1 && bar++ > -1)
-		{	
-			if (bar > 1 || sup > 0 || inf > 0)
-				return (printf(" 1 inf %i sup %i bar %i space %i\n", inf, sup, bar, space), 0);
-		}
-		if (str[i] == '>' && i++ > -1 && sup++ > -1)
-		{	
-			if (sup > 2 || space > 0 || bar > 0 || inf > 0)
-				return (printf(" 2 inf %i sup %i bar %i space %i\n", inf, sup, bar, space), 0);
-		}
-		if (str[i] == '<' && i++ > -1 && inf++ > -1)
-		{	
-			if (inf > 2 || space > 0 || sup > 0 || bar > 0)
-				return (printf(" 3 inf %i sup %i bar %i space %i\n", inf, sup, bar, space), 0);
-		}		
+		if (str[i] == '|' && i++ > -1 && bar++ > -1\
+		&& ((bar > 1 || sup > 0 || inf > 0)))
+				return (0);
+		if ((str[i] == '>' && i++ > -1 && sup++ > -1)\
+		&& (sup > 2 || space > 0 || bar > 0 || inf > 0)) 
+				return (0);
+		if (str[i] == '<' && i++ > -1 && inf++ > -1 &&\
+		(inf > 2 || space > 0 || sup > 0 || bar > 0))
+				return (0);
 		while (str[i] == ' ' && i++ > -1)
 			space++;
 	}
-	return (printf(" 4 inf %i sup %i bar %i space %i\n", inf, sup, bar, space), 1);
+	return (1);
 }
 		
 int are_handled_special_char(char *str)

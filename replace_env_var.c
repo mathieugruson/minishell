@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:52:21 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/18 19:24:59 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:46:39 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ pour chacun : command, option, etc.
 // }
 
 
-// int we_are_in_simple_quote(char *str, int i)
+// int is_in_simple_quote(char *str, int i)
 // {
 // 	int j = 0;
 
@@ -108,7 +108,7 @@ pour chacun : command, option, etc.
 // 	while(str[i])
 // 	{
 // 		// write(1, &str[i][0], 1);
-// 		if (str[][j] == '$' && ft_isalpha(str[i][j+1]) && !we_are_in_simple_quote(str, i))
+// 		if (str[][j] == '$' && ft_isalpha(str[i][j+1]) && !is_in_simple_quote(str, i))
 // 		{
 // 			while(str[i] && str[i] != ' ')
 // 		 	{	

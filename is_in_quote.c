@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   we_are_in_quote.c                                  :+:      :+:    :+:   */
+/*   is_in_quote.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int we_are_in_quote(char *str, int i)
+int is_in_quote(char *str, int i)
 {
 	int j = 0;
 
