@@ -711,3 +711,5 @@ ls mathieu |"ls | ma" "|"ls|ls|ls|
 ls mathieu |"ls | ma" "|"ls|ls|ls|
 ls>>ls
 " test | test"
+test | test
+test

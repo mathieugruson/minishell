@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 14:20:16 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 16:29:37 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_index
 	int start;
 	int end;
 	int count;
-	int k;	
+	int k;
+	int t;	
 }	t_index;
 
 t_index initialize_index()
@@ -43,11 +44,12 @@ t_index initialize_index()
 	i.start = 0;
 	i.end = 0;
 	i.count = 0;
-	i.k = 0;	
+	i.k = 0;
+	i.t = 0;	
 	return (i);
 }
 
-int	double_pointer_nbr(char *s, char c) // ft_tab
+int	double_pointer_nbr(char *s, char c)
 {
 	t_index i;
 
@@ -98,38 +100,28 @@ char *malloc_simple_pointer(int count, int t, char **s1)
 
 char	**simple_pointer_nbr(char *s, char c, char **s1)
 {
-	int	i;
-	int	count;
-	int	t;
+	t_index i;
 
-	i = 0;
-	count = 0;
-	t = 0;
-	while (s[i] && s[i] != '\n')
+	i = initialize_index();
+	while (s[i.i] && s[i.i] != '\n')
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i] == '>' || s[i] == '<' || s[i] == '|')
-		{
-			count++;
-			i++;	
-		}
-		if (count != 0)
+		while (s[i.i] && s[i.i] == c)
+			i.i++;
+		while ((s[i.i] == '>' || s[i.i] == '<' || s[i.i] == '|') && i.count++ > -1)
+			i.i++;	
+		if (i.count != 0)
 		{	
-			s1[t] = malloc_simple_pointer(count, t, s1);
-			t++;
-			count = 0;			
+			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1);
+			i.t++;
+			i.count = 0;			
 		}
-		while (s[i] && ((s[i] != c && s[i] != '|' && s[i] != '<' && s[i] != '>' && s[i] != '\n') || we_are_in_quote(s, i)))
+		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || we_are_in_quote(s, i.i)) && i.count++ > -1)
+			i.i++;
+		if (i.count != 0)
 		{
-			count++;
-			i++;
-		}
-		if (count != 0)
-		{
-			s1[t] = malloc_simple_pointer(count, t, s1);
-			t++;
-			count = 0;
+			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1);
+			i.t++;
+			i.count = 0;
 		}
 	}
 	return (s1);
