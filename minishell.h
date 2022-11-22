@@ -43,7 +43,8 @@ typedef struct s_index
 	int k;
 	int t;
 	int l;
-	int counter;	
+	int counter;
+	int len;	
 }	t_index;
 
 /* fill_args.c*/
@@ -54,7 +55,7 @@ char ***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
 
-char	***ft_parsing(char *s);
+char	***ft_parsing(char *s, char **envp);
 int	is_in_quote(char *str, int i);
 int	double_pointer_nbr(char *s, char c);
 char *malloc_simple_pointer(int count, int t, char **s1);
@@ -82,6 +83,7 @@ void handle_environment_variables(char **argv, char **envp);
 
 /* is_in_quote.c  */
 
+int is_in_simple_quote(char *str, int i);
 int is_in_quote(char *str, int i);
 
 /* initialize_index.c */

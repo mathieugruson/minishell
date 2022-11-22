@@ -6,13 +6,159 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 14:57:02 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 17:55:52 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	***ft_parsing(char *s)
+int	ft_strncmp_minishell(char *s1, char *s2, int n, int i)
+{
+	int j;
+
+	j = 0;
+	while (((s1[i] != '\0') && (i < n)) || ((s2[j] != '\0') && (i < n)))
+	{
+		if (s1[i] != s2[j])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[j]);
+		}
+		i++;
+		j++;
+	}
+	if (s2[j] != '=')
+		return (1);
+	return (0);
+}
+
+int ft_strlenenv(char *envp)
+{
+	int i;
+	int len;
+	int size;
+	
+	i = 0;
+	len = 0;
+	size = ft_strlen(envp);
+	while(envp[i])
+	{
+		if (envp[i] && envp[i] == '=')
+		{
+			while (envp[i] && i <= size)
+			{
+				len++;
+				i++;
+			}
+		}
+		i++;		
+	}
+	return (len - 1);
+}
+
+char *get_env(char *env,  char *envp)
+{
+	int i;
+	int size;
+	int j;
+	
+	j = 0;
+	i = 0;
+	size = ft_strlen(envp);
+	while(envp[i])
+	{
+		if (envp[i] && envp[i] == '=')
+		{
+			i++;
+			while (envp[i] && i <= size)
+			{
+				env[j++] = envp[i++];
+			}
+		}
+		i++;		
+	}
+	return (env);
+}
+
+char *get_new_args(char *str, int end, int start, char *envp)
+{
+	t_index i;
+	char *newstring;
+	char *env;
+	
+	i = initialize_index();
+	i.count = end - start;
+	printf("stlren str : %li, i.count : %i, strlen env : %i\n", ft_strlen(str), i.count, ft_strlenenv(envp));
+	i.len = ft_strlen(str) - (i.count + 1) + ft_strlenenv(envp);
+	env = ft_calloc(sizeof(char), ft_strlenenv(envp));
+	env = get_env(env, envp);
+	printf("env : %s\n", env);
+	// printf("i.len : %i\n", i.len);
+	(void)i;
+	newstring = ft_calloc(sizeof(char), (i.len + 1));
+	while (str[i.i1])
+	{
+		printf("c1\n");
+		while(str[i.i1] != '$')
+			newstring[i.i2++] = str[i.i1++];
+		printf("c1bis\n");
+		while(env[i.i3])
+			newstring[i.i2++] = env[i.i3++];
+		printf("c1ter\n");
+		i.i1 = i.i1 + i.count + 1;
+		while(str[i.i1])
+			newstring[i.i2++] = str[i.i1++];  	
+		printf("c1quater\n");
+	}
+	printf("new : %s\n", newstring);
+	return (newstring);
+}
+
+char	*is_env_var(char *str, char **envp)
+{
+	t_index i;
+	
+	i = initialize_index();
+	while (str[i.i])
+	{
+		if (str[i.i] == '$' && !is_in_simple_quote(str, i.i))
+		{						
+			i.start = i.i + 1;
+			while(str[i.i] && str[i.i] != ' ' && str[i.i] != 39 && str[i.i] != 34)
+		 	{	
+				i.i++;
+			}
+			i.end = i.i;
+			while(envp[i.j])
+			{
+				if(ft_strncmp_minishell(str, envp[i.j], i.end, i.start) == 0)
+				{
+					str = get_new_args(str, i.end, i.start, envp[i.j]);
+					return(printf("env : %s\n", envp[i.j]), str);
+				}
+				i.j++;
+			}
+		}
+		i.i++;		
+	}
+	printf("c1\n");
+	return (str);
+}
+
+char **get_env_var(char **args, char **envp)
+{
+	t_index i;
+
+	i = initialize_index();
+	while(args[i.i])
+	{
+		args[i.i] = is_env_var(args[i.i], envp);
+		printf("args after change : %s\n", args[i.i]);
+		i.i++;	
+	}
+	return (args);
+}
+
+char	***ft_parsing(char *s, char **envp)
 {
 	char	***cmd;
 	char	**args;
@@ -24,15 +170,13 @@ char	***ft_parsing(char *s)
 	args = get_args(s, ' ');
 	if (!args)
 		return (NULL);	
+	args = get_env_var(args, envp);
+	// return (NULL);
+	// (void)envp;
 	cmd = NULL;
 	cmd = set_in_cmd(cmd, args, s);
-
 	if (!cmd)
 		return(NULL);
 	cmd = clean_args(cmd);
-	// free(args[0]);
-	// free(args[1]);
-	// free(args[2]);
-	// free(args);
 	return (cmd);
 }

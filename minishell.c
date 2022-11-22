@@ -96,7 +96,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ft_init_commands_history(&var);
 		ft_printf("Command is :%s", var.args_line);
-		args = ft_parsing(var.args_line);
+		args = ft_parsing(var.args_line, envp);
 		ft_puttripletab(args);
 		free_tripletab(args);
 		free(var.args_line);
