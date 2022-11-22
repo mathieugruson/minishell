@@ -49,8 +49,8 @@ typedef struct s_index
 /* fill_args.c*/
 
 char	**fill_args(char *s, char c, char **s1);
-char ***fill_test(char ***test, char **args);
-char ***malloc_test(char ***test, char **args);
+char ***fill_cmd(char ***test, char **args);
+char ***malloc_cmd(char ***test, char **args);
 
 /* ft_parsing.c */
 
@@ -59,8 +59,9 @@ int	is_in_quote(char *str, int i);
 int	double_pointer_nbr(char *s, char c);
 char *malloc_simple_pointer(int count, int t, char **s1);
 char	**simple_pointer_nbr(char *s, char c, char **s1);
-char **malloc_args(char *s, char c);
+char **get_args(char *s, char c);
 int	ft_triple_pointer_len(char *s);
+char ***set_in_cmd(char ***cmd, char **args, char *s);
 
 /* mathieu_utils.c */
 
@@ -86,5 +87,16 @@ int is_in_quote(char *str, int i);
 /* initialize_index.c */
 
 t_index initialize_index();
+
+/* malloc_args.c */
+
+char	**simple_pointer_nbr(char *s, char c, char **s1);
+char *malloc_simple_pointer(int count, int t, char **s1);
+int	double_pointer_nbr(char *s, char c);
+char **get_args(char *s, char c);
+
+/* free_minishell.c */
+
+void	free_doubletab(char **s, int i);
 
 #endif

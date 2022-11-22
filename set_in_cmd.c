@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_args.c                                        :+:      :+:    :+:   */
+/*   set_in_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 20:14:02 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 12:57:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**fill_args(char *s, char c, char **s1)
-{
-	t_index i;
 
-	i = initialize_index();
-	while (s[i.i] && s[i.i] !='\n')
+int	ft_triple_pointer_len(char *s)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
 	{
-		while (s[i.i] && s[i.i] == c)
-			i.i++;
-		i.l = 0;
-		while ((s[i.i] == '>' || s[i.i] == '<' || s[i.i] == '|'))
-		{	
-			s1[i.t][i.l++] = s[i.i++];
-		}
-		if (i.l != 0 && i.t++ > -1)
-			i.l = 0;	
-		while (s[i.i] && ((s[i.i] != c && s[i.i] != '|' && s[i.i] != '<' && s[i.i] != '>' && s[i.i] != '\n') || is_in_quote(s, i.i)))
+		if ((s[i] == '|' || s[i] == '>' || s[i] == '<') && !is_in_quote(s, i))
 		{
-			s1[i.t][i.l++] = s[i.i++];
+			count++;	
+			i = i + 2;
 		}
-		if (i.l != 0 && i.t++ > -1)
-			i.l = 0;	
+		i++;
 	}
-	s1[i.t] = NULL;
-	return (s1);
+	count = count + (count + 1) ;
+	printf("triple pointer len : %i\n", count);
+	return (count);
+	
 }
 
 char **malloc_double_pointer(char **tab, int count)
@@ -46,7 +42,7 @@ char **malloc_double_pointer(char **tab, int count)
 	return (tab);
 }
 
-char ***malloc_test(char ***test, char **args)
+char ***malloc_cmd(char ***test, char **args)
 {
 	t_index i;
 
@@ -73,7 +69,7 @@ char ***malloc_test(char ***test, char **args)
 	return (test);
 }
 
-char ***fill_test(char ***test, char **args)
+char ***fill_cmd(char ***test, char **args)
 {
 	t_index i;
 
@@ -100,4 +96,18 @@ char ***fill_test(char ***test, char **args)
 		i.k = 0;
 	}
 	return (test);
+}
+
+char ***set_in_cmd(char ***cmd, char **args, char *s)
+{	
+	int		triple_pointer_len;
+	
+	triple_pointer_len = ft_triple_pointer_len(s);
+	cmd = malloc(sizeof(char **) * triple_pointer_len + 1);
+	if (!cmd)
+		return (NULL);
+	cmd[triple_pointer_len] = NULL;
+	cmd = malloc_cmd(cmd, args);	
+	cmd = fill_cmd(cmd, args);
+	return (cmd);
 }

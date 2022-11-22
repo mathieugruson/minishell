@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   free_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 13:02:47 by mgruson          ###   ########.fr       */
+/*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
+/*   Updated: 2022/11/22 13:18:28 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	***ft_parsing(char *s)
+void	free_doubletab(char **s, int i)
 {
-	char	***cmd;
-	char	**args;
-
-	if (!s || s[0] == '\n')
-		return (NULL);
-	if (!is_cmdline_valid(s))
-		return (NULL);
-	args = get_args(s, ' ');
-	if (!args)
-		return (NULL);	
-	cmd = NULL;
-	cmd = set_in_cmd(cmd, args, s);
-	if (!cmd)
-		return(NULL);
-	cmd = clean_args(cmd);
-	return (cmd);
+	while (i >= 0)
+	{
+		free(s[i]);
+		s[i] = NULL;
+		i--;
+	}
+	free(s);
 }
+
+// free_tripletab

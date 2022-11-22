@@ -30,10 +30,12 @@ SRCS = 	minishell.c	\
 		is_cmdline_valid.c \
 		clean_args.c \
 		replace_env_var.c \
-		fill_args.c \
+		set_in_cmd.c \
 		is_in_quote.c \
 		initialize_index.c \
-
+		get_args.c \
+		free_minishell.c  \
+		
 
 BONUS = \
 

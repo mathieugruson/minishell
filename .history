@@ -805,3 +805,8 @@ ls | ls
 ls | ls
 ls | | ls
 "L""S"
+ls | grep Make
+ls | ls
+ls | ls
+ls | ls
+ls | ls
