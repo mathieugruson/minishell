@@ -45,3 +45,4 @@ t$USER
 t$USER
 t$USERe
 $USER$USER
+$USE"R"

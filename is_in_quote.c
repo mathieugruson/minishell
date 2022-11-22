@@ -36,7 +36,7 @@ int is_in_simple_quote(char *str, int i)
 		}
 		j++;
 	}
-	printf("c0\n");
+	// printf("c0\n");
 	return (0);
 }
 

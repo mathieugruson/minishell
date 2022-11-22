@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 15:07:51 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 20:38:13 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_triple_pointer_len(char *s)
 		i++;
 	}
 	count = count + (count + 1) ;
-	printf("triple pointer len : %i\n", count);
+	// printf("triple pointer len : %i\n", count);
 	return (count);
 	
 }

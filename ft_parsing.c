@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 20:13:55 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 20:37:42 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,29 +87,31 @@ char *get_new_args(char *str, int end, int start, char *envp)
 	
 	i = initialize_index();
 	i.count = end - start;
-	printf("stlren str : %li, i.count : %i, strlen env : %i\n", ft_strlen(str), i.count, ft_strlenenv(envp));
+	// printf("stlren str : %li, i.count : %i, strlen env : %i\n", ft_strlen(str), i.count, ft_strlenenv(envp));
 	i.len = ft_strlen(str) - (i.count + 1) + ft_strlenenv(envp);
-	env = ft_calloc(sizeof(char), ft_strlenenv(envp));
+	env = ft_calloc(sizeof(char), (ft_strlenenv(envp) + 1));
 	env = get_env(env, envp);
-	printf("env : %s\n", env);
+	// printf("env : %s\n", env);
 	// printf("i.len : %i\n", i.len);
 	(void)i;
 	newstring = ft_calloc(sizeof(char), (i.len + 1));
 	while (str[i.i1])
 	{
-		printf("c1\n");
-		while(i.i1 != (start - 1))
+		// printf("c1\n");
+		while(str[i.i1] && i.i1 != (start - 1))
 			newstring[i.i2++] = str[i.i1++];
-		printf("c1bis new : %c, str : %c\n",newstring[i.i2], str[i.i1]);
+		// printf("c1bis new : %c, str : %c\n",newstring[i.i2], str[i.i1]);
 		while(env[i.i3])
 			newstring[i.i2++] = env[i.i3++];
-		printf("c1ter\n");
+		// printf("c1ter\n");
 		i.i1 = i.i1 + i.count + 1;
 		while(str[i.i1])
 			newstring[i.i2++] = str[i.i1++];  	
-		printf("c1quater\n");
+		// printf("c1quater\n");
 	}
-	printf("new : %s\n", newstring);
+	// printf("new : %s\n", newstring);
+	free(env);
+	free(str);
 	return (newstring);
 }
 
@@ -120,23 +122,24 @@ char *get_new_args2(char *str, int end, int start)
 	
 	i = initialize_index();
 	i.count = end - start;
-	printf("stlren str : %li, i.count : %i\n", ft_strlen(str), i.count);
+	// printf("stlren str : %li, i.count : %i\n", ft_strlen(str), i.count);
 	i.len = ft_strlen(str) - (i.count + 1);
 	(void)i;
 	newstring = ft_calloc(sizeof(char), (i.len + 1));
 	while (str[i.i1])
 	{
-		printf("c1\n");
+		// printf("c1\n");
 		while(str[i.i1] != '$')
 			newstring[i.i2++] = str[i.i1++];
-		printf("c1bis\n");
+		// printf("c1bis\n");
 		i.i1 = i.i1 + i.count + 1;
-		printf("c1ter %i\n", i.i1);
+		// printf("c1ter %i\n", i.i1);
 		while(str[i.i1])
 			newstring[i.i2++] = str[i.i1++];  	
-		printf("c1quater\n");
+		// printf("c1quater\n");
 	}
-	printf("new : %s\n", newstring);
+	// printf("new : %s\n", newstring);
+	free(str);
 	return (newstring);
 }
 
@@ -170,25 +173,25 @@ char	*is_env_var(char *str, char **envp)
 				i.i++;
 			}
 			i.end = i.i;
-			printf("end : %c\n", str[i.i]);
+			// printf("end : %c\n", str[i.i]);
 			i.j = is_in_env(envp, str, i.end, i.start);
 			if (i.j > 0)
 			{
 				str = get_new_args(str, i.end, i.start, envp[i.j]);
 				i.i = i.start - 2 + ft_strlenenv(envp[i.j]);
-				printf("c4 i.i %i\n", i.i);
+				// printf("c4 i.i %i\n", i.i);
 			}
 			else 
 			{
 				str = get_new_args2(str, i.end, i.start);
 				i.i = i.start - 2;
-				printf("c4bis i.i %i\n", i.i);
+				// printf("c4bis i.i %i\n", i.i);
 			}
 			i.j = 0;
 		}
 		i.i++;		
 	}
-	printf("c1\n");
+	// printf("c1\n");
 	return (str);
 }
 
@@ -200,7 +203,7 @@ char **get_env_var(char **args, char **envp)
 	while(args[i.i])
 	{
 		args[i.i] = is_env_var(args[i.i], envp);
-		printf("args after change : %s\n", args[i.i]);
+		// printf("args after change : %s\n", args[i.i]);
 		i.i++;	
 	}
 	return (args);
