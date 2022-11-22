@@ -49,8 +49,8 @@ typedef struct s_index
 /* fill_args.c*/
 
 char	**fill_args(char *s, char c, char **s1);
-char ***fill_cmd(char ***test, char **args);
-char ***malloc_cmd(char ***test, char **args);
+char ***fill_cmd(char ***cmd, char **args);
+char ***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
 
@@ -74,7 +74,7 @@ int is_cmdline_valid(char *str);
 
 /* clean_quote.c */
 
-char ***clean_args(char ***test);
+char ***clean_args(char ***cmd);
 
 /* replace_env_var.c */
 
@@ -97,6 +97,9 @@ char **get_args(char *s, char c);
 
 /* free_minishell.c */
 
-void	free_doubletab(char **s, int i);
+void free_error_tripletab(char ***tab, int i);
+void	free_doubletab(char **s);
+void	free_error_doubletab(char **str, int i);
+void free_tripletab(char ***tab);
 
 #endif

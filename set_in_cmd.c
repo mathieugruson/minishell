@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 12:57:02 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:07:51 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ int	ft_triple_pointer_len(char *s)
 	
 }
 
-char **malloc_double_pointer(char **tab, int count)
+char **malloc_double_pointer(char **tab, int count, char **args)
 {
-	tab = malloc(sizeof(char *) * (count + 1));
-	tab[count] = NULL;
+	tab = ft_calloc(sizeof(char *), (count + 1));
+	if (!tab)
+	{
+		free_doubletab(args);
+		free_error_tripletab(&tab, count);
+		exit (-1);
+	}
 	return (tab);
 }
 
-char ***malloc_cmd(char ***test, char **args)
+char ***malloc_cmd(char ***cmd, char **args)
 {
 	t_index i;
 
@@ -53,7 +58,7 @@ char ***malloc_cmd(char ***test, char **args)
 			i.counter++;	
 		if (i.counter > 0)
 		{
-			test[i.j] = malloc_double_pointer(test[i.j], i.counter);
+			cmd[i.j] = malloc_double_pointer(cmd[i.j], i.counter, args);
 			i.j++;
 			i.counter = 0;
 		}
@@ -61,41 +66,39 @@ char ***malloc_cmd(char ***test, char **args)
 			i.counter++;
 		if (i.counter > 0)
 		{
-			test[i.j] = malloc_double_pointer(test[i.j], i.counter);
+			cmd[i.j] = malloc_double_pointer(cmd[i.j], i.counter, args);
 			i.j++;
 			i.counter = 0;
 		}
 	}	
-	return (test);
+	return (cmd);
 }
 
-char ***fill_cmd(char ***test, char **args)
+char ***fill_cmd(char ***cmd, char **args)
 {
 	t_index i;
 
 	i = initialize_index();
 
-	i.i = 0;
-	i.j = 0;
-	i.k = 0;
 	while(args[i.i])
 	{
 		while (args[i.i] != NULL && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>'))
 		{	
-
-			test[i.j][i.k] = args[i.i];
+			cmd[i.j][i.k] = args[i.i];
 			i.k++;
 			i.i++;
 		}
-
 		i.j++;
 		i.k = 0;
 		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' || args[i.i][0] == '>'))
-			test[i.j][i.k++] = args[i.i++];
+		{
+			cmd[i.j][i.k++] = args[i.i++];
+		}
 		i.j++;
 		i.k = 0;
 	}
-	return (test);
+	free(args);
+	return (cmd);
 }
 
 char ***set_in_cmd(char ***cmd, char **args, char *s)
@@ -103,10 +106,13 @@ char ***set_in_cmd(char ***cmd, char **args, char *s)
 	int		triple_pointer_len;
 	
 	triple_pointer_len = ft_triple_pointer_len(s);
-	cmd = malloc(sizeof(char **) * triple_pointer_len + 1);
+	cmd = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
 	if (!cmd)
-		return (NULL);
-	cmd[triple_pointer_len] = NULL;
+	{
+		free_doubletab(args);
+		exit (-1);
+	}
+	// cmd[triple_pointer_len] = NULL;
 	cmd = malloc_cmd(cmd, args);	
 	cmd = fill_cmd(cmd, args);
 	return (cmd);

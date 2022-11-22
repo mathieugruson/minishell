@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 11:55:09 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:55:11 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 
 char *remove_quote(char *str, int quote, int i)
 {
-	// printf("i : %i\n", i);
 	int ibis = 0;
+
 	i--;
 	while(str[i] != quote)
 		i--;
 	ibis = i;
-	// printf("i2 : %i\n", i);
 	while (str[i])
 	{
 		if (str[i] == quote)
 		{	
-			while (str[i])
+			while (str[i+1])
 			{
 				str[i] = str[i+1];
 				i++;
 			}
+			str[i] = 0;
 		}
 		i++;
 	}
@@ -39,15 +39,15 @@ char *remove_quote(char *str, int quote, int i)
 	{
 		if (str[i] == quote)
 		{	
-			while (str[i])
+			while (str[i+1])
 			{	
 				str[i] = str[i+1];
 				i++;
 			}
+			str[i] = 0;
 		}
 		i++;
 	}
-	// printf(" str : %s\n", str);
 	return (str);
 }
 
@@ -67,26 +67,21 @@ char *clear_quote(char *str)
 	if (j == 0)
 		return (str);
 	i = 0;
-	// printf("c1\n");
-	// printf("str[i]: %c", str[i]);
 	while(str[i])
 	{
 		if (str[i] == 34)	
 		{
 			dq++;
-			// printf("dq : %i, sq : %i\n", dq, sq);
 			if (dq == 2 && (sq == 2 || sq == 0))
 			{	
 				str = remove_quote(str, 34, i);
 				dq = 0;
 				sq = 0;
 				i = i - 2;
-				// printf("str : %s, i: %i\n", str, i);
 			}
 		}
 		else if (str[i] == 39)
 		{
-			// printf("c3\n");			
 			sq++;
 			if (sq == 2 && (dq == 2 || dq == 0))
 			{
@@ -101,23 +96,22 @@ char *clear_quote(char *str)
 	return (str);
 }
 
-char ***clean_args(char ***test)
+char ***clean_args(char ***cmd)
 {
 	int i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while(test[i])
+	while(cmd[i])
 	{
 		j = 0;
-		// printf("c4\n");	
-		while(test[i][j])
+		while(cmd[i][j])
 		{
-			test[i][j] = clear_quote(test[i][j]);
+			cmd[i][j] = clear_quote(cmd[i][j]);
 			j++;
 		}
 		i++;
 	}
-	return (test);
+	return (cmd);
 }

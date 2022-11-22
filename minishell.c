@@ -98,7 +98,14 @@ int	main(int argc, char **argv, char **envp)
 		ft_printf("Command is :%s", var.args_line);
 		args = ft_parsing(var.args_line);
 		ft_puttripletab(args);
-		(void)args;
+		// free(args[0][0]);
+		// free(args[1][0]);
+		// free(args[2][0]);
+		// free(args[0]);
+		// free(args[1]);
+		// free(args[2]);
+		// free(args);
+		free_tripletab(args);
 		// free(var.args_line);
 	}
 	else

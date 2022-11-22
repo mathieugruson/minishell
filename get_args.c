@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 12:41:21 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 13:18:24 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 15:18:50 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ char *malloc_simple_pointer(int count, int t, char **s1)
 	s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
 	if (!s1[t])
 	{
-		free_doubletab(s1, t);
+		free_error_doubletab(s1, t);
 		exit (-1);
 	}
+	// printf("c1\n");
 	return (s1[t]);
 }
 
@@ -117,6 +118,8 @@ char **get_args(char *s, char c)
 	args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *));
 	if (!args)
 		exit (-1);
+	// free(args);
+	// return (NULL);
 	args = simple_pointer_nbr(s, c, args);
 	if (!*args)
 	{

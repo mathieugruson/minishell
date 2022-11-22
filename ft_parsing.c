@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 13:02:47 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:57:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ char	***ft_parsing(char *s)
 		return (NULL);	
 	cmd = NULL;
 	cmd = set_in_cmd(cmd, args, s);
+
 	if (!cmd)
 		return(NULL);
 	cmd = clean_args(cmd);
+	// free(args[0]);
+	// free(args[1]);
+	// free(args[2]);
+	// free(args);
 	return (cmd);
 }
