@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:36:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 13:05:58 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 18:50:14 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+int	ft_tablen(char **tab)
+{	
+	int	y;
+
+	y = 0;
+	while (tab[y])
+	{
+		y++;
+	}
+	return (y);
 }

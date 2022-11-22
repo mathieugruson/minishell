@@ -1,3 +1,5 @@
+TEST SUR LE PARSING GENERAL : 
+
 tesa tesa tesa | tesa tesa tesa
 l"s" l"s" | le
 "test | test" "test 'la'" | ls
@@ -29,3 +31,17 @@ ls >                   > ls
 ls         |         ls
 WARNING : it is normal that there are some difference between sheel and minishell as
 some case dont need to be hand
+
+TEST SUR LA CONVERSION ENV : 
+
+$USER
+echo $LANG $LANG LANG
+"$USER"
+'$USER'
+" test $USER test" | $USER
+$USERe
+t$USER
+" $USER $USER $USER
+t$USER
+t$USERe
+$USER$USER

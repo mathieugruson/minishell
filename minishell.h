@@ -68,6 +68,7 @@ char ***set_in_cmd(char ***cmd, char **args, char *s);
 
 void	ft_putdoubletab(char **tab);
 void	ft_puttripletab(char ***test);
+int	ft_tablen(char **tab);
 
 /* is_cmdline_valid.c */
 

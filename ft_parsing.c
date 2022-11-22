@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 17:55:52 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/22 20:13:55 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ char *get_new_args(char *str, int end, int start, char *envp)
 	while (str[i.i1])
 	{
 		printf("c1\n");
-		while(str[i.i1] != '$')
+		while(i.i1 != (start - 1))
 			newstring[i.i2++] = str[i.i1++];
-		printf("c1bis\n");
+		printf("c1bis new : %c, str : %c\n",newstring[i.i2], str[i.i1]);
 		while(env[i.i3])
 			newstring[i.i2++] = env[i.i3++];
 		printf("c1ter\n");
@@ -113,6 +113,47 @@ char *get_new_args(char *str, int end, int start, char *envp)
 	return (newstring);
 }
 
+char *get_new_args2(char *str, int end, int start)
+{
+	t_index i;
+	char *newstring;
+	
+	i = initialize_index();
+	i.count = end - start;
+	printf("stlren str : %li, i.count : %i\n", ft_strlen(str), i.count);
+	i.len = ft_strlen(str) - (i.count + 1);
+	(void)i;
+	newstring = ft_calloc(sizeof(char), (i.len + 1));
+	while (str[i.i1])
+	{
+		printf("c1\n");
+		while(str[i.i1] != '$')
+			newstring[i.i2++] = str[i.i1++];
+		printf("c1bis\n");
+		i.i1 = i.i1 + i.count + 1;
+		printf("c1ter %i\n", i.i1);
+		while(str[i.i1])
+			newstring[i.i2++] = str[i.i1++];  	
+		printf("c1quater\n");
+	}
+	printf("new : %s\n", newstring);
+	return (newstring);
+}
+
+int is_in_env(char **envp, char *str, int end, int start)
+{
+	int i;
+
+	i = 0;
+	while(envp[i])
+	{
+		if (ft_strncmp_minishell(str, envp[i], end, start) == 0)
+			return (i);
+		i++;
+	}
+	return (0);		
+}
+
 char	*is_env_var(char *str, char **envp)
 {
 	t_index i;
@@ -120,23 +161,30 @@ char	*is_env_var(char *str, char **envp)
 	i = initialize_index();
 	while (str[i.i])
 	{
-		if (str[i.i] == '$' && !is_in_simple_quote(str, i.i))
+		if (str[i.i] == '$' && ft_isalpha(str[i.i+1]) > 0 && !is_in_simple_quote(str, i.i))
 		{						
 			i.start = i.i + 1;
-			while(str[i.i] && str[i.i] != ' ' && str[i.i] != 39 && str[i.i] != 34)
+			i.i++;
+			while(str[i.i] && str[i.i] != ' ' && str[i.i] != 39 && str[i.i] != 34 && str[i.i] != '$')
 		 	{	
 				i.i++;
 			}
 			i.end = i.i;
-			while(envp[i.j])
+			printf("end : %c\n", str[i.i]);
+			i.j = is_in_env(envp, str, i.end, i.start);
+			if (i.j > 0)
 			{
-				if(ft_strncmp_minishell(str, envp[i.j], i.end, i.start) == 0)
-				{
-					str = get_new_args(str, i.end, i.start, envp[i.j]);
-					return(printf("env : %s\n", envp[i.j]), str);
-				}
-				i.j++;
+				str = get_new_args(str, i.end, i.start, envp[i.j]);
+				i.i = i.start - 2 + ft_strlenenv(envp[i.j]);
+				printf("c4 i.i %i\n", i.i);
 			}
+			else 
+			{
+				str = get_new_args2(str, i.end, i.start);
+				i.i = i.start - 2;
+				printf("c4bis i.i %i\n", i.i);
+			}
+			i.j = 0;
 		}
 		i.i++;		
 	}
@@ -171,8 +219,6 @@ char	***ft_parsing(char *s, char **envp)
 	if (!args)
 		return (NULL);	
 	args = get_env_var(args, envp);
-	// return (NULL);
-	// (void)envp;
 	cmd = NULL;
 	cmd = set_in_cmd(cmd, args, s);
 	if (!cmd)
