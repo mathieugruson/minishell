@@ -7,7 +7,7 @@ SOFT_NAME := minishell
 SOFT_BONUS := minishell_bonus
 
 CC := gcc
-FLAGS := -Wall -Wextra -Werror -I includes/
+FLAGS := -Wall -Wextra -Werror -lreadline -I includes/
 SRC_DIR := sources/
 OBJ_DIR := objects/
 AR := ar rc
@@ -24,8 +24,8 @@ MAGENTA = \033[0;35m
 CYAN = \033[0;36m
 NC = \033[0m
 
-SRCS = 	minishell.c	\
-		ft_parsing.c \
+SRCS = minishell.c	\
+	ft_parsing.c \
 		mathieu_utils.c \
 		is_cmdline_valid.c \
 		clean_args.c \
@@ -35,7 +35,6 @@ SRCS = 	minishell.c	\
 		initialize_index.c \
 		get_args.c \
 		free_minishell.c  \
-		
 
 BONUS = \
 
@@ -60,17 +59,17 @@ ${LIBFT} :
 ${NAME} : ${OBJ}
 	rm -f ${SOFT_NAME}
 	@echo "${BLUE}###${NC}Update de l'archive ${NAME}${BLUE}###${MAGENTA}"
-	@${AR} ${NAME} ${OBJ}
+	${AR} ${NAME} ${OBJ}
 	@echo "${NC}"
 
 ${OBJ_DIR}%.o : %.c | $(OBJF)
 	@echo "${BLUE}###${NC}Creation du fichier ${@:%.c=%.o}${BLUE}###${ORANGE}"
-	@${CC} ${FLAGS} -c $< -o $@ 
+	${CC} ${FLAGS} -c $< -o $@
 	@echo "${NC}"
 
 ${SOFT_NAME} :
 	@echo "${BLUE}###${NC}Creation du fichier ${SOFT_NAME}${BLUE}###${ORANGE}"
-	@${CC} ${NAME} ${FLAGS} -o ${SOFT_NAME} -lreadline
+	${CC} ${NAME} ${FLAGS} -o ${SOFT_NAME}
 	@echo "${NC}"
 
 $(OBJF) :

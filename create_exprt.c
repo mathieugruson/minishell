@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   create_exprt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 11:12:41 by chillion          #+#    #+#             */
-/*   Updated: 2022/09/02 17:43:04 by chillion         ###   ########.fr       */
+/*   Created: 2022/11/23 12:48:04 by mgruson           #+#    #+#             */
+/*   Updated: 2022/11/23 12:59:58 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putstr(char *str)
+char **get_exprt(char **envp)
 {
-	int	i;
+	t_index i;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	i = initialize_index();
+	i.len = ft_tablen(envp);
+}
+
+int main(int argc, char **argv, char **envp)
+{
+	char **exprt;
+
+	exprt = get_exprt(envp);
+	return (0);
 }

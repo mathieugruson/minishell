@@ -2,6 +2,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -23,8 +24,9 @@
 
 typedef struct s_minishell
 {
-	int		history_fd;
 	char	*args_line;
+	char	**env;
+	int		h_fd;
 }	t_m;
 
 typedef struct s_index

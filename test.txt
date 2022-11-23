@@ -29,6 +29,7 @@ echo "$LANG" '$LANG' "$LANG"
 "ls<"<ls
 ls >                   > ls
 ls         |         ls
+
 WARNING : it is normal that there are some difference between sheel and minishell as
 some case dont need to be hand
 
@@ -46,3 +47,4 @@ t$USER
 t$USERe
 $USER$USER
 $USE"R"
+exporter un variable env vide (export LONG548), essayer de l'afficher
