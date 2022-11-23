@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:20:35 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/23 16:04:15 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:22:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,24 @@ char	**add_export_form(char **exprt)
 	char	**new_exprt;
 
 	i = initialize_index();
-	i.len = ft_tablen(exprt);
-	new_exprt = ft_calloc(sizeof(char *), (i.len + 1));
+	new_exprt = ft_calloc(sizeof(char *), (ft_tablen(exprt) + 1));
+	if (!new_exprt)
+		return (NULL);
 	while (exprt[i.i])
 	{
 		new_exprt[i.i] = ft_calloc(1, (ft_strlen(exprt[i.i]) + 9 + 1));
+		if (!new_exprt[i.i])
+			return (free_error_doubletab(new_exprt, i.i), NULL);
 		new_exprt[i.i] = ft_memcpy_mathieu(new_exprt[i.i], "export ", 7);
 		i.k = 7;
 		i.j = 0;
 		while (exprt[i.i][i.j])
 		{
 			new_exprt[i.i][i.k++] = exprt[i.i][i.j++];
-			if (exprt[i.i][i.j - 1] == '=' && i.count++ == 0)
-			{
+			if (exprt[i.i][i.j - 1] == '=' && (i.k - i.j) == 7)
 				new_exprt[i.i][i.k++] = 34;
-			}
 		}
 		new_exprt[i.i][i.k++] = 34;
-		i.count = 0;
 		i.i++;
 	}
 	return (free(exprt), new_exprt);
@@ -93,6 +93,8 @@ char	**get_exprt(char **envp)
 	i = initialize_index();
 	i.len = ft_tablen(envp);
 	exprt = ft_calloc(sizeof(char *), (i.len + 1));
+	if (!exprt)
+		return (NULL);
 	exprt = sort_envp(envp, exprt);
 	exprt = add_export_form(exprt);
 	return (exprt);
