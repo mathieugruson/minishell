@@ -70,7 +70,11 @@ char ***set_in_cmd(char ***cmd, char **args, char *s);
 
 void	ft_putdoubletab(char **tab);
 void	ft_puttripletab(char ***test);
-int	ft_tablen(char **tab);
+int		ft_tablen(char **tab);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_tabsort_cmp(char **s1, char **s2);
+int ft_tabunsort_cmp(char **tab1, char **tab2);
+void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
 
 /* is_cmdline_valid.c */
 
@@ -106,5 +110,11 @@ void free_error_tripletab(char ***tab, int i);
 void	free_doubletab(char **s);
 void	free_error_doubletab(char **str, int i);
 void free_tripletab(char ***tab);
+
+/* get_exprt.c */
+
+int is_not_in(char *str, char **tab);
+char **sort_envp(char **envp, char **exprt);
+char **get_exprt(char **envp);
 
 #endif

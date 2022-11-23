@@ -117,24 +117,28 @@ void	ft_free_split(char **str)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_m	var;
-	char ***args;
-
+	// t_m	var;
+	// char ***args;
+	char **exprt;
 	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
 	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
+	(void)argc;
 	(void)argv;
 	(void)envp;
-	if (argc != 1)
-		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
-	if (ft_env(&var, envp) == -1)
-		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
-	// ft_print_env(var.env);
-	ft_init_commands_history(&var);
-	ft_printf("Command is :%s\n", var.args_line);
-	args = ft_parsing(var.args_line, envp);
-	ft_puttripletab(args);
-	free_tripletab(args);
-	free(var.args_line);
-	ft_free_split(var.env);
+
+	exprt = get_exprt(envp);
+	ft_putdoubletab(exprt);
+	// if (argc != 1)
+	// 	return (ft_printf("Error : Wrong Number of arguments\n"), 1);
+	// if (ft_env(&var, envp) == -1)
+	// 	return (ft_printf("Error : Malloc for keep env fail\n"), 1);
+	// // ft_print_env(var.env);
+	// ft_init_commands_history(&var);
+	// ft_printf("Command is :%s\n", var.args_line);
+	// args = ft_parsing(var.args_line, envp);
+	// ft_puttripletab(args);
+	// free_tripletab(args);
+	// free(var.args_line);
+	// ft_free_split(var.env);
 	return (0);
 }

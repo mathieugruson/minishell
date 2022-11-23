@@ -35,6 +35,7 @@ SRCS = minishell.c	\
 		initialize_index.c \
 		get_args.c \
 		free_minishell.c  \
+		get_exprt.c \
 
 BONUS = \
 
