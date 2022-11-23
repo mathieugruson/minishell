@@ -1,1 +1,1 @@
-45454dfgfgfdgdgfdgfdgdfgdsgfdgfgfdg$USERecho $USERtest$USERls > > > > > > > testls > ls > ls > ls >> ls >> ls ls |> ls DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/102069/bus,guid=b563fc6e12555d8d12b7dd12637e000d"
+45454dfgfgfdgdgfdgfdgdfgdsgfdgfgfdg$USERecho $USERtest$USERls > > > > > > > testls > ls > ls > ls >> ls >> ls ls |> ls DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/102069/bus,guid=b563fc6e12555d8d12b7dd12637e000d"test$USER

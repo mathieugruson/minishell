@@ -48,3 +48,12 @@ t$USERe
 $USER$USER
 $USE"R"
 exporter un variable env vide (export LONG548), essayer de l'afficher
+echo $LANG
+
+
+TEST EXPORT 
+
+export "MATHIEU="
+export "MATHIEU==TESTULTIME"
+export "MATHIEU" -> apparait ds export mais pas ds env, echo de ca donne rien (mais bon stress)
+ 

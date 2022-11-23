@@ -117,4 +117,19 @@ int is_not_in(char *str, char **tab);
 char **sort_envp(char **envp, char **exprt);
 char **get_exprt(char **envp);
 
+/* get_env_var.c */
+
+char **get_env_var(char **args, char **envp);
+char	*new_env_var(char *str, char **envp);
+char *remove_wrong_env(char *str, int end, int start);
+char *add_good_env(char *str, int end, int start, char *envp);
+char *get_env(char *env,  char *envp);
+
+/* get_env_var_utils.c */
+
+int ft_strlenenv(char *envp);
+int	ft_strncmp_env(char *s1, char *s2, int n, int i);
+int is_in_env(char **envp, char *str, int end, int start);
+
+
 #endif
