@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 13:20:35 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/23 15:30:49 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:55:23 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,35 @@ char **sort_envp(char **envp, char **exprt)
 	return (exprt);
 }
 
-char **add_export_string(char **exprt)
+char **add_export_form(char **exprt)
 {
 	t_index i;
 	char **new_exprt;
 
 	i = initialize_index();
-	i.k = 7;
 	i.len = ft_tablen(exprt);
-	printf("len : %i\n", i.len);	
 	new_exprt = ft_calloc(sizeof(char *), (i.len + 1));
-	printf("c1\n");	
 	while(exprt[i.i])
 	{
-		printf("c2\n");	
-		new_exprt[i.i] = ft_calloc(sizeof(char), (ft_strlen(exprt[i.i]) + 7 + 1));
-		printf("c3 strlen %li, strlen former : %li\n", (ft_strlen(exprt[i.i]) + 7 + 1), ft_strlen(exprt[i.i]));	
+		new_exprt[i.i] = ft_calloc(sizeof(char), (ft_strlen(exprt[i.i]) + 9 + 1));
 		new_exprt[i.i] = ft_memcpy_mathieu(new_exprt[i.i], "export ", 7);
-		printf("c4 newexprt : %s\n", new_exprt[i.i]);
+		i.k = 7;
+		i.j = 0;
 		while(exprt[i.i][i.j])
 		{
-			printf("c5\n");
 			new_exprt[i.i][i.k++] = exprt[i.i][i.j++];
-			printf("c6\n");
+			if (exprt[i.i][i.j-1] == '=' && i.count++ == 0)
+			{
+				new_exprt[i.i][i.k++] = 34;
+			}
 		}
-		printf("c7 newexport : %s\n", new_exprt);
+		new_exprt[i.i][i.k++] = 34;
+		i.count = 0;
 		i.i++;
 	}
-	printf("c0\n");
 	return (free(exprt), new_exprt);
 }
+
 char **get_exprt(char **envp)
 {
 	t_index i;
@@ -99,11 +98,6 @@ char **get_exprt(char **envp)
 	i.len = ft_tablen(envp);
 	exprt = ft_calloc(sizeof(char *), (i.len + 1));
 	exprt = sort_envp(envp, exprt);
-	printf("c0\n");	
-	exprt = add_export_string(exprt);
-	printf("c9\n");	
-	ft_putdoubletab(exprt);
-	// exprt = add_export_quote(exprt);
-	printf("c10\n");	
+	exprt = add_export_form(exprt);
 	return (exprt);
 }

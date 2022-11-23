@@ -128,6 +128,7 @@ int	main(int argc, char **argv, char **envp)
 
 	exprt = get_exprt(envp);
 	ft_putdoubletab(exprt);
+	free_doubletab(exprt);
 	// if (argc != 1)
 	// 	return (ft_printf("Error : Wrong Number of arguments\n"), 1);
 	// if (ft_env(&var, envp) == -1)
