@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 14:55:11 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:08:53 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ char *remove_quote(char *str, int quote, int i)
 	return (str);
 }
 
-char *clear_quote(char *str)
+int is_quote_in(char *str, int i)
 {
-	int i = 0;
-	int dq = 0;
-	int sq = 0;
-	int	j = 0;
-	
+	int j;
+
+	j = 0;
 	while (str[i])
 	{
 		if (str[i] == 39 || str[i] == 34)
@@ -65,31 +63,33 @@ char *clear_quote(char *str)
 		i++;
 	}
 	if (j == 0)
+		return (0);
+	return (1);
+}
+
+char *clear_quote(char *str)
+{
+	int i = 0;
+	int dq = 0;
+	int sq = 0;
+	
+	if (!is_quote_in(str, i))
 		return (str);
-	i = 0;
 	while(str[i])
 	{
-		if (str[i] == 34)	
+		if (str[i] == 34 && dq++ > 0 && dq == 2 && (sq == 2 || sq == 0))	
 		{
-			dq++;
-			if (dq == 2 && (sq == 2 || sq == 0))
-			{	
 				str = remove_quote(str, 34, i);
 				dq = 0;
 				sq = 0;
 				i = i - 2;
-			}
 		}
-		else if (str[i] == 39)
+		else if (str[i] == 39 && sq++ > 0 && sq == 2 && (dq == 2 || dq == 0))
 		{
-			sq++;
-			if (sq == 2 && (dq == 2 || dq == 0))
-			{
 				str = remove_quote(str, 39, i);
 				sq = 0;
 				dq = 0;
 				i = i - 2;
-			}
 		}
 		i++;
 	}
