@@ -6,47 +6,37 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/23 18:08:53 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:23:53 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-char *remove_quote(char *str, int quote, int i)
+char *remove_quote(char *str, int quote, int a)
 {
-	int ibis = 0;
+	t_index	i;
 
-	i--;
-	while(str[i] != quote)
-		i--;
-	ibis = i;
-	while (str[i])
+	i = initialize_index();
+	a--;
+	while(str[a] != quote)
+		a--;
+	i.i1 = a;
+	while(i.count < 2 && i.count++ > -1)
 	{
-		if (str[i] == quote)
-		{	
-			while (str[i+1])
-			{
-				str[i] = str[i+1];
-				i++;
-			}
-			str[i] = 0;
-		}
-		i++;
-	}
-	i = ibis;
-	while (str[i])
-	{
-		if (str[i] == quote)
-		{	
-			while (str[i+1])
+		while (str[a])
+		{
+			if (str[a] == quote)
 			{	
-				str[i] = str[i+1];
-				i++;
+				while (str[a+1])
+				{
+					str[a] = str[a+1];
+					a++;
+				}
+				str[a] = 0;
 			}
-			str[i] = 0;
+			a++;
 		}
-		i++;
+		a = i.i1;
 	}
 	return (str);
 }
@@ -69,29 +59,28 @@ int is_quote_in(char *str, int i)
 
 char *clear_quote(char *str)
 {
-	int i = 0;
-	int dq = 0;
-	int sq = 0;
+	t_index i;
 	
-	if (!is_quote_in(str, i))
+	i = initialize_index();
+	if (!is_quote_in(str, i.i))
 		return (str);
-	while(str[i])
+	while(str[i.i])
 	{
-		if (str[i] == 34 && dq++ > 0 && dq == 2 && (sq == 2 || sq == 0))	
+		if (str[i.i] == 34 && i.j++ > 0 && i.j == 2 && (i.k == 2 || i.k == 0))	
 		{
-				str = remove_quote(str, 34, i);
-				dq = 0;
-				sq = 0;
-				i = i - 2;
+				str = remove_quote(str, 34, i.i);
+				i.j = 0;
+				i.k = 0;
+				i.i = i.i - 2;
 		}
-		else if (str[i] == 39 && sq++ > 0 && sq == 2 && (dq == 2 || dq == 0))
+		else if (str[i.i] == 39 && i.k++ > 0 && i.k == 2 && (i.j == 2 || i.j == 0))
 		{
-				str = remove_quote(str, 39, i);
-				sq = 0;
-				dq = 0;
-				i = i - 2;
+				str = remove_quote(str, 39, i.i);
+				i.k = 0;
+				i.j = 0;
+				i.i = i.i - 2;
 		}
-		i++;
+		i.i++;
 	}
 	return (str);
 }
