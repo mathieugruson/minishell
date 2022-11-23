@@ -119,8 +119,8 @@ char **get_exprt(char **envp);
 
 /* get_env_var.c */
 
-char **get_env_var(char **args, char **envp);
-char	*new_env_var(char *str, char **envp);
+char	**get_env_var(char **args, char **envp);
+char	*new_env_var(char *str, char **envp, t_index i);
 char *remove_wrong_env(char *str, int end, int start);
 char *add_good_env(char *str, int end, int start, char *envp);
 char *get_env(char *env,  char *envp);

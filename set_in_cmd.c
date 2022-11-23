@@ -6,12 +6,11 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 20:38:13 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:32:43 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	ft_triple_pointer_len(char *s)
 {
@@ -24,18 +23,16 @@ int	ft_triple_pointer_len(char *s)
 	{
 		if ((s[i] == '|' || s[i] == '>' || s[i] == '<') && !is_in_quote(s, i))
 		{
-			count++;	
+			count++;
 			i = i + 2;
 		}
 		i++;
 	}
-	count = count + (count + 1) ;
-	// printf("triple pointer len : %i\n", count);
+	count = count + (count + 1);
 	return (count);
-	
 }
 
-char **malloc_double_pointer(char **tab, int count, char **args)
+char	**malloc_double_pointer(char **tab, int count, char **args)
 {
 	tab = ft_calloc(sizeof(char *), (count + 1));
 	if (!tab)
@@ -47,22 +44,24 @@ char **malloc_double_pointer(char **tab, int count, char **args)
 	return (tab);
 }
 
-char ***malloc_cmd(char ***cmd, char **args)
+char	***malloc_cmd(char ***cmd, char **args)
 {
-	t_index i;
+	t_index	i;
 
 	i = initialize_index();
-	while(args[i.i])
+	while (args[i.i])
 	{
-		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
-			i.counter++;	
+		while (args[i.i] && (args[i.i][0] != '|' \
+		&& args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
+			i.counter++;
 		if (i.counter > 0)
 		{
 			cmd[i.j] = malloc_double_pointer(cmd[i.j], i.counter, args);
 			i.j++;
 			i.counter = 0;
 		}
-		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' || args[i.i][0] == '>') && i.i++ > -1)	
+		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' \
+		|| args[i.i][0] == '>') && i.i++ > -1)
 			i.counter++;
 		if (i.counter > 0)
 		{
@@ -74,15 +73,15 @@ char ***malloc_cmd(char ***cmd, char **args)
 	return (cmd);
 }
 
-char ***fill_cmd(char ***cmd, char **args)
+char	***fill_cmd(char ***cmd, char **args)
 {
-	t_index i;
+	t_index	i;
 
 	i = initialize_index();
-
-	while(args[i.i])
+	while (args[i.i])
 	{
-		while (args[i.i] != NULL && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>'))
+		while (args[i.i] != NULL && (args[i.i][0] != '|' \
+		&& args[i.i][0] != '<' && args[i.i][0] != '>'))
 		{	
 			cmd[i.j][i.k] = args[i.i];
 			i.k++;
@@ -90,7 +89,8 @@ char ***fill_cmd(char ***cmd, char **args)
 		}
 		i.j++;
 		i.k = 0;
-		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' || args[i.i][0] == '>'))
+		while (args[i.i] && (args[i.i][0] == '|' \
+		|| args[i.i][0] == '<' || args[i.i][0] == '>'))
 		{
 			cmd[i.j][i.k++] = args[i.i++];
 		}
@@ -101,10 +101,10 @@ char ***fill_cmd(char ***cmd, char **args)
 	return (cmd);
 }
 
-char ***set_in_cmd(char ***cmd, char **args, char *s)
+char	***set_in_cmd(char ***cmd, char **args, char *s)
 {	
 	int		triple_pointer_len;
-	
+
 	triple_pointer_len = ft_triple_pointer_len(s);
 	cmd = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
 	if (!cmd)
@@ -112,8 +112,7 @@ char ***set_in_cmd(char ***cmd, char **args, char *s)
 		free_doubletab(args);
 		exit (-1);
 	}
-	// cmd[triple_pointer_len] = NULL;
-	cmd = malloc_cmd(cmd, args);	
+	cmd = malloc_cmd(cmd, args);
 	cmd = fill_cmd(cmd, args);
 	return (cmd);
 }
