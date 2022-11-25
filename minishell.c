@@ -115,31 +115,101 @@ void	ft_free_split(char **str)
 	free(str);
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_m	var;
-	char ***args;
-	// char **exprt;
-	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
-	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
-	(void)argc;
-	(void)argv;
-	(void)envp;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	t_m	var;
+// 	char ***args;
+// 	// char **exprt;
+// 	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
+// 	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
+// 	(void)argc;
+// 	(void)argv;
+// 	(void)envp;
 
-	// exprt = get_exprt(envp);
-	// ft_putdoubletab(exprt);
-	// free_doubletab(exprt);
-	if (argc != 1)
-		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
-	if (ft_env(&var, envp) == -1)
-		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
-	// ft_print_env(var.env);
-	ft_init_commands_history(&var);
-	ft_printf("Command is :%s\n", var.args_line);
-	args = ft_parsing(var.args_line, envp);
-	ft_puttripletab(args);
-	free_tripletab(args);
-	free(var.args_line);
-	ft_free_split(var.env);
-	return (0);
+// 	// exprt = get_exprt(envp);
+// 	// ft_putdoubletab(exprt);
+// 	// free_doubletab(exprt);
+// 	if (argc != 1)
+// 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
+// 	if (ft_env(&var, envp) == -1)
+// 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
+// 	// ft_print_env(var.env);
+// 	ft_init_commands_history(&var);
+// 	ft_printf("Command is :%s\n", var.args_line);
+// 	args = ft_parsing(var.args_line, envp);
+// 	// ft_puttripletab(args);
+// 	char *argv2[] = {"/bin/cat", "<<", "EOF", NULL};
+// 	execve(argv2[0], argv2, NULL);
+// 	free_tripletab(args);
+// 	free(var.args_line);
+// 	ft_free_split(var.env);
+// 	return (0);
+// }
+
+int main()
+{
+	char *argv [] = {"bin/cat", "test.c", NULL};
+	int err;
+
+	err = execve(argv[0], argv, NULL);
+	if (err < 0)
+		printf("heree\n");
+
+	// int fd[3][2];
+	// int i = 0;
+	
+	// while (i < 3)
+	// {
+	// 	pipe(fd[i]);
+	// 	i++;
+	// }
+
+	// int pid1 = fork();
+
+	// if (pid1 == 0)
+	// {
+	// 	int x;
+	// 	read(fd[0][0], &x, sizeof(int));
+	// 	x = x + 5;
+	// 	write(fd[1][1], &x, sizeof(int));
+	// 	close(fd[0][1]);
+	// 	close(fd[1][0]);
+	// 	close(fd[2][0]);
+	// 	close(fd[2][1]);
+	// 	close(fd[0][0]);
+	// 	close(fd[1][1]);
+	// 	return (0);
+	// }
+
+	// int pid2 = fork();
+
+	// if (pid2 == 0)
+	// {
+
+	// 	int x;
+	// 	read(fd[1][0], &x, sizeof(int));
+	// 	x = x + 5;
+	// 	write(fd[2][1], &x, sizeof(int)),
+	// 	close(fd[0][1]);
+	// 	close(fd[1][1]);
+	// 	close(fd[2][0]);
+	// 	close(fd[0][0]); 
+	// 	close(fd[1][0]);
+	// 	close(fd[2][1]);
+	// 	return (0);		
+	// }
+
+	// int x = 1;
+	// write(fd[0][1], &x, sizeof(int));
+	// read(fd[2][0], &x, sizeof(int));
+	// printf("Resultat : %i\n", x);
+	// close(fd[0][0]);
+	// close(fd[1][0]);
+	// close(fd[1][1]);
+	// close(fd[2][1]);	
+	// close(fd[0][1]);
+	// close(fd[2][0]);
+
+	// waitpid(pid1, NULL, 0);
+	// waitpid(pid2, NULL, 0);	
 }
