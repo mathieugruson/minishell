@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:23 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/15 15:33:57 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:46:35 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int quote_are_closed(char *str)
 				i++;
 			if (str[i] == 0)
 			{	
-				write(1, "Error : close the double quote\n", 31);
+				write(1, " Error : close the double quote\n", 31);
 				return (0);
 			}
 		}

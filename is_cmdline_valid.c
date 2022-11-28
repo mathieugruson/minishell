@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/23 18:57:44 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/28 14:01:34 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int are_handled_special_char(char *str)
 	i = 0;
 	while(str[i])
 	{
-		if (str[i++] == 33)
+		if (str[i] == 34 && i++ > -1)
 		{
-			while (str[i] && str[i] != 33)
+			while (str[i] && str[i] != 34)
 				i++;
 			if (str[i] == 0)
 				return (write(1, "Error : close the double quote\n", 31), 0);
 		}
-		if (str[i++] == 39)
+		if (str[i] == 39 && i++ > -1)
 		{
 			while (str[i] && str[i] != 39)	
 				i++;
@@ -63,8 +63,7 @@ int are_handled_special_char(char *str)
 				return (write(1, "Error : close the simple quote\n", 31), 0);
 		}
 		if (!is_handled_special_char(str, i))
-			return (write(1, "Error : \
-			there are non handled special character\n", 48), 0);	
+			return (write(1, "Error : non handled char\n", 25), 0);	
 		i++;
 	}
 	return (1);	
@@ -77,14 +76,14 @@ int quote_are_closed(char *str)
 	i = 0;
 	while(str[i])
 	{
-		if (str[i++] == 34)
+		if (str[i] == 34 && i++ > -1)
 		{
 			while (str[i] && str[i] != 34)
 				i++;
 			if (str[i] == 0)
 				return (write(1, "Error : close the double quote\n", 31), 0);
 		}
-		if (str[i++] == 39)
+		if (str[i] == 39 && i++ > -1)
 		{
 			while (str[i] && str[i] != 39)	
 				i++;
@@ -92,8 +91,7 @@ int quote_are_closed(char *str)
 				return (write(1, "Error : close the simple quote\n", 31), 0);
 		}
 		if (!is_handled_special_char(str, i))
-			return (write(1, "Error : there are non handled special\
-			 character\n", 48), 0);	
+			return (write(1, "Error : non handled char\n", 25), 0);	
 		i++;
 	}
 	return (1);	

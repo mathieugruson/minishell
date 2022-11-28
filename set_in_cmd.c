@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/23 17:32:43 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:43:54 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_triple_pointer_len(char *s)
 	count = 0;
 	while (s[i])
 	{
-		if ((s[i] == '|' || s[i] == '>' || s[i] == '<') && !is_in_quote(s, i))
+		if (s[i] == '|' && !is_in_quote(s, i))
 		{
 			count++;
 			i = i + 2;
@@ -51,8 +51,7 @@ char	***malloc_cmd(char ***cmd, char **args)
 	i = initialize_index();
 	while (args[i.i])
 	{
-		while (args[i.i] && (args[i.i][0] != '|' \
-		&& args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
+		while (args[i.i] && (args[i.i][0] != '|') && i.i++ > -1)
 			i.counter++;
 		if (i.counter > 0)
 		{
@@ -60,8 +59,7 @@ char	***malloc_cmd(char ***cmd, char **args)
 			i.j++;
 			i.counter = 0;
 		}
-		while (args[i.i] && (args[i.i][0] == '|' || args[i.i][0] == '<' \
-		|| args[i.i][0] == '>') && i.i++ > -1)
+		while (args[i.i] && args[i.i][0] == '|' && i.i++ > -1)
 			i.counter++;
 		if (i.counter > 0)
 		{
@@ -80,8 +78,7 @@ char	***fill_cmd(char ***cmd, char **args)
 	i = initialize_index();
 	while (args[i.i])
 	{
-		while (args[i.i] != NULL && (args[i.i][0] != '|' \
-		&& args[i.i][0] != '<' && args[i.i][0] != '>'))
+		while (args[i.i] != NULL && args[i.i][0] != '|')
 		{	
 			cmd[i.j][i.k] = args[i.i];
 			i.k++;
@@ -89,8 +86,7 @@ char	***fill_cmd(char ***cmd, char **args)
 		}
 		i.j++;
 		i.k = 0;
-		while (args[i.i] && (args[i.i][0] == '|' \
-		|| args[i.i][0] == '<' || args[i.i][0] == '>'))
+		while (args[i.i] && args[i.i][0] == '|')
 		{
 			cmd[i.j][i.k++] = args[i.i++];
 		}
