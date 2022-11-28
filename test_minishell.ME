@@ -53,6 +53,13 @@ export ZTEST+=BOB
 
 TEST COMMAND
 
-cat < minishell.c set_in_cmd.c < echo
-echo mathieu > echo test ta4
 echo mathieu > test test4 > ta ta4
+echo "mathieu > test" test4 > ta ta4
+echo mathieu > echo test ta4
+ls > "test1"
+cat < minishell.c set_in_cmd.c < echo
+
+
+ATTENTION : 
+cat < minishelle.c > test2 (ne creer pas test2 car apres > minishelle.c)
+cat > test2 < minishelle.c (creer test2 avant de faire l erreur)

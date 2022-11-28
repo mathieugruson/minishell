@@ -52,7 +52,7 @@ typedef struct s_index
 /* fill_args.c*/
 
 char	**fill_args(char *s, char c, char **s1);
-char ***fill_cmd(char ***cmd, char **args);
+char ***fill_cmd(char ***cmd, char **args, char ***redir);
 char ***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
@@ -64,7 +64,7 @@ char *malloc_simple_pointer(int count, int t, char **s1);
 char	**simple_pointer_nbr(char *s, char c, char **s1);
 char **get_args(char *s, char c);
 int	ft_triple_pointer_len(char *s);
-char ***set_in_cmd(char ***cmd, char **args, char *s);
+void	set_in_cmd(char ****cmd, char ****redir, char **args, char *s);
 
 /* mathieu_utils.c */
 
@@ -73,7 +73,7 @@ void	ft_puttripletab(char ***test);
 int		ft_tablen(char **tab);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_tabsort_cmp(char **s1, char **s2);
-int ft_tabunsort_cmp(char **tab1, char **tab2);
+int		ft_tabunsort_cmp(char **tab1, char **tab2);
 void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
 
 /* is_cmdline_valid.c */

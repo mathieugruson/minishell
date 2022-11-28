@@ -137,7 +137,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
 	args = ft_parsing(var.args_line, envp);
-	ft_puttripletab(args);
+	// ft_puttripletab(args);
 	// char *argv2[] = {"/bin/cat", "<<", "EOF", NULL};
 	// execve(argv2[0], argv2, NULL);
 	free_tripletab(args);
