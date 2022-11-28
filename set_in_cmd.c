@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/28 18:29:09 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/28 19:20:04 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	***malloc_redir(char ***redir, char **args)
 			i.i++;
 		}
 		// printf("c3uno i : %i\n", i.i);
-		if (i.counter > 0 && args[i.i] && args[i.i][0] == '|')
+		if (args[i.i] && args[i.i][0] == '|')
 		{		
 			// printf("c3unobis : i.counter : %i\n", i.counter);
 			redir[i.j] = malloc_double_pointer(redir[i.j], i.counter, args);
@@ -75,13 +75,12 @@ char	***malloc_redir(char ***redir, char **args)
 			i.counter = i.counter + 2;
 		}
 	}
-	if ((i.counter > 0 && !args[i.i]) || (i.counter > 0 && args[i.i][0] == '|'))
+	if ((i.counter > 0 && !args[i.i]) || i.j == 0)
 	{		
 		// printf("c3unobis : i.counter : %i\n", i.counter);
 		redir[i.j] = malloc_double_pointer(redir[i.j], i.counter, args);
-		i.j++;
 		i.counter = 0;
-	}		
+	}
 	return (redir);
 }
 
@@ -95,7 +94,7 @@ char	***malloc_cmd(char ***cmd, char **args)
 		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
 			i.counter++;
 		// printf("c2 i : %i\n", i.i);
-		if (i.counter > 0 && args[i.i] && args[i.i][0] == '|')
+		if (args[i.i] && args[i.i][0] == '|')
 		{		
 			// printf("c2unobis : i.counter : %i\n", i.counter);
 			cmd[i.j] = malloc_double_pointer(cmd[i.j], i.counter, args);
@@ -107,7 +106,7 @@ char	***malloc_cmd(char ***cmd, char **args)
 		while (args[i.i] && (args[i.i][0] == '<' || args[i.i][0] == '>'))
 			i.i = i.i + 2;
 	}
-	if ((i.counter > 0 && !args[i.i]) || (i.counter > 0 && args[i.i][0] == '|'))
+	if ((i.counter > 0 && !args[i.i]) || i.j == 0)
 	{		
 		// printf("c2unobis : i.counter : %i\n", i.counter);
 		cmd[i.j] = malloc_double_pointer(cmd[i.j], i.counter, args);
@@ -124,7 +123,7 @@ char	***fill_cmd(char ***cmd, char **args, char ***redir)
 	i = initialize_index();
 	while (args[i.i])
 	{
-		// printf("c1\n");	
+		printf("c1\n");	
 		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>'))
 		{	
 			// printf("c1bis : args[i.i] : %s\n", args[i.i]);
@@ -139,11 +138,10 @@ char	***fill_cmd(char ***cmd, char **args, char ***redir)
 			// printf("c1terbis\n");
 			redir[i.i1][i.i2++] = args[i.i++];
 			redir[i.i1][i.i2++] = args[i.i++];
-			// i.i = i.i + 2;
 		}
 		if (args[i.i] && args[i.i][0] == '|' && i.i++ > -1)
 		{
-			// printf("c1ter\n");
+			free(args[i.i - 1]);
 			i.k = 0;
 			i.j++;
 			i.i1++;
