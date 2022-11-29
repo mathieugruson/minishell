@@ -118,7 +118,8 @@ void	ft_free_split(char **str)
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
-	char ***args;
+	char ***cmd;
+	char ***redir;
 	// char **exprt;
 	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
 	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
@@ -133,14 +134,14 @@ int	main(int argc, char **argv, char **envp)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
 	if (ft_env(&var, envp) == -1)
 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
-	// ft_print_env(var.env);
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
-	args = ft_parsing(var.args_line, envp);
-	// ft_puttripletab(args);
-	// char *argv2[] = {"/bin/cat", "<<", "EOF", NULL};
-	// execve(argv2[0], argv2, NULL);
-	free_tripletab(args);
+	ft_parsing(var.args_line, envp, &cmd, &redir);
+	ft_puttripletab(cmd);
+	printf("\n-----\n");
+	ft_puttripletab(redir);
+	free_tripletab(redir);
+	free_tripletab(cmd);
 	free(var.args_line);
 	ft_free_split(var.env);
 	return (0);
