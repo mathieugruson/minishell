@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/29 18:51:55 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 19:02:55 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,8 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	if ((*pid) == 0)
 	{
 		ft_init_arg(arg, var);
-		close((*var).pipex[0]);
 		if ((var->exec + 1) != (var->tablen))
 			dup2((*var).pipex[1], 1);
-		if (is_redir_out((*var).redir[var->exec]) == 1)
-		{
-			var->fdout = connect_stdout((*var).redir[var->exec], (*var).pipex[1]);
-			if (var->fdout != -1)
-			{	
-				dup2(var->fdout, 1); // dup2 sauf pour le dernier exec
-				close(var->fdout);
-			}
-		}
 		if (is_redir_in((*var).redir[var->exec]))
 		{	
 			var->fdin = connect_stdin((*var).redir[var->exec], 0, var);
@@ -107,6 +97,16 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 				close(var->fdin);			
 			}
 		}
+		if (is_redir_out((*var).redir[var->exec]) == 1)
+		{
+			var->fdout = connect_stdout((*var).redir[var->exec], (*var).pipex[1]);
+			if (var->fdout != -1)
+			{	
+				dup2(var->fdout, 1); // dup2 sauf pour le dernier exec
+				close(var->fdout);
+			}
+		}
+		close((*var).pipex[0]);
 		close((*var).pipex[1]);
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, pipe
 	}
