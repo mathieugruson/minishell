@@ -208,8 +208,9 @@ void	ft_add_export_check_double(t_m *var, char *args, int egalen);
 
 int		is_redir_in(char **redir);
 int		is_redir_out(char **redir);
+int 	in(char *redir_file, char c, t_m *var);
 int		out(char *redir_file, char c);
 int		connect_stdout(char **redir, int pipex);
-int		connect_stdin(char **redir, int pipex);
+int		connect_stdin(char **redir, int pipex, t_m *var);
 
 #endif

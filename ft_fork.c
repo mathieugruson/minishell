@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/29 17:26:58 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 18:48:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 		if (is_redir_out((*var).redir[0]) == 1)
 			dup2(connect_stdout((*var).redir[0], 1), 1); // dup2 sauf pour le dernier exec
 		if (is_redir_in((*var).redir[0]))
-			dup2(connect_stdin((*var).redir[0], 0), 0); // dup2 sauf pour le dernier exec	
+			dup2(connect_stdin((*var).redir[0], 0, var), 0); // dup2 sauf pour le dernier exec	
 		ft_init_arg(arg, var); // init arg
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, int
 	}
@@ -96,7 +96,7 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		}
 		if (is_redir_in((*var).redir[var->exec]))
 		{	
-			var->fdin = connect_stdin((*var).redir[var->exec], 0);
+			var->fdin = connect_stdin((*var).redir[var->exec], 0, var);
 			if (var->fdin != -1)
 			{
 				dup2(var->fdin, 0);		
