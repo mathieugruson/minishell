@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/28 14:01:34 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/21 19:49:18 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	is_handled_special_char(char *str, int i)
 {	
-	int	inf;
-	int	sup;
-	int	bar;
-	int	space;
-
+	int inf;
+	int sup;
+	int bar;
+	int space;
+	
 	inf = 0;
 	sup = 0;
 	bar = 0;
 	space = 0;
-	while ((str[i] == '|' || (str[i] == ' ' && (inf > 0 || sup > 0 || bar > 0))\
+	while((str[i] == '|' || (str[i] == ' ' && (inf > 0 || sup > 0 || bar > 0))\
 	|| str[i] == '>' || str[i] == '<' ) && !is_in_quote(str, i))
 	{
-		if (str[i] == '|' && i++ > -1 && bar++ > -1 \
+		if (str[i] == '|' && i++ > -1 && bar++ > -1\
 		&& ((bar > 1 || sup > 0 || inf > 0)))
 				return (0);
-		if ((str[i] == '>' && i++ > -1 && sup++ > -1) \
+		if ((str[i] == '>' && i++ > -1 && sup++ > -1)\
 		&& (sup > 2 || space > 0 || bar > 0 || inf > 0)) 
 				return (0);
-		if (str[i] == '<' && i++ > -1 && inf++ > -1 && \
+		if (str[i] == '<' && i++ > -1 && inf++ > -1 &&\
 		(inf > 2 || space > 0 || sup > 0 || bar > 0))
 				return (0);
 		while (str[i] == ' ' && i++ > -1)
@@ -48,22 +48,33 @@ int are_handled_special_char(char *str)
 	i = 0;
 	while(str[i])
 	{
-		if (str[i] == 34 && i++ > -1)
+		if (str[i] == 33)
 		{
-			while (str[i] && str[i] != 34)
+			i++;
+			while (str[i] && str[i] != 33)
 				i++;
 			if (str[i] == 0)
-				return (write(1, "Error : close the double quote\n", 31), 0);
+			{	
+				write(1, "Error : close the double quote\n", 31);
+				return (0);
+			}
 		}
-		if (str[i] == 39 && i++ > -1)
+		if (str[i] == 39)
 		{
+			i++;
 			while (str[i] && str[i] != 39)	
 				i++;
 			if (str[i] == 0)
-				return (write(1, "Error : close the simple quote\n", 31), 0);
+			{	
+				write(1, "Error : close the simple quote\n", 31);
+				return (0);
+			}
 		}
 		if (!is_handled_special_char(str, i))
-			return (write(1, "Error : non handled char\n", 25), 0);	
+		{
+			write(1, "Error : there are non handled special character\n", 48);
+			return (0);	
+		}
 		i++;
 	}
 	return (1);	
@@ -76,22 +87,33 @@ int quote_are_closed(char *str)
 	i = 0;
 	while(str[i])
 	{
-		if (str[i] == 34 && i++ > -1)
+		if (str[i] == 34)
 		{
+			i++;
 			while (str[i] && str[i] != 34)
 				i++;
 			if (str[i] == 0)
-				return (write(1, "Error : close the double quote\n", 31), 0);
+			{	
+				write(1, "Error : close the double quote\n", 31);
+				return (0);
+			}
 		}
-		if (str[i] == 39 && i++ > -1)
+		if (str[i] == 39)
 		{
+			i++;
 			while (str[i] && str[i] != 39)	
 				i++;
 			if (str[i] == 0)
-				return (write(1, "Error : close the simple quote\n", 31), 0);
+			{	
+				write(1, "Error : close the simple quote\n", 31);
+				return (0);
+			}
 		}
 		if (!is_handled_special_char(str, i))
-			return (write(1, "Error : non handled char\n", 25), 0);	
+		{
+			write(1, "Error : there are non handled special character\n", 48);
+			return (0);	
+		}
 		i++;
 	}
 	return (1);	
@@ -99,8 +121,8 @@ int quote_are_closed(char *str)
 
 int	are_pipe_and_redir_correct(char *str)
 {
-	int	i;
-	int	len; 
+	int i;
+	int len; 
 	
 	i = 0;
 	len = ft_strlen(str) - 1;
@@ -115,8 +137,10 @@ int	are_pipe_and_redir_correct(char *str)
 	return (1);	
 }
 
-int	is_cmdline_valid(char *str)
+int is_cmdline_valid(char *str)
 {
+	// char str[] = "$? test";
+	
 	if (!quote_are_closed(str))
 		return(0);
 	if (!are_handled_special_char(str))

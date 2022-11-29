@@ -15,11 +15,11 @@ void	ft_history_init_fd(char *file, int *fd)
 	}
 }
 
-void	write_first_c(char *buffer, char *str)
-{
-	buffer[0] = '\0';
-	str[0] = '\0';
-}
+// void	write_first_c(char *buffer, char *str)
+// {
+// 	buffer[0] = '\0';
+// 	str[0] = '\0';
+// }
 
 void	ft_init_commands_history(t_m *var)
 {
@@ -30,7 +30,10 @@ void	ft_init_commands_history(t_m *var)
 	{
 		ft_history_init_fd(".history", &(*var).h_fd);
 		write((*var).h_fd, str, ft_strlen(str));
+		close((*var).h_fd);
+		// (*var).args_line = str;
 		(*var).args_line = ft_strdup(str);
+		free(str);
 	}
 }
 
@@ -47,18 +50,6 @@ void	ft_print_split(char **str)
 	ft_printf("-----------------\n");
 }
 
-void	ft_print_env(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("%s\n", str[i]);
-		i++;
-	}
-}
-
 void handle_sigint(int sig)
 {
 	if (sig == SIGINT)
@@ -68,38 +59,6 @@ void handle_sigint(int sig)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-}
-
-int	ft_env(t_m *var, char **envp)
-{
-	int i;
-	if (!envp)
-	{
-		(*var).env = (char **)malloc(sizeof(char *) * 1);
-		if (!(*var).env)
-			return (-1);
-		(*var).env[0] = (char *)malloc(sizeof(char) * 1);
-		if (!(*var).env[0])
-			return (free((*var).env), -1);
-		(*var).env[0][0] = '\0';
-		return (1);
-	}
-	i = 0;
-	while (envp[i])
-		i++;
-	(*var).env = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!(*var).env)
-		return (-1);
-	(*var).env[i] = 0;
-	if (!(*var).env)
-		return (-1);
-	i = 0;
-	while (envp[i])
-	{
-		(*var).env[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	return (0);
 }
 
 void	ft_free_split(char **str)
@@ -115,102 +74,88 @@ void	ft_free_split(char **str)
 	free(str);
 }
 
+void	ft_daddy(t_m *var, int *pid, int nbcmd)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	status = 0;
+	(void)var;
+	while ((i + i) < nbcmd && nbcmd != 0)
+	{
+		if (waitpid(pid[i], &status, 0) == -1)
+		{
+			perror("waitpid");
+			exit(EXIT_FAILURE);
+		}
+		if (WIFEXITED(status))
+			status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			status = 128 + WTERMSIG(status);
+		i++;
+	}
+	free(pid);
+}
+
+int	ft_exec(t_m *var, char ***args)
+{
+	int	*pid;
+
+	var->exec = 0;
+	var->tabexec = 0;
+	pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
+	if (!pid)
+		return (printf("malloc error\n"), 1);
+	pid[var->tablen] = 0;
+	if (var->tablen == 1)
+		ft_do_fork(var, args[0][0], args[0], &pid[0]);
+	else if (var->tablen > 1)
+	{
+		while ((var->exec + var->tabexec) < var->tablen)
+		{
+			ft_do_pipe_fork(var, args[var->exec + var->tabexec][0], args[var->exec + var->tabexec], &pid[var->exec]);
+			var->exec++;
+			var->tabexec++;
+		}
+	}
+	return (ft_daddy(var, pid, var->tablen), 0);
+}
+
+int	ft_puttriplelen(char ***test, t_m *var)
+{
+	var->tablen = 0;
+	if (!test)
+		return (var->tablen);
+	while(test[var->tablen])
+		var->tablen++;
+	return (var->tablen);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
-	char ***cmd;
-	char ***redir;
-	// char **exprt;
+	char ***args;
+
 	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
 	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
-	(void)argc;
 	(void)argv;
 	(void)envp;
-
-	// exprt = get_exprt(envp);
-	// ft_putdoubletab(exprt);
-	// free_doubletab(exprt);
 	if (argc != 1)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
 	if (ft_env(&var, envp) == -1)
 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
+	if(!*envp)
+		write(2, "EXIT PATH\n", 11);
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
-	ft_parsing(var.args_line, envp, &cmd, &redir);
-	ft_puttripletab(cmd);
-	printf("\n-----\n");
-	ft_puttripletab(redir);
-	free_tripletab(redir);
-	free_tripletab(cmd);
+	args = ft_parsing(var.args_line, envp);
+	ft_puttripletab(args);
+	ft_puttriplelen(args, &var);
+	ft_exec(&var, args);
+	free_tripletab(args);
 	free(var.args_line);
 	ft_free_split(var.env);
+
 	return (0);
 }
-
-// int main()
-// {
-// 	char *argv [] = {"bin/cat", "test.c", NULL};
-// 	int err;
-
-// 	err = execve(argv[0], argv, NULL);
-// 	if (err < 0)
-// 		printf("heree\n");
-
-// 	int fd[3][2];
-// 	int i = 0;
-	
-// 	while (i < 3)
-// 	{
-// 		pipe(fd[i]);
-// 		i++;
-// 	}
-
-// 	int pid1 = fork();
-
-// 	if (pid1 == 0)
-// 	{
-// 		int x;
-// 		read(fd[0][0], &x, sizeof(int));
-// 		x = x + 5;
-// 		write(fd[1][1], &x, sizeof(int));
-// 		close(fd[0][1]);
-// 		close(fd[1][0]);
-// 		close(fd[2][0]);
-// 		close(fd[2][1]);
-// 		close(fd[0][0]);
-// 		close(fd[1][1]);
-// 		return (0);
-// 	}
-
-// 	int pid2 = fork();
-
-// 	if (pid2 == 0)
-// 	{
-
-// 		int x;
-// 		read(fd[1][0], &x, sizeof(int));
-// 		x = x + 5;
-// 		write(fd[2][1], &x, sizeof(int)),
-// 		close(fd[0][1]);
-// 		close(fd[1][1]);
-// 		close(fd[2][0]);
-// 		close(fd[0][0]); 
-// 		close(fd[1][0]);
-// 		close(fd[2][1]);
-// 		return (0);		
-// 	}
-
-// 	int x = 1;
-// 	write(fd[0][1], &x, sizeof(int));
-// 	read(fd[2][0], &x, sizeof(int));
-// 	printf("Resultat : %i\n", x);
-// 	close(fd[0][0]);
-// 	close(fd[1][0]);
-// 	close(fd[1][1]);
-// 	close(fd[2][1]);	
-// 	close(fd[0][1]);
-// 	close(fd[2][0]);
-
-// 	waitpid(pid1, NULL, 0);
-// 	waitpid(pid2, NULL, 0);	
-// }

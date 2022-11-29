@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 13:59:14 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/21 19:18:15 by mgruson          ###   ########.fr       */
+/*   Created: 2022/11/25 15:21:24 by chillion          #+#    #+#             */
+/*   Updated: 2022/11/25 15:23:12 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_free_split(char **str)
 {
-	int i = 0;
+	int	i;
 
-	if (argv[1][i] == 'T' && i++ > -1)
-		printf("test\n");
-	printf("i : %i\n", i);
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
