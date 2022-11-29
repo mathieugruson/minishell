@@ -42,6 +42,8 @@ typedef struct s_minishell
 	int	fd2;
 	char ***cmd;
 	char ***redir;
+	int fdin;
+	int fdout;
 }	t_m;
 
 typedef struct s_index

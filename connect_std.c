@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:29:52 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/29 15:53:09 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 17:51:25 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ int is_redir_out(char **redir)
 
 int out(char *redir_file, char c)
 {
-    static int i = 0;
-    static int fd;
-       
-    if (i++ > 0)
-        close(fd);
+    int fd;
+    
     if (c == 'D')
     {
     fd = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0777);
@@ -68,26 +65,24 @@ int out(char *redir_file, char c)
 
 int in(char *redir_file, char c)
 {
-    static int i = 0;
-    static int fd;
-       
-    if (i++ > 0)
-        close(fd);
+    int fd;
+
     if (c == 'D')
     {
-        fd = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0777);
-        if (fd == -1)
-        {    
-            printf("%s : No such file or directory\n", redir_file);
-            exit (-2);
-        }
+        // SIGNAL a rajouter et voir comment faire
+		(*var).comp = ft_strjoin(stop, "\n");
+		(*var).heredoc_status = 1;
+		ft_trunc_init_fd(".tmpheredoc", &(*var).fd1);
+		ft_heredoc_fd(var, 1, 1);        
     }
     if (c == 'S')
     {
         fd = open(redir_file, O_RDONLY, 0777);
         if (fd == -1)
         {    
-            printf("%s : No such file or directory\n", redir_file);
+            // ft_putstr_fd(redir_file, 2);
+            // ft_putstr_fd(" : No such file or directory\n", 2);
+            write(2, "ERROR\n", 6);
             exit (-2);
         }
     }   
