@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:29:52 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/29 18:48:14 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 18:51:11 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int in(char *redir_file, char c, t_m *var)
         // SIGNAL a rajouter et voir comment faire
 		(*var).comp = ft_strjoin(redir_file, "\n");
 		(*var).heredoc_status = 1;
-		ft_trunc_init_fd(".tmpheredoc", &(*var).fd1);
-		ft_heredoc_fd(var, 1, 1);        
+		ft_trunc_init_fd(".tmpheredoc", &(*var).fdin);
+		ft_heredoc_fd(var, 1, 1);
+        return (var->fdin);         
     }
     if (c == 'S')
     {
