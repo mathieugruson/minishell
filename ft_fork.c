@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/29 16:43:07 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:53:00 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,16 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		close((*var).pipex[0]);
 		if ((var->exec + 1) != (var->tablen))
 			dup2((*var).pipex[1], 1);
-		// if (is_redir_out((*var).redir[0]) == 1)
-		// {
-		// 	dup2(connect_stdout((*var).redir[var->exec], (*var).pipex[1]), (*var).pipex[1]); // dup2 sauf pour le dernier exec
-		// 	// close(connect_stdout((*var).redir[var->exec], (*var).pipex[1]));
-		// }
-		// if (is_redir_in((*var).redir[0]))
-		// {	
-		// 	dup2(connect_stdin((*var).redir[var->exec], 0), 0);		
-		// 	close(connect_stdout((*var).redir[var->exec], (*var).pipex[1]));			
-		// }
+		if (is_redir_out((*var).redir[0]) == 1)
+		{
+			dup2(connect_stdout((*var).redir[var->exec], (*var).pipex[1]), 1); // dup2 sauf pour le dernier exec
+			// close(connect_stdout((*var).redir[var->exec], (*var).pipex[1]));
+		}
+		if (is_redir_in((*var).redir[0]))
+		{	
+			dup2(connect_stdin((*var).redir[var->exec], 0), 0);		
+			// close(connect_stdout((*var).redir[var->exec], (*var).pipex[1]));			
+		}
 		close((*var).pipex[1]);
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, pipe
 	}
@@ -102,8 +102,6 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	{
 		close((*var).pipex[1]);
 		dup2((*var).pipex[0], 0);
-		// dup2(connect_stdin((*var).redir[var->exec], (*var).pipex[0]), 0);
-		// close(connect_stdin((*var).redir[var->exec], (*var).pipex[0]));
 		close((*var).pipex[0]);
 	}
 }
