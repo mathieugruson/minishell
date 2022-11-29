@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/29 11:36:30 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:33:17 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_parsing(char *s, char **envp, char ****cmd, char ****redir)
 {
-	// char	***cmd;
-	// char	***redir;
+
 	char	**args;
 
 	if (!s || s[0] == '\n')

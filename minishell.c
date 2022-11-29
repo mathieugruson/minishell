@@ -135,9 +135,6 @@ int	ft_puttriplelen(char ***test, t_m *var)
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
-	char ***cmd;
-	char ***redir;
-
 
 	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
 	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
@@ -151,13 +148,16 @@ int	main(int argc, char **argv, char **envp)
 		write(2, "EXIT PATH\n", 11);
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
-	ft_parsing(var.args_line, envp, &cmd, &redir);
-	ft_puttripletab(cmd);
-	ft_puttriplelen(cmd, &var);
-	ft_exec(&var, cmd);
-	free_tripletab(cmd);
-	free(var.args_line);
-	ft_free_split(var.env);
+	ft_parsing(var.args_line, envp, &var.cmd, &var.redir);
+	ft_puttripletab(var.cmd);
+	printf("---\n");
+	ft_puttripletab(var.redir);
+	// ft_puttriplelen(var.cmd, &var);
+	// ft_exec(&var, var.cmd);
+	// free_tripletab(var.cmd);
+	// free_tripletab(var.redir);
+	// free(var.args_line);
+	// ft_free_split(var.env);
 
 	return (0);
 }

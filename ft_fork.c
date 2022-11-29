@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/28 11:29:11 by chillion         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:25:48 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
 	if ((*pid) == 0)
 	{
+		// if (is_redir_out((*var).redir[0]) == 1){
+		// 	write(1, "c5\n", 3);
+		// 	dup2(connect_stdout((*var).redir[0], 1), 1);} // dup2 sauf pour le dernier exec
+		// if (is_redir_in((*var).redir[0]))
+		// 	dup2(connect_stdin((*var).redir[0], 1), 0); // dup2 sauf pour le dernier exec			
 		ft_init_arg(arg, var); // init arg
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, int
 	}
@@ -80,8 +85,8 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		ft_init_arg(arg, var);
 		close((*var).pipex[0]);
 		if ((var->exec + var->tabexec + 1) != (var->tablen - 1) && (var->exec + var->tabexec) != (var->tablen - 1))
-			dup2((*var).pipex[1], 1); // dup2 sauf pour le dernier exec
-		close((*var).pipex[1]);
+			dup2(connect_stdout((*var).redir[var->exec + var->tabexec], (*var).pipex[1]), 1); // dup2 sauf pour le dernier exec
+		close(connect_stdout((*var).redir[var->exec + var->tabexec], (*var).pipex[1]));
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, pipe
 	}
 	else
