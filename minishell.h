@@ -206,11 +206,11 @@ void	ft_add_export_check_double(t_m *var, char *args, int egalen);
 
 /* connect_std.c */
 
-int		is_redir_in(char **redir);
-int		is_redir_out(char **redir);
-int 	in(char *redir_file, char c, t_m *var);
-int		out(char *redir_file, char c);
-int		connect_stdout(char **redir, int pipex);
-int		connect_stdin(char **redir, int pipex, t_m *var);
+int		is_redir(char **redir);
+// int		is_redir_out(char **redir);
+void	in(char *redir_file, char c, t_m *var);
+void	out(char *redir_file, char c);
+// int		connect_stdout(char **redir, int pipex);
+void	get_std_redir(char **redir, t_m *var);
 
 #endif

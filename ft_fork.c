@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/29 19:02:55 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:33:28 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,16 @@ void	ft_init_arg(char *argv, t_m *var)
 
 void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 {
+	if (is_redir((*var).redir[0]))
+		get_std_redir((*var).redir[0], var);
 	(*pid) = fork();
 	if ((*pid) == -1)
 		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
 	if ((*pid) == 0)
 	{
-		if (is_redir_out((*var).redir[0]) == 1)
-			dup2(connect_stdout((*var).redir[0], 1), 1); // dup2 sauf pour le dernier exec
-		if (is_redir_in((*var).redir[0]))
-		{
-			var->fdin = connect_stdin((*var).redir[0], 0, var);
-			dup2(var->fdin, 0); // dup2 sauf pour le dernier exec
-			close(var->fdin);	
-		}
+		// if (is_redir_out((*var).redir[0]) == 1)
+		// 	dup2(connect_stdout((*var).redir[0], 1), 1); // dup2 sauf pour le dernier exec
+
 		ft_init_arg(arg, var); // init arg
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, int
 	}
@@ -80,6 +77,8 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	if (pipe((*var).pipex) == -1)
 		return (write(2, "Error with pipe\n", 17), ft_fork_fail(var));
+	if (is_redir((*var).redir[var->exec]) == 1)
+			get_std_redir((*var).redir[var->exec], var);
 	(*pid) = fork();
 	if ((*pid) == -1)
 		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
@@ -88,31 +87,12 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		ft_init_arg(arg, var);
 		if ((var->exec + 1) != (var->tablen))
 			dup2((*var).pipex[1], 1);
-		if (is_redir_in((*var).redir[var->exec]))
-		{	
-			var->fdin = connect_stdin((*var).redir[var->exec], 0, var);
-			if (var->fdin != -1)
-			{
-				dup2(var->fdin, 0);		
-				close(var->fdin);			
-			}
-		}
-		if (is_redir_out((*var).redir[var->exec]) == 1)
-		{
-			var->fdout = connect_stdout((*var).redir[var->exec], (*var).pipex[1]);
-			if (var->fdout != -1)
-			{	
-				dup2(var->fdout, 1); // dup2 sauf pour le dernier exec
-				close(var->fdout);
-			}
-		}
 		close((*var).pipex[0]);
 		close((*var).pipex[1]);
 		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, pipe
 	}
 	else
 	{
-		
 		close((*var).pipex[1]);
 		dup2((*var).pipex[0], 0);
 		close((*var).pipex[0]);
