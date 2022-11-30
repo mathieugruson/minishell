@@ -95,6 +95,7 @@ int		ft_tabunsort_cmp(char **tab1, char **tab2);
 void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
 int		ft_intlen(int nbr);
 int		ft_strlenint(char *str);
+int		ft_strcmplen(char ***redir, char *str);
 
 /* is_cmdline_valid.c */
 
@@ -212,19 +213,15 @@ void	ft_add_export_check_double(t_m *var, char *args, int egalen);
 int		is_redir(char **redir);
 int		is_redir_in(char **redir);
 int		is_redir_out(char **redir);
-int		inv2(char *redir_file, char c, t_m *var);
-int		outv2(char *redir_file, char c);
-int		connect_stdout(char **redir, int pipex);
-int		connect_stdin(char **redir, int pipex, t_m *var);
+void	out(char *redir_file, char c);
+void 	in(char *redir_file, char c);
 void    get_std_redir(char **redir);
 
 /* handle_heredoc.c */
 
-int		is_heredoc(char ***redir);
+char	**malloc_heredoc(t_m *var);
+char	**get_heredoc_filename(char **heredoc, int i);
+void	get_heredoc(char *str, t_m *var);
 void	handle_heredoc(t_m *var);
-
-/* connect v2 */
-void	out(char *redir_file, char c);
-void 	in(char *redir_file, char c);
 
 #endif

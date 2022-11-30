@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/30 17:48:07 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/30 18:27:28 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_init_arg(char *argv, t_m *var)
 void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	var->cmdtype = 0;
-	if (is_heredoc(var->redir))
+	if (ft_strcmplen(var->redir, "<<") > 0)
 	{
 		handle_heredoc(var);
 	}
@@ -70,19 +70,17 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
 	if ((*pid) == 0)
 	{
-		ft_init_arg(arg, var); // init arg
+		ft_init_arg(arg, var);
 		write(2, "IN DOFORK2\n", 12);
-		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, int
+		ft_execve((*var).arg, targ, (*var).env, var);
 	}
 }
 
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	var->cmdtype = 1;
-	if (is_heredoc(var->redir))
-	{
+	if (ft_strcmplen(var->redir, "<<") > 0)
 		handle_heredoc(var);
-	}
 	if (pipe((*var).pipex) == -1)
 		return (write(2, "Error with pipe\n", 17), ft_fork_fail(var));
 	if (is_redir((*var).redir[var->exec]))
@@ -94,17 +92,13 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	{
 		ft_init_arg(arg, var);
 		if ((var->exec + 1) != (var->tablen) && is_redir_out((*var).redir[var->exec]) == 0)
-		{
-			write(2, "c1\n", 3);
 			dup2((*var).pipex[1], 1);
-		}
 		close((*var).pipex[0]);
 		close((*var).pipex[1]);
-		ft_execve((*var).arg, targ, (*var).env, var); // char *, char **, char **, pipe
+		ft_execve((*var).arg, targ, (*var).env, var);
 	}
 	else
 	{
-		
 		close((*var).pipex[1]);
 		dup2((*var).pipex[0], 0);
 		close((*var).pipex[0]);
