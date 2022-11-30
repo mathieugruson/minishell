@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/29 15:33:17 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:23:53 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	ft_parsing(char *s, char **envp, char ****cmd, char ****redir)
 		return;
 	*cmd = clean_args(*cmd);
 	*redir = clean_args(*redir);
+
 }

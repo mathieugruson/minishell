@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fd_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:38:18 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/28 18:24:00 by chillion         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:52:44 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_check_fd_status(char *file, int *fd)
 {
-	*fd = open(file, O_RDONLY | O_RDWR);
+	*fd = open(file, O_RDWR);
 	if (*fd == -1 && ((errno == EACCES) || (errno == EISDIR)))
 	{
 		ft_putstr_fd(file, 2);
@@ -28,7 +28,7 @@ int	ft_check_fd_status(char *file, int *fd)
 
 int	ft_append_init_fd(char *file, int *fd)
 {
-	(*fd) = open(file, O_RDONLY | O_RDWR | O_APPEND | O_CREAT, 0644);
+	(*fd) = open(file, O_RDWR | O_APPEND | O_CREAT, 0644);
 	if (*fd == -1)
 	{
 		ft_putstr_fd(file, 2);
@@ -40,12 +40,12 @@ int	ft_append_init_fd(char *file, int *fd)
 
 int	ft_trunc_init_fd(char *file, int *fd)
 {
-	(*fd) = open(file, O_RDONLY | O_RDWR | O_TRUNC | O_CREAT, 0644);
+	(*fd) = open(file, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (*fd == -1)
 	{
 		ft_putstr_fd(file, 2);
 		perror(" ");
 		return (-1);
 	}
-	return (0);
+	return (*fd);
 }

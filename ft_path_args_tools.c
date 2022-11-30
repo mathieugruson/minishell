@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_path_args_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:59:05 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/28 18:17:42 by chillion         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:24:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_cleanheredoc_fd(char *str, char *buffer, char *comp, int fd1)
 {
 	free(str);
 	free(buffer);
-	free(comp);
-	close(fd1);
+	(void)comp;
+	(void)fd1;
+	// free(comp);
+	// close(fd1);
 }

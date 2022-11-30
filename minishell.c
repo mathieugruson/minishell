@@ -148,8 +148,10 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
 	ft_parsing(var.args_line, envp, &var.cmd, &var.redir);
+	ft_puttripletab(var.cmd);
+	// ft_puttripletab(var.redir);
 	// ft_puttripletab(var.cmd);
-	// printf("---\n");
+	printf("---\n");
 	// ft_puttripletab(var.redir);
 	ft_puttriplelen(var.cmd, &var);
 	ft_exec(&var, var.cmd);

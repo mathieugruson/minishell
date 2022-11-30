@@ -47,7 +47,8 @@ SRCS =	minishell.c	\
 		get_env_var.c \
 		get_env_var_utils.c  \
 		connect_std.c \
-
+		connect_std2.c \
+		handle_heredoc.c \
 
 BONUS = \
 

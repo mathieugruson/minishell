@@ -35,15 +35,16 @@ typedef struct s_minishell
 	int		pipex[2];
 	int		exec;
 	int		tabexec;
-	int	tablen;
+	int		tablen;
 	char	*comp;
-	int	heredoc_status;
-	int	fd1;
-	int	fd2;
-	char ***cmd;
-	char ***redir;
-	int fdin;
-	int fdout;
+	int		heredoc_status;
+	char 	***cmd;
+	char 	***redir;
+	int 	fdin;
+	int 	fdout;
+	int 	cmdtype;
+	char 	**heredoc;
+	int		fd1;
 }	t_m;
 
 typedef struct s_index
@@ -92,6 +93,8 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_tabsort_cmp(char **s1, char **s2);
 int		ft_tabunsort_cmp(char **tab1, char **tab2);
 void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
+int		ft_intlen(int nbr);
+int		ft_strlenint(char *str);
 
 /* is_cmdline_valid.c */
 
@@ -207,10 +210,21 @@ void	ft_add_export_check_double(t_m *var, char *args, int egalen);
 /* connect_std.c */
 
 int		is_redir(char **redir);
-// int		is_redir_out(char **redir);
-void	in(char *redir_file, char c, t_m *var);
+int		is_redir_in(char **redir);
+int		is_redir_out(char **redir);
+int		inv2(char *redir_file, char c, t_m *var);
+int		outv2(char *redir_file, char c);
+int		connect_stdout(char **redir, int pipex);
+int		connect_stdin(char **redir, int pipex, t_m *var);
+void    get_std_redir(char **redir);
+
+/* handle_heredoc.c */
+
+int		is_heredoc(char ***redir);
+void	handle_heredoc(t_m *var);
+
+/* connect v2 */
 void	out(char *redir_file, char c);
-// int		connect_stdout(char **redir, int pipex);
-void	get_std_redir(char **redir, t_m *var);
+void 	in(char *redir_file, char c);
 
 #endif
