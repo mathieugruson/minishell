@@ -64,6 +64,7 @@ typedef struct s_index
 	int k;
 	int t;
 	int l;
+	int n;
 	int counter;
 	int len;	
 }	t_index;
@@ -128,12 +129,16 @@ int		is_in_quote(char *str, int i);
 
 t_index initialize_index();
 
+/* get_args.c */
+
+int		get_args(char ***args, char *s, char c, t_m *var);
+
 /* malloc_args.c */
 
-int		simple_pointer_nbr(char *s, char c, char **s1, t_m *var);
+int		malloc_args(char *s, char c, char **s1, t_m *var);
 int		malloc_simple_pointer(int count, int t, char **s1, t_m *var);
 int		double_pointer_nbr(char *s, char c);
-int		get_args(char ***args, char *s, char c, t_m *var);
+int		is_arg(char *s, int i);
 
 /* free_minishell.c */
 
