@@ -72,11 +72,10 @@ typedef struct s_index
 
 char	**fill_args(char *s, char c, char **s1);
 char	***fill_cmd(char ***cmd, char **args, char ***redir);
-char	***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
 
-int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir);
+int		ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir);
 int		is_in_quote(char *str, int i);
 int		double_pointer_nbr(char *s, char c);
 int		ft_triple_pointer_len(char *s);
@@ -85,6 +84,17 @@ int		ft_triple_pointer_len(char *s);
 /* set_in_cmd.c */
 
 void	set_in_cmd(char ****cmd, char ****redir, char **args, t_m *var);
+
+/* malloc_redir.c */
+
+char	***malloc_redir(char ***redir, char **args, t_m *var);
+
+
+
+/* malloc_cmd.c */
+
+char	***malloc_cmd(char ***cmd, char **args, t_m *var);
+
 
 /* mathieu_utils.c */
 

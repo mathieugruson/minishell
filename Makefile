@@ -48,6 +48,8 @@ SRCS =	minishell.c	\
 		get_env_var_utils.c  \
 		get_std_redir.c \
 		handle_heredoc.c \
+		malloc_redir.c \
+		malloc_cmd.c \
 
 BONUS = \
 
