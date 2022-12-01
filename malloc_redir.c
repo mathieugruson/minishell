@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:31:07 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 16:10:56 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:39:56 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	malloc_double_pointer_redir(char ***tab, int count, char **args, t_m *var)
 {
 	*tab = ft_calloc(sizeof(char *), (count + 1));
-	if (!tab)
+	if (!*tab)
 	{
 		free(var->args_line);
 		free_doubletab(var->env);

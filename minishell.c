@@ -155,6 +155,5 @@ int	main(int argc, char **argv, char **envp)
 	free_tripletab(var.redir);
 	free(var.args_line);
 	ft_free_split(var.env);
-
 	return (0);
 }

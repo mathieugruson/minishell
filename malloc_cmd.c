@@ -6,27 +6,27 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:30:58 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 16:07:49 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:40:26 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**malloc_double_pointer_cmd(char **tab, int count, char **args, t_m *var)
+int	malloc_double_pointer_cmd(char ***tab, int count, char **args, t_m *var)
 {
-	tab = ft_calloc(sizeof(char *), (count + 1));
-	if (!tab)
+	*tab = ft_calloc(sizeof(char *), (count + 1));
+	if (!*tab)
 	{
 		free(var->args_line);
 		free_doubletab(var->env);
 		free_doubletab(args);
-		free_error_tripletab(&tab, count);
-		exit (-1);
+		free_error_tripletab(tab, count);
+		return (2);
 	}
-	return (tab);
+	return (0);
 }
 
-char	***malloc_cmd(char ***cmd, char **args, t_m *var)
+int	malloc_cmd(char ***cmd, char **args, t_m *var)
 {
 	t_index	i;
 
@@ -37,7 +37,7 @@ char	***malloc_cmd(char ***cmd, char **args, t_m *var)
 			i.counter++;
 		if (args[i.i] && args[i.i][0] == '|')
 		{		
-			cmd[i.j] = malloc_double_pointer_cmd(cmd[i.j], i.counter, args, var);
+			malloc_double_pointer_cmd(&cmd[i.j], i.counter, args, var);
 			i.j++;
 			i.counter = 0;
 		}
@@ -46,6 +46,6 @@ char	***malloc_cmd(char ***cmd, char **args, t_m *var)
 		while (args[i.i] && (args[i.i][0] == '<' || args[i.i][0] == '>'))
 			i.i = i.i + 2;
 	}
-	cmd[i.j] = malloc_double_pointer_cmd(cmd[i.j], i.counter, args, var);	
-	return (cmd);
+	malloc_double_pointer_cmd(&cmd[i.j], i.counter, args, var);	
+	return (0);
 }

@@ -91,7 +91,7 @@ int	malloc_redir(char ***redir, char **args, t_m *var);
 
 /* malloc_cmd.c */
 
-char ***malloc_cmd(char ***cmd, char **args, t_m *var);
+int malloc_cmd(char ***cmd, char **args, t_m *var);
 
 
 /* mathieu_utils.c */
