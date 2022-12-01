@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/26 17:58:02 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:31:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 {
 	if (execve(pcmd, option, envp) == -1)
 	{
-		write(2, "AFTER EXEC\n", 12);
-		ft_printf("%s\n", strerror(errno));
 		if ((var->exec + 1) != (var->tablen - 1) )
 			close((*var).pipex[1]);
 		free((*var).arg);

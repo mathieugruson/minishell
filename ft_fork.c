@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/30 18:27:28 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 12:31:12 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 	if ((*pid) == 0)
 	{
 		ft_init_arg(arg, var);
-		write(2, "IN DOFORK2\n", 12);
 		ft_execve((*var).arg, targ, (*var).env, var);
 	}
 }

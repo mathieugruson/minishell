@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 12:09:17 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 12:26:15 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,11 @@ int	are_pipe_and_redir_correct(char *str)
 	while(str[i] == ' ')
 		i++;
 	if (str[i] == '|')	
-	{
-		printf("syntax error near unexpected token `|'\n");
-		return (2);
-	}
+		return (printf("syntax error near unexpected token `|'\n"), 2);
 	while(str[len] == ' ')
 		len--;
 	if (str[len] == '|' || str[len] == '<' || str[len] == '>')
-	{	
-		printf("syntax error near unexpected token `newline'\n");
-		return (2);	
-	}
+		return (printf("syntax error near unexpected token `newline'\n"), 2);
 	return (1);	
 }
 
