@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 14:59:25 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:37:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 		return (0);
 	if (is_cmdline_valid(var->args_line) == 2)
 		return (2);
-	args = get_args(&arg, var->args_line, ' ', var);
+	if (get_args(&args, var->args_line, ' ', var) == 2)
+		return (2);
 	args = get_env_var(args, envp);
 	*cmd = NULL;
 	*redir = NULL;

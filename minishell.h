@@ -132,10 +132,10 @@ t_index initialize_index();
 
 /* malloc_args.c */
 
-char	**simple_pointer_nbr(char *s, char c, char **s1, t_m *var);
-char	*malloc_simple_pointer(int count, int t, char **s1, t_m *var);
+int		simple_pointer_nbr(char *s, char c, char **s1, t_m *var);
+int		malloc_simple_pointer(int count, int t, char **s1, t_m *var);
 int		double_pointer_nbr(char *s, char c);
-char	**get_args(char *s, char c, t_m *var);
+int		get_args(char ***args, char *s, char c, t_m *var);
 
 /* free_minishell.c */
 
