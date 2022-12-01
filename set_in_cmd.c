@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/29 15:47:00 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 13:20:26 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_triple_pointer_len(char *s)
 		i++;
 	}
 	count = count + 1;
-	// printf("count : %i\n", count);
 	return (count);
 }
 
@@ -114,61 +113,48 @@ char	***fill_cmd(char ***cmd, char **args, char ***redir)
 	i = initialize_index();
 	while (args[i.i])
 	{
-		// printf("c1\n");	
 		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>'))
-		{	
-			// printf("c1bis : args[i.i] : %s\n", args[i.i]);
-			// printf("j : %i, k : %i, i : %i\n", i.j, i.k, i.i);
-			cmd[i.j][i.k] = args[i.i];
-			i.k++;
-			i.i++;
-		}
-		// printf("c1terbis\n");
+			cmd[i.j][i.k++] = args[i.i++];
 		if (args[i.i] && (args[i.i][0] == '<' || args[i.i][0] == '>'))
 		{
-			// printf("c1terter\n");
 			redir[i.i1][i.i2++] = args[i.i++];
 			redir[i.i1][i.i2++] = args[i.i++];
-			// i.i = i.i + 2;
 		}
 		if (args[i.i] && args[i.i][0] == '|' && i.i++ > -1)
 		{
-			// printf("c1ter\n");
 			i.k = 0;
 			i.j++;
 			i.i1++;
 			i.i2 = 0;
 		}
-		// printf("c1quater\n");
 	}
-	// printf("c1cinquies\n");
-
 	free(args);
 	return (cmd);
 }
 
-void	set_in_cmd(char ****cmd, char ****redir, char **args, char *s)
+void	set_in_cmd(char ****cmd, char ****redir, char **args, t_m *var)
 {	
 	int		triple_pointer_len;
 
-	triple_pointer_len = ft_triple_pointer_len(s);
-	// printf("triple pointer len : %i\n", triple_pointer_len);
+	triple_pointer_len = ft_triple_pointer_len(var->args_line);
 	*cmd = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
 	if (!*cmd)
 	{
+		free(var->args_line);
+		free_doubletab(var->env);
 		free_doubletab(args);
 		exit (-1);
 	}
 	*redir = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
 	if (!*redir)
 	{
+		free(var->args_line);
+		free_doubletab(var->env);
 		free_tripletab(*cmd);
 		free_doubletab(args);
 		exit (-1);
 	}
-	// printf("c1\n");
 	*cmd = malloc_cmd(*cmd, args);
 	*redir = malloc_redir(*redir, args);
 	*cmd = fill_cmd(*cmd, args, *redir);
-	// return (cmd);
 }

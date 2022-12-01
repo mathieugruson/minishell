@@ -76,14 +76,15 @@ char	***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
 
-int		ft_parsing(char *s, char **envp, char ****cmd, char ****redir);
+int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir);
 int		is_in_quote(char *str, int i);
 int		double_pointer_nbr(char *s, char c);
-char	*malloc_simple_pointer(int count, int t, char **s1);
-char	**simple_pointer_nbr(char *s, char c, char **s1);
-char	**get_args(char *s, char c);
 int		ft_triple_pointer_len(char *s);
-void	set_in_cmd(char ****cmd, char ****redir, char **args, char *s);
+
+
+/* set_in_cmd.c */
+
+void	set_in_cmd(char ****cmd, char ****redir, char **args, t_m *var);
 
 /* mathieu_utils.c */
 
@@ -121,10 +122,10 @@ t_index initialize_index();
 
 /* malloc_args.c */
 
-char	**simple_pointer_nbr(char *s, char c, char **s1);
-char	*malloc_simple_pointer(int count, int t, char **s1);
+char	**simple_pointer_nbr(char *s, char c, char **s1, t_m *var);
+char	*malloc_simple_pointer(int count, int t, char **s1, t_m *var);
 int		double_pointer_nbr(char *s, char c);
-char	**get_args(char *s, char c);
+char	**get_args(char *s, char c, t_m *var);
 
 /* free_minishell.c */
 

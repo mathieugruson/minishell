@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 12:41:21 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 15:18:50 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 13:12:29 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,21 @@ int	double_pointer_nbr(char *s, char c)
 }
 
 
-char *malloc_simple_pointer(int count, int t, char **s1)
+char	*malloc_simple_pointer(int count, int t, char **s1, t_m *var)
 {
 	s1[t] = (char *)ft_calloc((count + 1), sizeof(char));
 	if (!s1[t])
 	{
+		free(var->args_line);
+		free_doubletab(var->env);
 		free_error_doubletab(s1, t);
-		exit (-1);
+		write(2, "malloc error\n", 13);		
+		exit (2);
 	}
-	// printf("c1\n");
 	return (s1[t]);
 }
 
-char	**simple_pointer_nbr(char *s, char c, char **s1)
+char	**simple_pointer_nbr(char *s, char c, char **s1, t_m *var)
 {
 	t_index i;
 
@@ -92,7 +94,7 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 			i.i++;	
 		if (i.count != 0)
 		{	
-			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1);
+			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1, var);
 			i.t++;
 			i.count = 0;			
 		}
@@ -100,7 +102,7 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 			i.i++;
 		if (i.count != 0)
 		{
-			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1);
+			s1[i.t] = malloc_simple_pointer(i.count, i.t, s1, var);
 			i.t++;
 			i.count = 0;
 		}
@@ -108,7 +110,7 @@ char	**simple_pointer_nbr(char *s, char c, char **s1)
 	return (s1);
 }
 
-char **get_args(char *s, char c)
+char **get_args(char *s, char c, t_m *var)
 {
 	char	**args;
 	
@@ -117,10 +119,13 @@ char **get_args(char *s, char c)
 	args = NULL;
 	args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *));
 	if (!args)
-		exit (-1);
-	// free(args);
-	// return (NULL);
-	args = simple_pointer_nbr(s, c, args);
+	{
+		free(var->args_line);
+		free_doubletab(var->env);
+		write(2, "malloc error\n", 13);
+		exit (2);
+	}
+	args = simple_pointer_nbr(s, c, args, var);
 	if (!*args)
 	{
 		return (args);

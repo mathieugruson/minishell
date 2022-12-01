@@ -6,28 +6,28 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 12:22:53 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 13:16:55 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_parsing(char *s, char **envp, char ****cmd, char ****redir)
+int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 {
 
 	char	**args;
 
-	if (!s || s[0] == '\n')
+	if (!var->args_line || var->args_line[0] == '\n')
 		return (0);
-	if (!is_cmdline_valid(s))
+	if (!is_cmdline_valid(var->args_line))
 		return (2);
-	args = get_args(s, ' ');
+	args = get_args(var->args_line, ' ', var);
 	if (!args)
 		return (0);	
 	args = get_env_var(args, envp);
 	*cmd = NULL;
 	*redir = NULL;
-	set_in_cmd(&*cmd, &*redir, args, s);
+	set_in_cmd(&*cmd, &*redir, args, var);
 	if (!*cmd)
 		return (2);
 	*cmd = clean_args(*cmd);
