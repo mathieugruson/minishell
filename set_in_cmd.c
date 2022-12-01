@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 13:32:02 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:04:21 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,34 @@ char	***fill_cmd(char ***cmd, char **args, char ***redir)
 	return (cmd);
 }
 
-void	set_in_cmd(char ****cmd, char ****redir, char **args, t_m *var)
+int	set_in_cmd(char **args, t_m *var)
 {	
 	int		triple_pointer_len;
 
 	triple_pointer_len = ft_triple_pointer_len(var->args_line);
-	*cmd = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
-	if (!*cmd)
+	var->cmd = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
+	if (!var->cmd)
 	{
 		free(var->args_line);
 		free_doubletab(var->env);
 		free_doubletab(args);
-		exit (-1);
+		return (2);
 	}
-	*redir = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
-	if (!*redir)
+	var->redir = ft_calloc(sizeof(char **), (triple_pointer_len + 1));
+	if (!var->redir)
 	{
 		free(var->args_line);
 		free_doubletab(var->env);
-		free_tripletab(*cmd);
+		free_tripletab(var->cmd);
 		free_doubletab(args);
-		exit (-1);
+		return (2);
 	}
-	*cmd = malloc_cmd(*cmd, args, var);
-	*redir = malloc_redir(*redir, args, var);
-	*cmd = fill_cmd(*cmd, args, *redir);
+	if (malloc_cmd(var->cmd, args, var) == 2)
+		return (2);
+	if (malloc_redir(var->redir, args, var) == 2)
+		return (2);
+	printf("c2\n");
+	var->cmd = fill_cmd(var->cmd, args, var->redir);
+	printf("c3\n");
+	return (0);
 }

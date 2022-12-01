@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 15:37:20 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:05:21 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 	args = get_env_var(args, envp);
 	*cmd = NULL;
 	*redir = NULL;
-	set_in_cmd(&*cmd, &*redir, args, var);
-	if (!*cmd)
+	if (set_in_cmd(args, var) == 2)
 		return (2);
 	*cmd = clean_args(*cmd);
 	*redir = clean_args(*redir);

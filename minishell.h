@@ -83,17 +83,15 @@ int		ft_triple_pointer_len(char *s);
 
 /* set_in_cmd.c */
 
-void	set_in_cmd(char ****cmd, char ****redir, char **args, t_m *var);
+int	set_in_cmd(char **args, t_m *var);
 
 /* malloc_redir.c */
 
-char	***malloc_redir(char ***redir, char **args, t_m *var);
-
-
+int	malloc_redir(char ***redir, char **args, t_m *var);
 
 /* malloc_cmd.c */
 
-char	***malloc_cmd(char ***cmd, char **args, t_m *var);
+char ***malloc_cmd(char ***cmd, char **args, t_m *var);
 
 
 /* mathieu_utils.c */
