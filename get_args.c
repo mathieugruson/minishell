@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 12:41:21 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 13:12:29 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:00:56 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*malloc_simple_pointer(int count, int t, char **s1, t_m *var)
 	return (s1[t]);
 }
 
-char	**simple_pointer_nbr(char *s, char c, char **s1, t_m *var)
+int	simple_pointer_nbr(char *s, char c, char **s1, t_m *var)
 {
 	t_index i;
 
@@ -110,26 +110,26 @@ char	**simple_pointer_nbr(char *s, char c, char **s1, t_m *var)
 	return (s1);
 }
 
-char **get_args(char *s, char c, t_m *var)
+int	get_args(char ***args, char *s, char c, t_m *var)
 {
 	char	**args;
 	
 	if (!s)
 		return (NULL);
-	args = NULL;
-	args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *));
-	if (!args)
+	*args = NULL;
+	*args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *));
+	if (!*args)
 	{
 		free(var->args_line);
 		free_doubletab(var->env);
 		write(2, "malloc error\n", 13);
-		exit (2);
+		return (2);
 	}
-	args = simple_pointer_nbr(s, c, args, var);
+	simple_pointer_nbr(s, c, args, var);
 	if (!*args)
 	{
-		return (args);
+		return (2);
 	}
-	args = fill_args(s, ' ', args);
-	return (args);
+	fill_args(s, ' ', args);
+	return (1);
 }

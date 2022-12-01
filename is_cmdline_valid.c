@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:33:19 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 12:26:15 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/01 14:40:34 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ int is_cmdline_valid(char *str)
 {
 	// char str[] = "$? test";
 	
-	if (!are_handled_syntax_error(str))
+	if (are_handled_syntax_error(str) == 2)
 		return (2);
-	if (!are_pipe_and_redir_correct(str) )
+	if (are_pipe_and_redir_correct(str) == 2)
 		return (2);
 	return (1);
 }

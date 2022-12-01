@@ -147,7 +147,8 @@ int	main(int argc, char **argv, char **envp)
 		write(2, "EXIT PATH\n", 11);
 	ft_init_commands_history(&var);
 	ft_printf("Command is :%s\n", var.args_line);
-	ft_parsing(&var, envp, &var.cmd, &var.redir);
+	if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
+		return (2);
 	ft_puttriplelen(var.cmd, &var);
 	ft_exec(&var, var.cmd);
 	free_tripletab(var.cmd);
