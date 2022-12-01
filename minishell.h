@@ -45,6 +45,7 @@ typedef struct s_minishell
 	int 	cmdtype;
 	char 	**heredoc;
 	int		fd1;
+	int 	status;
 }	t_m;
 
 typedef struct s_index
@@ -75,7 +76,7 @@ char	***malloc_cmd(char ***cmd, char **args);
 
 /* ft_parsing.c */
 
-void	ft_parsing(char *s, char **envp, char ****cmd, char ****redir);
+int		ft_parsing(char *s, char **envp, char ****cmd, char ****redir);
 int		is_in_quote(char *str, int i);
 int		double_pointer_nbr(char *s, char c);
 char	*malloc_simple_pointer(int count, int t, char **s1);
