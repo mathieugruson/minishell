@@ -107,6 +107,7 @@ void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
 int		ft_intlen(int nbr);
 int		ft_strlenint(char *str);
 int		ft_strcmplen(char ***redir, char *str);
+char	*ft_strcpy(char *dest, char *src);
 
 /* is_cmdline_valid.c */
 
