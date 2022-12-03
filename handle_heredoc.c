@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/30 18:23:44 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/03 16:25:19 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void	handle_heredoc(t_m *var)
 {
 	int	i;
 	int	j;
-	int	k;
+	static int	k = 0;
 
-	k = 0;
 	i = 0;
 	var->heredoc = malloc_heredoc(var);
 	while (var->redir[i])
