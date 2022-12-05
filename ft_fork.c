@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/01 12:31:12 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/05 13:46:09 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 	if ((*pid) == 0)
 	{
 		ft_init_arg(arg, var);
-		ft_execve((*var).arg, targ, (*var).env, var);
+		if (!is_builtin(var, (*var).cmd[var->exec]))
+		{
+			write(1, "TA\n", 3);
+			ft_execve((*var).arg, targ, (*var).env, var);
+		}
 	}
 }
 
@@ -94,7 +98,8 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 			dup2((*var).pipex[1], 1);
 		close((*var).pipex[0]);
 		close((*var).pipex[1]);
-		ft_execve((*var).arg, targ, (*var).env, var);
+		if (!is_builtin(var, (*var).cmd[var->exec]))
+			ft_execve((*var).arg, targ, (*var).env, var);
 	}
 	else
 	{

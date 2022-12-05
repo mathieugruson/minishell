@@ -51,7 +51,11 @@ SRCS =	minishell.c	\
 		malloc_redir.c \
 		malloc_cmd.c \
 		malloc_args.c \
-
+		is_builtin.c \
+		ft_cd.c \
+		ft_exit.c \
+		ft_echo.c \
+		
 BONUS = \
 
 LIBFT := libs/libft/libft.a

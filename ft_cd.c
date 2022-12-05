@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/14 17:32:13 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/05 14:00:07 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ It handles :
 - cd par chemin absolu
 
 */
+
 int	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -63,57 +64,36 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (free(s1), s3);
 }
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int ft_cd(char **argv, int i)
+int ft_cd(char **cmd, int i)
 {
 	char	*path;
 	char	*newpath;
-	int		pathlen;
 		
 	path = NULL;
 	newpath = NULL;
 	path = getcwd(path, 0);
 	printf("%s\n", path);
-	pathlen = strlen(path);
-	if (!argv[i])
+	if (!cmd[i])
 	{
 		printf("handle later\n");
 		return (0);
 	}
-	if (argv[i][0] != '/')
+	if (cmd[i][0] != '/')
 	{
 		path = ft_strjoin(path, "/");
-		path = ft_strjoin(path, argv[i]);
+		path = ft_strjoin(path, cmd[i]);
 		if (chdir(path) != 0)
 			printf("Error\n");
 		printf("%s\n", path);
 	}
 	else 
 	{
-		if (chdir(argv[i]) != 0)
+		if (chdir(cmd[i]) != 0)
 			printf("Error\n");
 		printf("test\n");
 	}
 	printf("c1\n");
 	newpath = getcwd(newpath, 0);
 	printf("%s\n", newpath);
-	return (0);
-}
-
-int main(int argc, char **argv)
-{
-	int i;
-	
-	i = 0;
-	ft_cd(argv, (i + 1));
 	return (0);
 }

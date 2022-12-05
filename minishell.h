@@ -240,4 +240,22 @@ char	**get_heredoc_filename(char **heredoc, int i);
 void	get_heredoc(char *str, t_m *var);
 void	handle_heredoc(t_m *var);
 
+/* is_builtin.c */
+
+int is_str_digit(char *str);
+int is_builtin(t_m *var, char **cmd);
+
+/* ft_cd.c */
+
+int ft_cd(char **argv, int i);
+
+/* ft_exit.c */
+
+void ft_exit(t_m *var, char **cmd);
+
+/* ft_echo.c */
+
+int	ft_echo(char **cmd);
+
+
 #endif
