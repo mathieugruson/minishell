@@ -6,15 +6,11 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 14:00:07 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:14:23 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "minishell.h"
 
 /*
 Subject : Reproduction of cd function
@@ -23,46 +19,6 @@ It handles :
 - cd par chemin absolu
 
 */
-
-int	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	if (!str)
-		return (i);
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		l;
-	char	*s3;
-
-	i = 0;
-	l = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	s3 = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!s3)
-		return (free(s1), NULL);
-	while (s1[i])
-	{
-		s3[l] = s1[i];
-		i++;
-		l++;
-	}
-	i = 0;
-	while (s2[i])
-		s3[l++] = s2[i++];
-	s3[l] = '\0';
-	return (free(s1), s3);
-}
 
 int ft_cd(char **cmd, int i)
 {
@@ -80,8 +36,8 @@ int ft_cd(char **cmd, int i)
 	}
 	if (cmd[i][0] != '/')
 	{
-		path = ft_strjoin(path, "/");
-		path = ft_strjoin(path, cmd[i]);
+		path = ft_strjoin_free(path, "/");
+		path = ft_strjoin_free(path, cmd[i]);
 		if (chdir(path) != 0)
 			printf("Error\n");
 		printf("%s\n", path);

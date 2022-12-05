@@ -152,7 +152,7 @@ void	free_tripletab(char ***tab);
 
 int		is_not_in(char *str, char **tab);
 char	**sort_envp(char **envp, char **exprt);
-char	**get_exprt(char **envp);
+int	get_exprt(char **envp);
 
 /* get_env_var.c */
 
@@ -257,5 +257,12 @@ void ft_exit(t_m *var, char **cmd);
 
 int	ft_echo(char **cmd);
 
+/* ft_export */
+
+void ft_export(t_m *var, char **cmd);
+
+/* ft_unlink.c */
+
+void	ft_unlink(char ***redir, int i);
 
 #endif

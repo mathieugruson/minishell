@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/05 13:46:09 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:20:57 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_init_arg(char *argv, t_m *var)
 {
 	(*var).path = ft_init_path_var((*var).env); // init path = texte apres env => PATH=""
 	ft_arg_check_fullpath(argv, var); // check full path
+	ft_putdoubletab((*var).split_path);
 	if ((*var).pcmd_line == 0) // si non full path
 	{
 		(*var).pcmd_line = ft_check_access(argv , (*var).split_path); // check la bonne ligne et keep ligne
@@ -59,10 +60,13 @@ void	ft_init_arg(char *argv, t_m *var)
 void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	var->cmdtype = 0;
+	ft_putdoubletab(*var->redir);
 	if (ft_strcmplen(var->redir, "<<") > 0)
 	{
+		write(1, "C1\n", 3);
 		handle_heredoc(var);
 	}
+	ft_putdoubletab(*var->redir);
 	if (is_redir((*var).redir[0]))
 		get_std_redir((*var).redir[0]);
 	(*pid) = fork();
@@ -72,11 +76,10 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 	{
 		ft_init_arg(arg, var);
 		if (!is_builtin(var, (*var).cmd[var->exec]))
-		{
-			write(1, "TA\n", 3);
 			ft_execve((*var).arg, targ, (*var).env, var);
-		}
+		exit (127);
 	}
+	ft_unlink(var->redir, var->exec);
 }
 
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
@@ -100,11 +103,13 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		close((*var).pipex[1]);
 		if (!is_builtin(var, (*var).cmd[var->exec]))
 			ft_execve((*var).arg, targ, (*var).env, var);
+		exit (127);
 	}
 	else
 	{
 		close((*var).pipex[1]);
 		dup2((*var).pipex[0], 0);
 		close((*var).pipex[0]);
+		ft_unlink(var->redir, var->exec);
 	}
 }

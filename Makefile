@@ -55,7 +55,9 @@ SRCS =	minishell.c	\
 		ft_cd.c \
 		ft_exit.c \
 		ft_echo.c \
-		
+		ft_export.c \
+		ft_unlink.c \
+
 BONUS = \
 
 LIBFT := libs/libft/libft.a

@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_unlink.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 11:48:59 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/05 16:12:47 by mgruson          ###   ########.fr       */
+/*   Created: 2022/12/05 15:38:45 by mgruson           #+#    #+#             */
+/*   Updated: 2022/12/05 16:18:46 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_unlink(char ***redir, int i)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
-
-	if (s1 == 0 || s2 == 0)
-		return (NULL);
-	i = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
+	int j;
+	
 	j = 0;
-	while (s2[j] != '\0')
+	while (redir[i][j])
 	{
-		str[j + i] = s2[j];
+		if (ft_strncmp(redir[i][j], ".heredoc", 5) == 0)
+		{
+			printf("c1111 %s\n", redir[i][j]);
+			unlink(redir[i][j]);
+		}
 		j++;
 	}
-	str[i + j] = '\0';
-	return (str);
 }
