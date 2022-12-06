@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 12:05:47 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 12:15:01 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	free_all(t_m *var)
 		free_tripletab(var->cmd);
 	if (var->env)
 		free_doubletab(var->env);
-	if (var->heredoc)
-		free_doubletab(var->heredoc);
 	if (var->split_path)
 		free_doubletab(var->split_path);
 	if (var->pid)
