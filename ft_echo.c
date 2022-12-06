@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:44:01 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 14:26:45 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:12:38 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_echo(char **cmd)
 		return (0);
 	}
 	i = 1;
-	if (is_n_option(cmd[1]))
+	while (is_n_option(cmd[i]))
 		i++;
 	while (cmd[i])
 	{
@@ -64,7 +64,9 @@ int	ft_echo(char **cmd)
 			write(1, " ", 1);
 		i++;
 	}
-	if (!is_n_option(cmd[1]))
+	if (is_n_option(cmd[1]))
+		write(1, "", 0);
+	else if (!is_n_option(cmd[1]))
 		write(1, "\n", 1);
 	return (0);
 }
