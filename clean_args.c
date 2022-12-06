@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 14:55:11 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 13:08:36 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ char ***clean_args(char ***cmd)
 	while(cmd[i])
 	{
 		j = 0;
-		while(cmd[i][j])
+		while((cmd[i][j] && j == 0) || (cmd[i][j] && j >= 1 && \
+		ft_strcmp(cmd[i][j - 1], "<<") != 0))
 		{
 			cmd[i][j] = clear_quote(cmd[i][j]);
 			j++;

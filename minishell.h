@@ -117,6 +117,7 @@ int		is_cmdline_valid(char *str);
 /* clean_quote.c */
 
 char	***clean_args(char ***cmd);
+char	*clear_quote(char *str);
 
 /* replace_env_var.c */
 
@@ -158,6 +159,7 @@ int	get_exprt(char **envp);
 
 /* get_env_var.c */
 
+char	*add_status(char *str, int end, int start, char *status);
 char	**get_env_var(char **args, char **envp);
 char	*new_env_var(char *str, char **envp, t_index i);
 char	*remove_wrong_env(char *str, int end, int start);

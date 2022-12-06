@@ -6,87 +6,101 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/30 16:01:30 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:58:25 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
-int	ft_eof_find(char *str, char *comp, int i, t_m *var)
+int has_quote(char *str)
 {
-	int	j;
-	int	k;
-
-	k = ft_strlen(comp);
-	if (i < k)
+	int i;
+	int s;
+	int d;
+	
+	i = 0;
+	s = 0;
+	d = 0;
+	while(str[i])
+	{
+		if (str[i] == 34)
+			d++;
+		else if (str[i] == 39)
+			s++;
+		i++;
+	}
+	if (d + s >= 2)
 		return (1);
-	j = ft_strncmp((str + (i - k)), comp, k);
-	if (j == 0 && (i == k || str[i - k - 1] == '\n'))
-	{
-		write((*var).fdin, str, (ft_strlen(str) - k));
-		close((*var).fdin);
-		return (0);
-	}
-	return (1);
+	return (0);
 }
 
-void	ft_write_here_sign(char c)
+char	*get_env_var_heredoc(char *str, char **envp, t_index i, t_m *var)
 {
-	if (c == '\n')
+	(void)var; // cela sera utile pour mettre a jour le statut
+	while (str[i.i])
 	{
-		write(1, ">", 1);
+		if (str[i.i] == '$' && ft_isalpha(str[i.i + 1]) > 0)
+		{						
+			i.start = ++i.i;
+			while (str[i.i] && str[i.i] != ' '\
+			&& str[i.i] != 39 && str[i.i] != 34 && str[i.i] != '$' && str[i.i] != '\n')
+				i.end = ++i.i;
+			i.j = is_in_env(envp, str, i.end, i.start);
+			if (i.j > -1)
+			{
+				str = add_good_env(str, i.end, i.start, envp[i.j]);
+				i.i = i.start - 2;
+			}
+			else
+			{
+				str = remove_wrong_env(str, i.end, i.start);
+				i.i = i.start - 2;
+			}
+			i.j = 0;
+		}
+		if (str[i.i] == '$' && str[i.i + 1] == '?'
+		&& !is_in_simple_quote(str, i.i))
+		{
+			str = add_status(str, (i.i + 2), (i.i + 1), "2"); // "2" a remplacer par la variable status
+			i.i = i.i - 1 + ft_intlen(2);
+		}	
+		i.i++;
 	}
-}
-
-void	write_first_c(char *buffer, char *str)
-{
-	buffer[0] = '\0';
-	str[0] = '\0';
+	return (str);
 }
 
 void	ft_heredoc_fd(t_m *var, int n, int j)
 {
-	char	*buffer;
 	char	*str;
+	t_index	i;
+	int		quote;
 
-	buffer = (char *)malloc(sizeof(char) * 2);
-	if (!buffer)
-		return ;
-	str = (char *)malloc(sizeof(char) * 2);
-	if (!str)
-		return ;
-	write_first_c(buffer, str);
-	write(1, ">", 1);
+	quote = !has_quote(var->comp);
+	i = initialize_index();
+	// signal(SIGINT, SIG_DFL);
+	// signal(SIGINT, handle_sigint_2);
+	signal(SIGQUIT, SIG_IGN);
 	while (n > 0)
 	{
-		n = (read(0, buffer, 1));
-		if (n == -1)
-			ft_cleanheredoc_fd(str, buffer, (*var).comp, (*var).fdin);
-		buffer[1] = '\0';
-		str = ft_strjoin_free(str, buffer);
-		if (!ft_eof_find(str, (*var).comp, j, var))
+		str = readline(">");
+		if (!str)
+		{
+			write(2, "warning: don't find end-of-file (wanted `", 42);
+			ft_putstr_fd((*var).comp, 2);
+			write(2, "')\n", 4);
+			return ;
+		}
+		if (ft_strcmp(clear_quote((*var).comp), str) == 0)
 			break ;
-		ft_write_here_sign(buffer[0]);
+		printf("cmp : %s\n", (*var).comp);
+		if (quote == 1)
+			str = get_env_var_heredoc(str, var->env, i, var);
+		write((*var).fdin, str, ft_strlen(str));
+		write((*var).fdin, "\n", 2);
+		free(str);
 		j++;
 	}
-	return (write((*var).fdin, str, (ft_strlen(str) - ft_strlen(var->comp))), ft_cleanheredoc_fd(str, buffer, (*var).comp, (*var).fdin));
-	// return (ft_cleanheredoc_fd(str, buffer, (*var).comp, (*var).fdin));
-}
-
-void	ft_check_heredoc(char *argv, char *stop, t_m *var)
-{
-	int	n;
-	int	j;
-
-	n = 1;
-	j = 1;
-	(*var).heredoc_status = 0;
-	if (!ft_strncmp(argv, "<<", ft_strlen(argv)))
-	{
-		(*var).comp = ft_strjoin(stop, "\n");
-		(*var).heredoc_status = 1;
-		ft_trunc_init_fd(".tmpheredoc", &(*var).fdin);
-		ft_heredoc_fd(var, n, j);
-	}
+	free (str);
+	return (ft_cleanheredoc_fd(NULL, NULL, (*var).comp, (*var).fdin));
 }

@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 18:31:26 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:02:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	*new_env_var(char *str, char **envp, t_index i)
 		{						
 			i.start = ++i.i;
 			while (str[i.i] && str[i.i] != ' '\
-			&& str[i.i] != 39 && str[i.i] != 34 && str[i.i] != '$')
+			&& str[i.i] != 39 && str[i.i] != 34 && str[i.i] != '$' && str[i.i] != '\n')
 				i.end = ++i.i;
 			i.j = is_in_env(envp, str, i.end, i.start);
 			if (i.j > -1)
@@ -158,7 +158,8 @@ char	**get_env_var(char **args, char **envp)
 	a = initialize_index();
 	while (args[i.i])
 	{
-		args[i.i] = new_env_var(args[i.i], envp, a);
+		if ((args[i.i] && i.i == 0) || (i.i >= 1 && !ft_strcmp(args[i.i - 1], "<<") == 0))
+			args[i.i] = new_env_var(args[i.i], envp, a);
 		i.i++;
 	}
 	return (args);

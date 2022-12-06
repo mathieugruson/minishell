@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 12:12:06 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 14:35:26 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_heredoc(char *str, t_m *var)
 {
 	static int	i = 0;
 
-	(*var).comp = ft_strjoin(str, "\n");
+	(*var).comp = ft_strdup(str);
 	free(str);
 	var->heredoc = get_heredoc_filename(var->heredoc, i);
 	(*var).heredoc_status = 1;

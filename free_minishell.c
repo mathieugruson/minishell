@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 12:15:01 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 12:16:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_all(t_m *var)
 		free_doubletab(var->split_path);
 	if (var->pid)
 		free(var->pid);
-	// if ()
 }
 
 void	free_error_doubletab(char **str, int i)

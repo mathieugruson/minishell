@@ -66,4 +66,13 @@ cat << $USER
 
 TESTER heredoc
 cat << EOF -> $USER (-> affiche mgruson)
-cat << EOF -> "$USER" (-> afficher $USER)
+cat << EOF -> "$USER" (-> afficher "mgruson")
+cat << EOF"" -> $USER (affiche $USER)
+cat << "EOF" -> $USER (affiche $USER)
+cat << "EOF" -> "$USER" (affiche "$USER")
+cat << $USER -> $USER (doit terminer)
+cat << $USER -> mgruson (doit pas terminer)
+
+
+autres tests : 
+https://github.com/solaldunckel/minishell-tester/blob/master/test.sh
