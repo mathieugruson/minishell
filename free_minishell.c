@@ -6,13 +6,13 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 12:16:05 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:32:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_all(t_m *var)
+int	free_all(t_m *var)
 {
 	if (var->redir)
 		free_tripletab(var->redir);
@@ -24,6 +24,7 @@ void	free_all(t_m *var)
 		free_doubletab(var->split_path);
 	if (var->pid)
 		free(var->pid);
+	return (1);
 }
 
 void	free_error_doubletab(char **str, int i)

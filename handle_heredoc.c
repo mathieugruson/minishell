@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 14:35:26 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:35:39 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	get_heredoc(char *str, t_m *var)
 
 int	handle_heredoc(t_m *var)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	static int	k = 0;
 
 	i = 0;
@@ -63,8 +63,8 @@ int	handle_heredoc(t_m *var)
 		return (2);
 	while (var->redir[i])
 	{
-		j = 0;
-		while (var->redir[i][j])
+		j = -1;
+		while (var->redir[i][++j])
 		{
 			if (strcmp(var->redir[i][j], "<<") == 0)
 			{
@@ -74,7 +74,6 @@ int	handle_heredoc(t_m *var)
 				var->redir[i][j + 1] = var->heredoc[k];
 				k++;
 			}
-			j++;
 		}
 		i++;
 	}

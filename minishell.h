@@ -149,7 +149,7 @@ void	free_error_tripletab(char ***tab, int i);
 void	free_doubletab(char **s);
 void	free_error_doubletab(char **str, int i);
 void	free_tripletab(char ***tab);
-void	free_all(t_m *var);
+int		free_all(t_m *var);
 
 /* get_exprt.c */
 
@@ -161,7 +161,7 @@ int	get_exprt(char **envp);
 
 char	*add_status(char *str, int end, int start, char *status);
 char	**get_env_var(char **args, char **envp);
-char	*new_env_var(char *str, char **envp, t_index i);
+char	*new_env_var(char *str, char **envp);
 char	*remove_wrong_env(char *str, int end, int start);
 char	*add_good_env(char *str, int end, int start, char *envp);
 char	*get_env(char *env,  char *envp);
@@ -268,5 +268,13 @@ void ft_export(t_m *var, char **cmd);
 /* ft_unlink.c */
 
 void	ft_unlink(char ***redir, int i);
+
+/* get_status.c */
+
+char	*get_status(char *str, int end, int start, char *status);
+
+/* has_quote.c */
+
+int has_quote(char *str);
 
 #endif

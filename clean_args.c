@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 17:25:55 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:49:45 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,7 @@ char *clear_quote(char *str)
 	int i = 0;
 	int dq = 0;
 	int sq = 0;
-	int	j = 0;
 	
-	while (str[i])
-	{
-		if (str[i] == 39 || str[i] == 34)
-			j++;		
-		i++;
-	}
-	if (j == 0)
-		return (str);
-	i = 0;
 	while(str[i])
 	{
 		if (str[i] == 34)

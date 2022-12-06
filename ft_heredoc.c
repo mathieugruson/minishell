@@ -6,68 +6,53 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/06 15:35:08 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:24:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
-int has_quote(char *str)
+char	*basic_env_heredoc(char *str, char **envp, t_index *i)
 {
-	int i;
-	int s;
-	int d;
-	
-	i = 0;
-	s = 0;
-	d = 0;
-	while(str[i])
-	{
-		if (str[i] == 34)
-			d++;
-		else if (str[i] == 39)
-			s++;
-		i++;
-	}
-	if (d + s >= 2)
-		return (1);
-	return (0);
+		i->start = ++i->i;
+		while (str[i->i] && isalnum(str[i->i]))
+			i->end = ++i->i;
+		i->j = is_in_env(envp, str, i->end, i->start);
+		if (i->j > -1)
+		{
+			str = add_good_env(str, i->end, i->start, envp[i->j]);
+			i->i = i->start - 2;
+		}
+		else
+		{
+			str = remove_wrong_env(str, i->end, i->start);
+			i->i = i->start - 2;
+		}
+		i->j = 0;
+		return (str);	
 }
 
-char	*get_env_var_heredoc(char *str, char **envp, t_index i, t_m *var)
+char	*new_env_var_heredoc(char *str, char **envp, t_m *var)
 {
-	(void)var; // cela sera utile pour mettre a jour le statut
+	t_index	i;
+
+	(void)var;
+	i = initialize_index();
 	while (str[i.i])
 	{
 		if (str[i.i] == '$' && ft_isalpha(str[i.i + 1]) > 0)
-		{						
-			i.start = ++i.i;
-			while (str[i.i] && str[i.i] != ' '\
-			&& str[i.i] != 39 && str[i.i] != 34 && str[i.i] != '$' && str[i.i] != '\n')
-				i.end = ++i.i;
-			i.j = is_in_env(envp, str, i.end, i.start);
-			if (i.j > -1)
-			{
-				str = add_good_env(str, i.end, i.start, envp[i.j]);
-				i.i = i.start - 2;
-			}
-			else
-			{
-				str = remove_wrong_env(str, i.end, i.start);
-				i.i = i.start - 2;
-			}
-			i.j = 0;
-		}
+			str = basic_env_heredoc(str, envp, &i);
 		if (str[i.i] == '$' && str[i.i + 1] == '?')
 		{
-			str = add_status(str, (i.i + 2), (i.i + 1), "2"); // "2" a remplacer par la variable status
+			str = get_status(str, (i.i + 2), (i.i + 1), "2"); // "2" a remplacer par la variable status
 			i.i = i.i - 1 + ft_intlen(2);
 		}
-				if (str[i.i] == '$' && ft_isdigit(str[i.i + 1]) > 0)
+		if (str[i.i] == '$' && ft_isdigit(str[i.i + 1]) > 0)
 		{	
-			str = ft_strcpy(&str[i.i], &str[i.i + 2]);	
-		}	
+			str = ft_strcpy(&str[i.i], &str[i.i + 1]);
+			str = clear_quote(&str[i.i]);
+		}
 		i.i++;
 	}
 	return (str);
@@ -76,11 +61,11 @@ char	*get_env_var_heredoc(char *str, char **envp, t_index i, t_m *var)
 void	ft_heredoc_fd(t_m *var, int n, int j)
 {
 	char	*str;
-	t_index	i;
+	// t_index	i;
 	int		quote;
 
 	quote = !has_quote(var->comp);
-	i = initialize_index();
+	// i = initialize_index();
 	// signal(SIGINT, SIG_DFL);
 	// signal(SIGINT, handle_sigint_2);
 	signal(SIGQUIT, SIG_IGN);
@@ -98,7 +83,7 @@ void	ft_heredoc_fd(t_m *var, int n, int j)
 			break ;
 		printf("cmp : %s\n", (*var).comp);
 		if (quote == 1)
-			str = get_env_var_heredoc(str, var->env, i, var);
+			str = new_env_var_heredoc(str, var->env, var);
 		write((*var).fdin, str, ft_strlen(str));
 		write((*var).fdin, "\n", 2);
 		free(str);

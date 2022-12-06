@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:30:58 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/01 16:40:26 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:42:40 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	malloc_cmd(char ***cmd, char **args, t_m *var)
 	i = initialize_index();
 	while (args[i.i])
 	{
-		while (args[i.i] && (args[i.i][0] != '|' && args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
+		while (args[i.i] && (args[i.i][0] != '|' \
+		&& args[i.i][0] != '<' && args[i.i][0] != '>') && i.i++ > -1)
 			i.counter++;
 		if (args[i.i] && args[i.i][0] == '|')
 		{		
@@ -46,6 +47,6 @@ int	malloc_cmd(char ***cmd, char **args, t_m *var)
 		while (args[i.i] && (args[i.i][0] == '<' || args[i.i][0] == '>'))
 			i.i = i.i + 2;
 	}
-	malloc_double_pointer_cmd(&cmd[i.j], i.counter, args, var);	
+	malloc_double_pointer_cmd(&cmd[i.j], i.counter, args, var);
 	return (0);
 }

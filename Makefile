@@ -57,6 +57,8 @@ SRCS =	minishell.c	\
 		ft_echo.c \
 		ft_export.c \
 		ft_unlink.c \
+		get_status.c \
+		has_quote.c \
 
 BONUS = \
 
