@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 16:13:00 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 10:35:31 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ char	**malloc_heredoc(t_m *var)
 
 	heredoc_len = ft_strcmplen(var->redir, "<<");
 	var->heredoc = ft_calloc(sizeof(char *), (heredoc_len + 1));
+	if (!var->heredoc)
+	{
+		free_all(var);
+		return (NULL);
+	}
 	return (var->heredoc);
 }
 
@@ -37,6 +42,7 @@ void	get_heredoc(char *str, t_m *var)
 	static int	i = 0;
 
 	(*var).comp = ft_strjoin(str, "\n");
+	free(str);
 	var->heredoc = get_heredoc_filename(var->heredoc, i);
 	(*var).heredoc_status = 1;
 	ft_trunc_init_fd(var->heredoc[i], &(*var).fdin);
@@ -45,7 +51,7 @@ void	get_heredoc(char *str, t_m *var)
 	i++;
 }
 
-void	handle_heredoc(t_m *var)
+int	handle_heredoc(t_m *var)
 {
 	int	i;
 	int	j;
@@ -53,6 +59,8 @@ void	handle_heredoc(t_m *var)
 
 	i = 0;
 	var->heredoc = malloc_heredoc(var);
+	if (!var->heredoc)
+		return (2);
 	while (var->redir[i])
 	{
 		j = 0;
@@ -63,7 +71,6 @@ void	handle_heredoc(t_m *var)
 				get_heredoc(var->redir[i][j + 1], var);
 				var->redir[i][j][1] = '\0';
 				free(var->redir[i][j + 1]);
-				var->redir[i][j + 1] = NULL;
 				var->redir[i][j + 1] = var->heredoc[k];
 				k++;
 			}
@@ -71,4 +78,15 @@ void	handle_heredoc(t_m *var)
 		}
 		i++;
 	}
+	return (0);
 }
+
+/*
+
+<< EOF << EOF
+
+EOF est free apres chaque remplacement par un heredoc
+qui va dans var->redir. var->redir sera free en tant 
+que triple_tab
+
+*/

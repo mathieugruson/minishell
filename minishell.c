@@ -61,19 +61,6 @@ void handle_sigint(int sig)
 	}
 }
 
-void	ft_free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 void	ft_daddy(t_m *var, int *pid, int nbcmd)
 {
 	int	i;
@@ -150,10 +137,10 @@ int	main(int argc, char **argv, char **envp)
 	if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
 		return (2);
 	ft_puttriplelen(var.cmd, &var);
+	free(var.args_line);
 	ft_exec(&var, var.cmd);
 	free_tripletab(var.cmd);
 	free_tripletab(var.redir);
-	free(var.args_line);
 	ft_free_split(var.env);
 	return (0);
 }

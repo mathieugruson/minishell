@@ -147,6 +147,7 @@ void	free_error_tripletab(char ***tab, int i);
 void	free_doubletab(char **s);
 void	free_error_doubletab(char **str, int i);
 void	free_tripletab(char ***tab);
+void	free_all(t_m *var);
 
 /* get_exprt.c */
 
@@ -238,7 +239,7 @@ void    get_std_redir(char **redir);
 char	**malloc_heredoc(t_m *var);
 char	**get_heredoc_filename(char **heredoc, int i);
 void	get_heredoc(char *str, t_m *var);
-void	handle_heredoc(t_m *var);
+int		handle_heredoc(t_m *var);
 
 /* is_builtin.c */
 

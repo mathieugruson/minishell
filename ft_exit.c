@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:34:02 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 14:01:10 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 10:16:35 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,19 @@ void ft_exit(t_m *var, char **cmd)
 		write(2, cmd[1], ft_strlen(cmd[1]));    
 		write(2, ": numeric argument required\n", 26);
 		var->status = 2;
+		free_all(var);
 		exit(var->status);
 	}
 	else if (!cmd[1])
 	{
 		var->status = 0;
+		free_all(var);
 		exit(var->status);
 	}
 	else if (cmd[1] && is_str_digit(cmd[1]))
 	{
 		var->status = ft_atoi(cmd[1]);
+		free_all(var);
 		exit (var->status);
 	}
 }

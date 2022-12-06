@@ -6,11 +6,23 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/22 15:24:32 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 10:37:08 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_all(t_m *var)
+{
+	if (var->redir)
+		free_tripletab(var->redir);
+	if (var->cmd)
+		free_tripletab(var->cmd);
+	if (var->env)
+		free_doubletab(var->env);
+	if (var->heredoc)
+		free_doubletab(var->heredoc);
+}
 
 void	free_error_doubletab(char **str, int i)
 {
@@ -21,6 +33,7 @@ void	free_error_doubletab(char **str, int i)
 		i--;
 	}
 	free(str);
+	str = NULL;
 }
 
 void free_error_tripletab(char ***tab, int i)
@@ -31,7 +44,8 @@ void free_error_tripletab(char ***tab, int i)
 		tab[i] = NULL;
 		i--;
 	}	
-	free(tab);	
+	free(tab);
+	tab = NULL;	
 }
 
 void	free_doubletab(char **str)
@@ -46,6 +60,7 @@ void	free_doubletab(char **str)
 		i++;
 	}
 	free(str);
+	str = NULL;
 }
 
 void free_tripletab(char ***tab)
@@ -63,11 +78,13 @@ void free_tripletab(char ***tab)
 		while(tab[i][j])
 		{
 			free(tab[i][j]);
+			tab[i][j] = NULL;
 			j++;
 		}
 		free(tab[i]);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
-
+	tab = NULL;
 }

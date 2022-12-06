@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/05 16:20:57 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:33:51 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_init_arg(char *argv, t_m *var)
 {
 	(*var).path = ft_init_path_var((*var).env); // init path = texte apres env => PATH=""
 	ft_arg_check_fullpath(argv, var); // check full path
-	ft_putdoubletab((*var).split_path);
 	if ((*var).pcmd_line == 0) // si non full path
 	{
 		(*var).pcmd_line = ft_check_access(argv , (*var).split_path); // check la bonne ligne et keep ligne
@@ -60,13 +59,10 @@ void	ft_init_arg(char *argv, t_m *var)
 void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	var->cmdtype = 0;
-	ft_putdoubletab(*var->redir);
 	if (ft_strcmplen(var->redir, "<<") > 0)
 	{
-		write(1, "C1\n", 3);
 		handle_heredoc(var);
 	}
-	ft_putdoubletab(*var->redir);
 	if (is_redir((*var).redir[0]))
 		get_std_redir((*var).redir[0]);
 	(*pid) = fork();
