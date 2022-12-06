@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:09:33 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 15:53:35 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 18:12:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 {
-
 	char	**args;
 
 	if (!var->args_line || var->args_line[0] == '\n')
@@ -23,7 +22,6 @@ int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 		return (2);
 	if (get_args(&args, var->args_line, ' ', var) == 2)
 		return (2);
-	// clean_args(&args);
 	args = get_env_var(args, envp);
 	*cmd = NULL;
 	*redir = NULL;
@@ -31,7 +29,6 @@ int	ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir)
 		return (2);
 	*cmd = clean_args(*cmd);
 	*redir = clean_args(*redir);
-	// ft_puttripletab(*cmd);
-	// ft_puttripletab(*redir);	
+
 	return (0);
 }
