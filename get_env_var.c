@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 16:05:45 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 16:22:39 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,13 +143,13 @@ char	*new_env_var(char *str, char **envp, t_index i)
 			str = add_status(str, (i.i + 2), (i.i + 1), "2"); // "2" a remplacer par la variable status
 			i.i = i.i - 1 + ft_intlen(2);
 		}
-		if (str[i.i] == '$' && (ft_isdigit(str[i.i + 1]) > 0 || str[i.i + 1] == 34 || str[i.i + 1] == 39) \
+		if (str[i.i] == '$' && (ft_isdigit(str[i.i + 1]) > 0 || (str[i.i + 1] == 34 || str[i.i + 1] == 39)) \
 		&& !is_in_simple_quote(str, i.i))
 		{	
-			str = ft_strcpy(&str[i.i], &str[i.i + 2]);
-			if (str[ft_strlen(str) - 1] == 34 || str[ft_strlen(str) - 1] == 39)
-				str[ft_strlen(str) - 1] = 0;
+			str = ft_strcpy(&str[i.i], &str[i.i + 1]);
+			str = clear_quote(&str[i.i]);
 		}
+		
 		i.i++;
 	}
 	return (str);
