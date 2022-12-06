@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/06 14:29:45 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:03:40 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid)
 			ft_execve((*var).arg, targ, (*var).env, var);
 		exit (127);
 	}
-	// ft_unlink(var->redir, var->exec);
+	ft_unlink(var->redir, var->exec);
 }
 
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
