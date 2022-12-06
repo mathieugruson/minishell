@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 16:30:21 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 10:44:37 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,16 @@ int ft_pwd(void)
 
 int is_builtin(t_m *var, char **cmd)
 {
-    if  (ft_strcmp(cmd[0], "exit") == 0)
-        return(ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
-    if  (ft_strcmp(cmd[0], "pwd") == 0 && !cmd[1])
-	{
-        return(ft_pwd(), 1); 
-	}
-	if  (ft_strcmp(cmd[0], "cd") == 0 && cmd[1])
-        return(ft_cd(cmd, 1), 1); 
-    if  (ft_strcmp(cmd[0], "echo") == 0)
+    if (ft_strcmp(cmd[0], "exit") == 0)
+        return (ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
+    else if (ft_strcmp(cmd[0], "pwd") == 0 && !cmd[1])
+        return (ft_pwd(), 1); 
+	else if (ft_strcmp(cmd[0], "cd") == 0 && cmd[1])
+        return (ft_cd(cmd, 1), 1); 
+    else if (ft_strcmp(cmd[0], "echo") == 0)
 		return (ft_echo(cmd), 1); 
-    if  (ft_strcmp(cmd[0], "export") == 0) // TO DO
-        return(ft_export(var, cmd), 1);
+    else if (ft_strcmp(cmd[0], "export") == 0) // TO DO
+        return (ft_export(var, cmd), 1);
     // if  (ft_strcmp(cmd[0], "unset") == 0) // TO DO
     //     return(ft_unset(cmd), 1);
     // if  (ft_strcmp(cmd[0], "env") == 0) // TO DO

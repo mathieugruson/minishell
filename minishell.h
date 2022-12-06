@@ -46,6 +46,7 @@ typedef struct s_minishell
 	char 	**heredoc;
 	int		fd1;
 	int 	status;
+	int		*pid;
 }	t_m;
 
 typedef struct s_index

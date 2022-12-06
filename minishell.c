@@ -82,30 +82,29 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 			status = 128 + WTERMSIG(status);
 		i++;
 	}
-	free(pid);
 }
 
 int	ft_exec(t_m *var, char ***args)
 {
-	int	*pid;
+	// int	*pid;
 
 	var->exec = 0;
 	var->tabexec = 0;
-	pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
-	if (!pid)
+	var->pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
+	if (!var->pid)
 		return (printf("malloc error\n"), 1);
-	pid[var->tablen] = 0;
+	var->pid[var->tablen] = 0;
 	if (var->tablen == 1)
-		ft_do_fork(var, args[0][0], args[0], &pid[0]);
+		ft_do_fork(var, args[0][0], args[0], &var->pid[0]);
 	else if (var->tablen > 1)
 	{
 		while ((var->exec) < var->tablen)
 		{
-			ft_do_pipe_fork(var, args[var->exec][0], args[var->exec], &pid[var->exec]);
+			ft_do_pipe_fork(var, args[var->exec][0], args[var->exec], &var->pid[var->exec]);
 			var->exec++;
 		}
 	}
-	return (ft_daddy(var, pid, var->tablen), 0);
+	return (ft_daddy(var, var->pid, var->tablen), 0);
 }
 
 int	ft_puttriplelen(char ***test, t_m *var)
@@ -136,11 +135,9 @@ int	main(int argc, char **argv, char **envp)
 	ft_printf("Command is :%s\n", var.args_line);
 	if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
 		return (2);
-	ft_puttriplelen(var.cmd, &var);
 	free(var.args_line);
+	ft_puttriplelen(var.cmd, &var);
 	ft_exec(&var, var.cmd);
-	free_tripletab(var.cmd);
-	free_tripletab(var.redir);
-	ft_free_split(var.env);
+	free_all(&var);
 	return (0);
 }

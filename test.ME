@@ -62,3 +62,8 @@ ls | cat < test
 ls < cat | test
 cat < minishelle.c > test2 (ne creer pas test2 car apres > minishelle.c)
 cat > test2 < minishelle.c (creer test2 avant de faire l erreur)
+cat << $USER
+
+TESTER heredoc
+cat << EOF -> $USER (-> affiche mgruson)
+cat << EOF -> "$USER" (-> afficher $USER)
