@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/06 14:58:25 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:35:08 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,14 @@ char	*get_env_var_heredoc(char *str, char **envp, t_index i, t_m *var)
 			}
 			i.j = 0;
 		}
-		if (str[i.i] == '$' && str[i.i + 1] == '?'
-		&& !is_in_simple_quote(str, i.i))
+		if (str[i.i] == '$' && str[i.i + 1] == '?')
 		{
 			str = add_status(str, (i.i + 2), (i.i + 1), "2"); // "2" a remplacer par la variable status
 			i.i = i.i - 1 + ft_intlen(2);
+		}
+				if (str[i.i] == '$' && ft_isdigit(str[i.i + 1]) > 0)
+		{	
+			str = ft_strcpy(&str[i.i], &str[i.i + 2]);	
 		}	
 		i.i++;
 	}
