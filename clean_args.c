@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 17:20:29 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:25:55 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char *remove_quote(char *str, int quote, int i)
 		i++;
 	}
 	i = ibis;
-	printf("str 1: %s\n", str);
 	while (str[i])
 	{
 		if (str[i] == quote)
@@ -49,16 +48,8 @@ char *remove_quote(char *str, int quote, int i)
 		}
 		i++;
 	}
-	printf("str : %s\n", str);
 	return (str);
 }
-
-// int is_before(char *str, int i)
-// {
-// 	while(str[i] != 34 && str[i] != 39)
-// 		i--;
-// 	return ((int)str[i]);
-// }
 
 /* le -2 sert pour eviter que le i++ ligne 106 saute une quote*/
 
@@ -89,7 +80,6 @@ char *clear_quote(char *str)
 				dq = 0;
 				sq = 0;
 				i = i - 2;
-				printf("c 1: %c, i : %i\n", str[i], i);
 			}
 		}
 		else if (str[i] == 39)
@@ -101,7 +91,6 @@ char *clear_quote(char *str)
 				sq = 0;
 				dq = 0;
 				i = i - 2;
-				printf("c : %c, i ; %i\n", str[i], i);
 			}
 		}
 		i++;
