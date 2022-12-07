@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 20:00:45 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 20:01:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int do_builtin(t_m *var, char **cmd)
         return (ft_cd(cmd, 1, var), 1); 
     else if (ft_strcmp(cmd[0], "echo") == 0)
 		return (ft_echo(cmd), 1); 
-    else if (ft_strcmp(cmd[0], "export") == 0) // TO DO0
+    else if (ft_strcmp(cmd[0], "export") == 0) // TO DO
         return (ft_export(var, cmd), 1);
     // if  (ft_strcmp(cmd[0], "unset") == 0) // TO DO
     //     return(ft_unset(cmd), 1);
