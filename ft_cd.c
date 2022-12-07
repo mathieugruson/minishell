@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 10:44:52 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:22:02 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,28 @@ It handles :
 - cd par chemin absolu
 
 */
+int	find_env_name_line(char *name, char **env)
+{
+	int i;
 
-int ft_cd(char **cmd, int i)
+	i = 0;
+	while(env[i] && ft_strncmp(name, env[i], 4) != 0)
+	{
+		i++;
+	}
+	return (i);	
+}
+
+int	export_env(char *name, char *word, t_m *var)
+{
+	int line;
+	(void)word;
+	line = find_env_name_line(name, var->env);
+	var->env[line] = ft_strjoin(name, word);
+	return(line);
+}
+
+int ft_cd(char **cmd, int i, t_m *var)
 {
 	char	*path;
 	char	*newpath;
@@ -28,7 +48,6 @@ int ft_cd(char **cmd, int i)
 	path = NULL;
 	newpath = NULL;
 	path = getcwd(path, 0);
-	printf("%s\n", path);
 	if (!cmd[i])
 	{
 		printf("handle later\n");
@@ -40,7 +59,6 @@ int ft_cd(char **cmd, int i)
 		path = ft_strjoin_free(path, cmd[i]);
 		if (chdir(path) != 0)
 			printf("Error\n");
-		printf("%s\n", path);
 	}
 	else 
 	{
@@ -48,8 +66,7 @@ int ft_cd(char **cmd, int i)
 			printf("Error\n");
 		printf("test\n");
 	}
-	printf("c1\n");
 	newpath = getcwd(newpath, 0);
-	printf("%s\n", newpath);
+	var->line = export_env("PWD=", newpath, var);
 	return (0);
 }

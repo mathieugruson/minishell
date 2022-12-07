@@ -75,3 +75,118 @@ pwd ---
 pwd -p
 pwd -- 
 pwd -- p
+ls
+ls
+cd
+cd
+cd ..
+ls
+cd
+cd ..
+ls
+pwd
+cd ..
+cd /mnt/nfs/homes
+ls
+cd ..
+ls
+cd ..
+cd ..
+ls
+cd ..
+pwd
+cd ..
+pwd
+pwd
+cd ..
+cd ..
+ls
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+make
+cd ..
+exit
+exit
+exit
+exit
+cd ..
+make
+cd ..
+make
+cd ..
+cd ..
+cd
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd .
+cd ..
+cd ..
+cd ..
+cd .. > z1
+cd ..
+ls
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+make
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+cd ..
+ls
+ls
+ls
+cd ..
+ls
+cd ..
+ls
+ls
+cd ..
+ls
+cd ..
+ls
+ls
+ls
+cd .. | ls
+cd .. | ls
+ls
+cd .. | ls
+ls
+pwd
+cd .. | ls
+cd ..
+ls
+cd .. | ls
+cd .. | ls
+cd ..
+ls
+ls
+cd ..
+ls
+cd ..
+cd ..
+ls | grep h
+cd ..

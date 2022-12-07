@@ -47,6 +47,7 @@ typedef struct s_minishell
 	int		fd1;
 	int 	status;
 	int		*pid;
+	int		line;
 	// int		fdsave;
 }	t_m;
 
@@ -248,11 +249,12 @@ int		handle_heredoc(t_m *var);
 /* is_builtin.c */
 
 int is_str_digit(char *str);
-int is_builtin(t_m *var, char **cmd);
+int do_builtin(t_m *var, char **cmd);
+int is_env_builtin(char **cmd);
 
 /* ft_cd.c */
 
-int ft_cd(char **argv, int i);
+int ft_cd(char **argv, int i, t_m *var);
 
 /* ft_exit.c */
 
@@ -287,4 +289,5 @@ void	handle_sigint_2(int sig);
 void	ft_fd_init(t_m *var);
 void	ft_pipe_read_write(t_m *var);
 void	ft_signal(int i);
+
 #endif

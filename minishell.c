@@ -22,8 +22,8 @@ void	ft_init_commands_history(t_m *var)
 	str = NULL;
 	while (1)
 	{
-		if (str)
-			free(str);
+		// if (str)
+		// 	free(str);
 		ft_signal(1);
 		str = readline("minishell>");
 		if (!str)
@@ -37,13 +37,9 @@ void	ft_init_commands_history(t_m *var)
 			close((*var).h_fd);
 			(*var).args_line = ft_strdup(str);
 			free(str);
+			rl_clear_history();
 			str = NULL;
 			break ;
-		}
-		else if (!ft_strlen(str))
-		{
-			if (*str)
-				free(str);
 		}
 	}
 }
@@ -102,7 +98,6 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 	(void)var;
 	while (i < nbcmd && nbcmd != 0)
 	{
-		// write(2, "T4\n", 4);
 		waitpid(pid[i], &status, 0);
 		if (WIFEXITED(status))
 			status = WEXITSTATUS(status);
@@ -110,9 +105,49 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 			status = 128 + WTERMSIG(status);
 		i++;
 	}
-	// ft_signal(1);
-	// write(2, "T5\n", 4);
-	// free(pid);
+}
+
+int	ft_init_pipe(t_m *var, int i)
+{
+	var->pipex[i] = (int *)malloc(sizeof(int) * (2));
+	if (!var->pipex[i])
+		return (2);
+	if (pipe(var->pipex[i]) == -1)
+		return (write(2, "Error with pipe\n", 17), ft_fork_fail(var), 2);
+	return (0);
+}
+
+
+
+int	ft_init_all_pipe(t_m *var)
+{
+	int	i;
+
+	i = 0;
+	var->pipex = (int **)malloc(sizeof(int *) * (var->tablen + 1));
+	if (!var->pipex)
+		return (printf("malloc error\n"), 2);
+	var->pipex[var->tablen] = NULL;
+	while (i < var->tablen)
+	{
+		if (ft_init_pipe(var, i) == 2)
+			return (2);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_free_void(int **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 int	ft_exec(t_m *var, char ***args)
@@ -123,13 +158,8 @@ int	ft_exec(t_m *var, char ***args)
 	if (!var->pid)
 		return (printf("malloc error\n"), 1);
 	var->pid[var->tablen] = 0;
-	var->pipex = (int **)malloc(sizeof(int *) * (var->tablen + 1));
-	if (!var->pipex)
-		return (printf("malloc error\n"), 1);
-	var->pipex[var->tablen] = NULL;
-	if (var->tablen == 1)
-		ft_do_fork(var, args[0][0], args[0], &var->pid[0]);
-	else if (var->tablen > 1)
+	ft_init_all_pipe(var);
+	if (var->tablen >= 1)
 	{
 		while ((var->exec) < var->tablen)
 		{
@@ -137,6 +167,7 @@ int	ft_exec(t_m *var, char ***args)
 			var->exec++;
 		}
 	}
+	ft_free_void(var->pipex);
 	ft_daddy(var, var->pid, var->tablen);
 	return (0);
 }
@@ -166,11 +197,9 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		var.args_line = NULL;
-		// ft_signal(1);
 		ft_init_commands_history(&var);
 		if (!var.args_line)
 			return (ft_free_split(var.env) , printf("exit\n"), 0);
-		// ft_printf("Command is :%s\n", var.args_line);
 		if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
 			return (2);
 		free(var.args_line);
