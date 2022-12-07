@@ -243,7 +243,7 @@ void    get_std_redir(char **redir, t_m *var);
 
 char	**malloc_heredoc(t_m *var);
 char	**get_heredoc_filename(char **heredoc, int i);
-void	get_heredoc(char *str, t_m *var);
+char	*get_heredoc(t_m *var, int k);
 int		handle_heredoc(t_m *var);
 
 /* is_builtin.c */
