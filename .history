@@ -253,3 +253,6 @@ cat << E << E
 cat << E << E
 A
 exit
+exit
+exit
+exit

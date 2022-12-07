@@ -16,16 +16,20 @@ int is_str_digit(char *str)
 {
     int i;
     
+    if (!str)
+        return (0); 
     i = 0;
-    while(ft_isdigit(str[i]) != 0)
+    while(ft_isdigit(str[i]) != 0 || str[i] == '-')
         i++;
-    return((int)str[i]);
+    if ((int)str[i] == 0)
+        return (1);
+    return(0);
     
 }
 
 int do_builtin(t_m *var, char **cmd)
 {
-    if (ft_strcmp(cmd[0], "exit") == 0)
+    if (ft_strcmp(cmd[0], "exit") == 0 && var->tablen == 1)
         return (ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
     else if (ft_strcmp(cmd[0], "pwd") == 0 && go_in_builtin(cmd[1]) == 1)
         return (ft_pwd(), 1); 
@@ -50,6 +54,8 @@ int is_env_builtin(char **cmd)
         return (1);
     if  (ft_strcmp(cmd[0], "unset") == 0) // TO DO
         return(1);
+    if  (ft_strcmp(cmd[0], "exit") == 0) // TO DO
+        return(1);    
     return (0);
 }
 // il faut les tester avec cyril pr voir pq certains trucs s'affichent!
