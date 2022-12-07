@@ -32,7 +32,7 @@ typedef struct s_minishell
 	char	**split_path;
 	char	*path;
 	char	*arg;
-	int		pipex[2];
+	int		**pipex;
 	int		exec;
 	int		tabexec;
 	int		tablen;
@@ -47,6 +47,7 @@ typedef struct s_minishell
 	int		fd1;
 	int 	status;
 	int		*pid;
+	// int		fdsave;
 }	t_m;
 
 typedef struct s_index
@@ -207,7 +208,7 @@ void	ft_cleanheredoc_fd(char *str, char *buffer, char *comp, int fd1);
 void	ft_history_init_fd(char *file, int *fd);
 void	ft_init_commands_history(t_m *var);
 void	ft_print_split(char **str);
-void 	handle_sigint(int sig);
+void 	handle_sigint_1(int sig);
 void	ft_free_split(char **str);
 void	ft_daddy(t_m *var, int *pid, int nbcmd);
 int		ft_exec(t_m *var, char ***args);
@@ -233,9 +234,9 @@ void	ft_add_export_check_double(t_m *var, char *args, int egalen);
 int		is_redir(char **redir);
 int		is_redir_in(char **redir);
 int		is_redir_out(char **redir);
-void	out(char *redir_file, char c);
-void 	in(char *redir_file, char c);
-void    get_std_redir(char **redir);
+void	out(char *redir_file, char c, t_m *var);
+void 	in(char *redir_file, char c, t_m *var);
+void    get_std_redir(char **redir, t_m *var);
 
 /* handle_heredoc.c */
 
@@ -259,11 +260,17 @@ void ft_exit(t_m *var, char **cmd);
 
 /* ft_echo.c */
 
+int	is_n_option(char *str);
 int	ft_echo(char **cmd);
 
 /* ft_export */
 
 void ft_export(t_m *var, char **cmd);
+
+/* ft_pwd.c */
+
+int ft_pwd(void);
+int	go_in_builtin(char *str);
 
 /* ft_unlink.c */
 
@@ -276,5 +283,8 @@ char	*get_status(char *str, int end, int start, char *status);
 /* has_quote.c */
 
 int has_quote(char *str);
-
+void	handle_sigint_2(int sig);
+void	ft_fd_init(t_m *var);
+void	ft_pipe_read_write(t_m *var);
+void	ft_signal(int i);
 #endif

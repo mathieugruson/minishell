@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 19:32:05 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:56:00 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 int	free_all(t_m *var)
 {
+	// (void)var;
 	if (var->redir)
 		free_tripletab(var->redir);
 	if (var->cmd)
 		free_tripletab(var->cmd);
-	if (var->env)
-		free_doubletab(var->env);
-	if (var->split_path)
-		free_doubletab(var->split_path);
+	// if (var->env)
+	// 	free_doubletab(var->env);
+	// if (var->split_path)
+	// 	free_doubletab(var->split_path);
 	if (var->pid)
 		free(var->pid);
 	return (1);

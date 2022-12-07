@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/06 19:24:03 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:31:00 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,10 @@ char	*new_env_var_heredoc(char *str, char **envp, t_m *var)
 void	ft_heredoc_fd(t_m *var, int n, int j)
 {
 	char	*str;
-	// t_index	i;
 	int		quote;
 
 	quote = !has_quote(var->comp);
-	// i = initialize_index();
-	// signal(SIGINT, SIG_DFL);
-	// signal(SIGINT, handle_sigint_2);
-	signal(SIGQUIT, SIG_IGN);
+	ft_signal(2);
 	while (n > 0)
 	{
 		str = readline(">");
@@ -90,5 +86,20 @@ void	ft_heredoc_fd(t_m *var, int n, int j)
 		j++;
 	}
 	free (str);
-	return (ft_cleanheredoc_fd(NULL, NULL, (*var).comp, (*var).fdin));
+	return (ft_signal(1), ft_cleanheredoc_fd(NULL, NULL,\
+	 (*var).comp, (*var).fdin));
+}
+
+void	ft_signal(int i)
+{
+	if (i == 1)
+	{
+		signal(SIGINT, handle_sigint_1); /* ctrl + c  affiche un nouveau prompt */
+		signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
+	}
+	if (i == 2)
+	{
+		signal(SIGINT, handle_sigint_2);
+		signal(SIGQUIT, SIG_IGN);
+	}
 }

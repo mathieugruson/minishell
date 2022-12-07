@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   connect_std.c                                      :+:      :+:    :+:   */
+/*   get_std_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:29:52 by mgruson           #+#    #+#             */
-/*   Updated: 2022/11/30 18:10:34 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 11:18:58 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,58 +48,96 @@ int	is_redir(char **redir)
 	return (0);
 }
 
-void	out(char *redir_file, char c)
+void	out(char *redir_file, char c, t_m *var)
 {
-	int	fd;
-
+	if (var->fdout != 1)
+		close(var->fdout);
 	if (c == 'S')
 	{
-		fd = open(redir_file, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-		if (fd == -1)
+		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+		if (var->fdout == -1)
 			return ;
-		dup2(fd, 1);
-		close(fd);
+			
 	}
 	if (c == 'D')
 	{
-		fd = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0777);
-		if (fd == -1)
+		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0777);
+		if (var->fdout == -1)
 			return ;
-		dup2(fd, 1);
-		close(fd);
 	}
 }
 
-void	in(char *redir_file, char c)
+void	in(char *redir_file, char c, t_m *var)
 {
-	int	fd;
-
+	if (var->fdin != 0)
+		close(var->fdin);
 	if (c == 'S')
 	{
-		fd = open(redir_file, O_RDONLY, 0777);
-		if (fd == -1)
+		var->fdin = open(redir_file, O_RDONLY, 0777);
+		if (var->fdin == -1)
 		{
 			write(2, "ERROR\n", 6);
 			exit (-2);
 		}
-		dup2(fd, 0);
-		close(fd);
+		// close(fd);
 	}
 }
 
-void	get_std_redir(char **redir)
+void	ft_fd_init(t_m *var)
+{
+	if (var->fdin == 0)
+	{
+		if((var->exec + 1) != (var->tablen))
+			var->fdin = var->pipex[0][0];
+	}
+	if (var->fdout == 1)
+	{
+		if((var->exec + 1) != (var->tablen))
+			var->fdout = var->pipex[0][1];
+	}
+}
+
+// void	ft_fd_init(t_m *var)
+// {
+// 	ft_printf("var->fdin=%d\n", var->fdin);
+// 	ft_printf("var->fdout=%d\n", var->fdout);
+// 	if (var->fdin == 0)
+// 	{
+// 		write(2, "redirect FD1 to pipe0\n", 23);
+// 		if((var->exec + 1) != (var->tablen))
+// 		{
+// 			var->fdin = var->pipex[0];
+// 			ft_printf("var->fdin=%d\n", var->fdin);
+// 		}
+// 	}
+// 	if (var->fdout == 1){
+// 		write(2, "redirect FD2 to pipe1\n", 23);
+// 		var->fdout = var->pipex[1];
+// 		// if((var->exec + 1) != (var->tablen))
+// 		// {
+// 		// 	ft_printf("var->fdout=%d\n", var->fdout);
+// 		// 	write(2, "ADDredirect FD2 to pipe1\n", 26);
+// 		// }
+// 	}
+// }
+
+void	get_std_redir(char **redir, t_m *var)
 {
 	int	i;
 
 	i = 0;
 	while (redir[i])
 	{
-		if (strcmp(redir[i], "<") == 0)
-			in(redir[i + 1], 'S');
-		if (strcmp(redir[i], ">>") == 0)
-			out(redir[i + 1], 'D');
-		if (strcmp(redir[i], ">") == 0)
-			out(redir[i + 1], 'S');
+		if (ft_strcmp(redir[i], "<") == 0){
+			write(2, "FIND < \n", 9);
+			in(redir[i + 1], 'S', var);}
+		if (ft_strcmp(redir[i], ">>") == 0){
+			write(2, "FIND >> \n", 10);
+			out(redir[i + 1], 'D', var);}
+		if (ft_strcmp(redir[i], ">") == 0){
+			write(2, "FIND > \n", 9);
+			out(redir[i + 1], 'S', var);}
 		i = i + 2;
 	}
+	// ft_fd_init(var);
 }

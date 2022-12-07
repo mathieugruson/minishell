@@ -15,25 +15,36 @@ void	ft_history_init_fd(char *file, int *fd)
 	}
 }
 
-// void	write_first_c(char *buffer, char *str)
-// {
-// 	buffer[0] = '\0';
-// 	str[0] = '\0';
-// }
-
 void	ft_init_commands_history(t_m *var)
 {
 	char *str;
 
-	str = readline("minishell>");
-	if (str)
+	str = NULL;
+	while (1)
 	{
-		ft_history_init_fd(".history", &(*var).h_fd);
-		write((*var).h_fd, str, ft_strlen(str));
-		close((*var).h_fd);
-		// (*var).args_line = str;
-		(*var).args_line = ft_strdup(str);
-		free(str);
+		if (str)
+			free(str);
+		ft_signal(1);
+		str = readline("minishell>");
+		if (!str)
+			break ;
+		else if (ft_strlen(str))
+		{
+			add_history(str);
+			ft_history_init_fd(".history", &(*var).h_fd);
+			write((*var).h_fd, str, ft_strlen(str));
+			write((*var).h_fd, "\n", 1);
+			close((*var).h_fd);
+			(*var).args_line = ft_strdup(str);
+			free(str);
+			str = NULL;
+			break ;
+		}
+		else if (!ft_strlen(str))
+		{
+			if (*str)
+				free(str);
+		}
 	}
 }
 
@@ -50,14 +61,34 @@ void	ft_print_split(char **str)
 	ft_printf("-----------------\n");
 }
 
-void handle_sigint(int sig)
+void	handle_sigint_2(int sig)
+{
+	int status = 0;
+
+	(void)status;
+	status += sig;
+	if (sig == 2)
+	{
+		status = 130;
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
+void handle_sigint_1(int sig)
 {
 	if (sig == SIGINT)
 	{
-		write(1, "\n", 2);
+		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+	}
+	if (sig == SIGQUIT)
+	{
+		write(2, "Quit (core dumped)\n", 20);
+		exit (1);
 	}
 }
 
@@ -69,31 +100,33 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 	i = 0;
 	status = 0;
 	(void)var;
-	while ((i + i) < nbcmd && nbcmd != 0)
+	while (i < nbcmd && nbcmd != 0)
 	{
-		if (waitpid(pid[i], &status, 0) == -1)
-		{
-			perror("waitpid");
-			exit(EXIT_FAILURE);
-		}
+		// write(2, "T4\n", 4);
+		waitpid(pid[i], &status, 0);
 		if (WIFEXITED(status))
 			status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
 			status = 128 + WTERMSIG(status);
 		i++;
 	}
+	// ft_signal(1);
+	// write(2, "T5\n", 4);
+	// free(pid);
 }
 
 int	ft_exec(t_m *var, char ***args)
 {
-	// int	*pid;
-
 	var->exec = 0;
 	var->tabexec = 0;
 	var->pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
 	if (!var->pid)
 		return (printf("malloc error\n"), 1);
 	var->pid[var->tablen] = 0;
+	var->pipex = (int **)malloc(sizeof(int *) * (var->tablen + 1));
+	if (!var->pipex)
+		return (printf("malloc error\n"), 1);
+	var->pipex[var->tablen] = NULL;
 	if (var->tablen == 1)
 		ft_do_fork(var, args[0][0], args[0], &var->pid[0]);
 	else if (var->tablen > 1)
@@ -104,12 +137,14 @@ int	ft_exec(t_m *var, char ***args)
 			var->exec++;
 		}
 	}
-	return (ft_daddy(var, var->pid, var->tablen), 0);
+	ft_daddy(var, var->pid, var->tablen);
+	return (0);
 }
 
 int	ft_puttriplelen(char ***test, t_m *var)
 {
 	var->tablen = 0;
+
 	if (!test)
 		return (var->tablen);
 	while(test[var->tablen])
@@ -121,23 +156,27 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
 
-	signal(SIGINT, handle_sigint); /* ctrl + c  affiche un nouveau prompt */
-	signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
+	ft_signal(1);
 	(void)argv;
 	(void)envp;
 	if (argc != 1)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
 	if (ft_env(&var, envp) == -1)
 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
-	if(!*envp)
-		write(2, "EXIT PATH\n", 11);
-	ft_init_commands_history(&var);
-	ft_printf("Command is :%s\n", var.args_line);
-	if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
-		return (2);
-	free(var.args_line);
-	ft_puttriplelen(var.cmd, &var);
-	ft_exec(&var, var.cmd);
-	free_all(&var);
+	while (1)
+	{
+		var.args_line = NULL;
+		// ft_signal(1);
+		ft_init_commands_history(&var);
+		if (!var.args_line)
+			return (ft_free_split(var.env) , printf("exit\n"), 0);
+		// ft_printf("Command is :%s\n", var.args_line);
+		if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
+			return (2);
+		free(var.args_line);
+		ft_puttriplelen(var.cmd, &var);
+		ft_exec(&var, var.cmd);
+		free_all(&var);
+	}
 	return (0);
 }

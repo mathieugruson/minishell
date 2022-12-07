@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:50:29 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/05 16:13:44 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:18:30 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_itoa(int n)
 {
@@ -40,12 +39,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-/*
-int main()
-{
-	int i;
-
-	i = -555465;
-	printf("%s", ft_itoa(i));
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 19:35:39 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:35:01 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_heredoc(char *str, t_m *var)
 	static int	i = 0;
 
 	(*var).comp = ft_strdup(str);
-	free(str);
+	// free(str);
 	var->heredoc = get_heredoc_filename(var->heredoc, i);
 	(*var).heredoc_status = 1;
 	ft_trunc_init_fd(var->heredoc[i], &(*var).fdin);

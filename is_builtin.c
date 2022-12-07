@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 10:44:37 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 14:17:55 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,16 @@ int is_str_digit(char *str)
     
 }
 
-int ft_pwd(void)
-{
-	char *pwd;
-	
-	pwd = NULL;
-	pwd = getcwd(pwd, 0);
-	if (!pwd)
-        return (2);
-    else
-    {
-        write(1, "t\n", 2);
-        write(1, pwd, ft_strlen(pwd));
-        write(1, "\n", 1);
-	    free(pwd);
-    }
-    return (0);
-}
-
 int is_builtin(t_m *var, char **cmd)
 {
     if (ft_strcmp(cmd[0], "exit") == 0)
         return (ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
-    else if (ft_strcmp(cmd[0], "pwd") == 0 && !cmd[1])
+    else if (ft_strcmp(cmd[0], "pwd") == 0 && go_in_builtin(cmd[1]) == 1)
+    {
+        printf("c1\n");    
         return (ft_pwd(), 1); 
-	else if (ft_strcmp(cmd[0], "cd") == 0 && cmd[1])
+    }
+    else if (ft_strcmp(cmd[0], "cd") == 0 && cmd[1])
         return (ft_cd(cmd, 1), 1); 
     else if (ft_strcmp(cmd[0], "echo") == 0)
 		return (ft_echo(cmd), 1); 

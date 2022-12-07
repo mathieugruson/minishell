@@ -1,1 +1,77 @@
-cat < teste > z2cat > z3 < testecat < test.txt << EOFcat < test.txt << EOFcat < test.txt << EOFcat < test.txt << EOFcat < test.txt << EOFcat << EOFlslslscat << EOFcat << EOFls << cat << EOFls << EOFlsls << EOFls << EOF << EOSls << EOFls << EOFls <<ls << EOFls << EOF << EOSls << EOF << EOSls << EOF << EOSls << EOF << EOSls << EOF << EOScat << EOF << EOScat << EOF << EOScat << EOS | cat << EOFcat << EOScat << EOFcat << EOF | cat << EOScat << EOF | cat << EOScat << EOF << EOScat << EOF | cat << EOScat << EOS | cat << EOFcat << EOF | cat << EOScat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF << EOF | cat << EOF << EOFcat << EOf | cat << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFcat < test.txt | cat < text2.txtcat < test.txt | cat < test2.txtcat << EOF | cat << EOFcat << EOF << EOFcat << EOF1 << EOF2 | cat << EOF3 << EOF4cat << EOF1 << EOF2 | cat << EOF3 << EOF4cat << EOF1 << EOF2 | cat << EOF3 << EOF4cat << EOF1 << EOF2 | cat << EOF3 << EOF4cat << EOF << EOFcat > z1 < teste.txtcat << EOF << EOFcat << EOF << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF << EOFcat << EOF | cat << EOFcat < test.txt | cat < test2.txtls | grep hls | grep hls | grep hcat << EOF | cat << EOFcat << EOF | cat << EOFcat << EOF | cat << EOFls | grep hls > z1 | grep hls > z3 | grep hls > z3 | grep hls | grep hls > z4 | grep hls > z5 | grep hls > z6 | grep hlsls > z1ls > z2ls > z2 | grep h$LS$LS$LS$LS$LS$LS$ls$LS$LSls -lacat $MATHIEUlscat << EOFcat << EOFls << EOF | ls << EOFcat << EOF | cat << EOF > z1 cat test.txtcat "cat "echo "cat "cat "ls""l""s"echo "fsefsfeecho ;echo '$USER'echo $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $LANGecho $LANGecho $USERecho $USERecho $LANGecho $USERecho $USER"|" cat"|" cat"|" cat"|" catcat | grep h | grep xcat | grep h | grep xls | grep h | grep xls | grep h | grep xls | grep hlslslslslslslslslsls | grep hlslsls | grep hls | grep hls | grep hlslslsls | grep hls lslslslslslslslslslslslslslslsls > z5ls > z5ls > z6ls > z9ls | grpe hlsls | grep hlslslslslsecho "mathieu | t ""fsefsfsef"ls lskslsecho $USERecho "$USER"echo $USERecho $LANGecho $?echo $?echo $USERecho $?echo $?lslsecho m$?mecho $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?makeecho $?echo $?echo $?echo $?echo $?echo $?echo $?echo $?echo m$?mehco $?$USERecho $?$USERecho $USERecho $?echo $$?echo $$USERecho $TAecho $$TApwdlslspwdlspwdpwdpwdpwdpwdpwdlspwdpwdpwdpwdpwdlslspwdpwdpwdpwdpwdexitexitlsexitexitexitexitexitexitexitexitexitexitexit 2 3exit 2exitexitexitexitexitlsexitexit 5exit 2exit 5cd ..echo testecho mathieuecho matecho -n matecho -n matheecho mathiecho -nnnnnnnn matecho -n matecho -n matexitpwdcd ..echo mathieuexitpwdpwdpwdpwdppwdlsexitexportexport T=TAexport YO="YOYO"cat << EOF << EOFcat << EOFcat << EOFlsls << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFls << EOFcat << EOFcat << EOFcat << EOFcat <<E OFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOF cat << EOF cat << EOFcat << EOF cat << EOFcat << EOFcatcat << EOFcat << EOFlsls | grep hlscat << EOF << EOFcat << EOF cat << EOFlscat << EOFcat << EOFcat << EOF ls?$lsls | grep hlsls | grep hcat << EOFcat << EOFcat << EOFlslscat << EOFcat << EOFcat << EOFcat << EOFlscat test.txtcat << EOFcat <<E OFexit 555555555555555555555555exit 5exitcat << EOF cat << EOFcat << "EOF"cat << EOFcat << EOFcat << EOFls > "1"ls > '2'cat << "EOF"cat < "test.txt"cat << "EO"Fcat "<<" "EOF"cat << "EOF"cat << EOFcat << "EOF"cat << EOFcat << "EOF"cat << "EOF"cat << EOFcat << $USERcat << EOFcat << EOFcat << EOFcat << EOFcat << "EOF"cat << EOFcat << EOFcat << "EOF"cat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << OFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << EOFcat << "EOF"cat << "EOF"./mcat << "EOF"echo '$USER'echo "$USER"cat << EOFcat << EOFcat << $USERecho -nn -nnecho -nnnnnnn -nnnecho techo tetetecho -nn echo -n -n echo echo -nechoecho -n -n echo -n-necho -pecho --------necho $?$echo $? | echo $?echo $HOMEechoh [$TERM]echo [$TERM]echo $TERMecho [$TERMecho $UID$UID$echoechoecho $eeecho $UIDecho $-HOMEecho $9HOMEecho $echo $9HOMEecho $9g$USERecho HOME $HOMEecho %HOME%echo $HOME%echo $HOME$USERecho $HOME%%echo $$HOME4echo $HOME4echo $USER4echo $$USERecho $$USER4echo *echo $''USERecho $''USERecho $""echo t"""l""s"echo "USERecho $"USERecho $"USER"echo $"USER"echo $9HOMEecho $"USER"echo $"USER"echo $USERecho $USER%echo $""echo *techo $''HOMEecho $"USERecho $%Techo $"USER"echo $""USERecho "" HOMEecho '$'''echo ""$HOMEecho $"HO""ME"echo '''ho"''''l"a'''echo '''h"'echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo "l's"echo "l's"echo "l's"echo lsecho "l's"echo "l's"echo "l's"echo "l'S"echo "ls"echo "l's"echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo echo '''ho"''''l"a'''echo "'ho'"echo "'eee'"echo '''ho"''''l"a'''~echo '''ho"''''l"a'''echo "l's"echo '''ho"''''l"a'''echo hola""""""""""""echo "'ko'"echo '"l"'echo "" Lo"e"'c'ho 'b'"o"nj"o"'u'r$?$??$HOMEenvecho $""USERls -l -al$HOLAecho $HOLAl$HOLAlsecho $USER$HOLA"BYE"d"$HOLA"'$BYE'd/bin/echo hola e/bin/echo t/bin/ls/bin/ls/usr/bin/ls/usr/bin/lslsfefef/usr/bin/echo ttetelsecho matheiu/usr/bin/sleep 5sleep 5pwd  fefefhistoryenv |"wc " -lls | env env | wc -l./m"wc "echo $USERecho $USERecho "$USER"echo $USERecho $USERecho $USERecho $USERecho $USRecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERecho $USERcat << EOFcat << EOFcat << "EOF"cat << EOFcat << EOFcat << EOFcat < test.txt < test2.txtcat < test.txt < test2.txtcat < test.txt < test2.txtecho "ls"echo "'ls'"
+ls
+ls
+ls
+env | wc -l
+env |"wc" -l
+pwd hola
+pwd
+pwd
+pwd
+pwd
+pwd hola
+pwd -p
+pwd ---p
+pwd --p
+pwd -----p
+pwd ----- p
+pwd -- p
+pwd
+pwd gg
+pwd hola
+pwd
+pwd
+pwd t
+pwd t
+pwd trr
+pwd -p
+pwd ---p
+pwd ---      ep
+pwd --p
+pwd pwd pwd
+pwd --p
+pwd --ppp
+pwd --p
+pwd -p
+pwd -
+pwd -
+pwd -p
+make
+exi
+exit
+exit
+ls
+pwd -
+pwd -p
+pwd --p
+pwd ---p
+pwd
+pwd
+pwd --p
+pwd --
+pwd -
+pwd
+pwd -
+pwd
+pwd -
+pwd
+pwd -
+pwd -
+pwd
+pwd -
+pwd
+pwd -
+pwd -
+pwd -----
+pwd -
+pwd -
+pwd ---
+pwd ---p
+pwd ---
+pwd -
+pwd --
+pwd ---
+pwd --
+pwd ---
+pwd -p
+pwd -- 
+pwd -- p
