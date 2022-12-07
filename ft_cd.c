@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 17:22:02 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:33:52 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ It handles :
 - cd par chemin absolu
 
 */
+
 int	find_env_name_line(char *name, char **env)
 {
 	int i;
@@ -44,15 +45,16 @@ int ft_cd(char **cmd, int i, t_m *var)
 {
 	char	*path;
 	char	*newpath;
+	int		len;
 		
 	path = NULL;
 	newpath = NULL;
 	path = getcwd(path, 0);
-	if (!cmd[i])
-	{
-		printf("handle later\n");
-		return (0);
-	}
+	len = ft_tablen(cmd);
+	if (len == 1)
+		return (write(2, "cd only not handled\n", 21), 130);
+	if (len > 2)
+		return (write(2, "cd: too many arguments\n", 23), 130);
 	if (cmd[i][0] != '/')
 	{
 		path = ft_strjoin_free(path, "/");

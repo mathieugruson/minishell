@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/07 17:21:32 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:39:21 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ void	ft_init_fd_redir(t_m *var)
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 {
 	ft_init_fd_redir(var);
-	// printf(" var->tablen : %i\n", var->tablen);
 	if (is_env_builtin(var->cmd[0]) && var->tablen == 1) 
 	{
 		do_builtin(var, var->cmd[0]);
 		return ;
 	}
+	printf("c1\n");
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	(*pid) = fork();

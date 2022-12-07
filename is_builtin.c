@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 17:14:20 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:39:08 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int do_builtin(t_m *var, char **cmd)
         return (ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
     else if (ft_strcmp(cmd[0], "pwd") == 0 && go_in_builtin(cmd[1]) == 1)
         return (ft_pwd(), 1); 
-    else if (ft_strcmp(cmd[0], "cd") == 0 && cmd[1] && !cmd[2])
+    else if (ft_strcmp(cmd[0], "cd") == 0)
         return (ft_cd(cmd, 1, var), 1); 
     else if (ft_strcmp(cmd[0], "echo") == 0)
 		return (ft_echo(cmd), 1); 
@@ -44,7 +44,7 @@ int do_builtin(t_m *var, char **cmd)
 
 int is_env_builtin(char **cmd)
 {
-    if (ft_strcmp(cmd[0], "cd") == 0 && cmd[1] && !cmd[2])
+    if (ft_strcmp(cmd[0], "cd") == 0)
         return (1);  
     if (ft_strcmp(cmd[0], "export") == 0) // TO DO
         return (1);

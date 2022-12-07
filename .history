@@ -190,3 +190,28 @@ cd ..
 cd ..
 ls | grep h
 cd ..
+cd .
+ls
+cd ./
+ls
+pwd
+cd ./
+pwd
+cd ./././.
+pwd
+cd ../..
+ls
+cd obj
+cd libs
+ls
+cd obj test
+ls
+cd | ls
+cd tetee etete | ls
+ls
+cd
+cd ll ll
+cd ll ll
+cd ll ll
+cd ll ll
+cd ll ll

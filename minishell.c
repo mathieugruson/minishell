@@ -37,7 +37,7 @@ void	ft_init_commands_history(t_m *var)
 			close((*var).h_fd);
 			(*var).args_line = ft_strdup(str);
 			free(str);
-			rl_clear_history();
+			// rl_clear_history();
 			str = NULL;
 			break ;
 		}
