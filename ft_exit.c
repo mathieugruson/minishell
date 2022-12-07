@@ -14,6 +14,8 @@
 
 void	ft_exit(t_m *var, char **cmd)
 {
+	if (var->tablen > 1)
+		return ;
 	if (is_str_digit(cmd[1]) && cmd[2] &&	free_all(var))
 	{
 		write(1, "exit: too many arguments\n", 25); // voir s'il faut modifier le numero std

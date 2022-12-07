@@ -29,8 +29,8 @@ int is_str_digit(char *str)
 
 int do_builtin(t_m *var, char **cmd)
 {
-    if (ft_strcmp(cmd[0], "exit") == 0 && var->tablen == 1)
-        return (ft_exit(var, cmd), 1); // PQ AFFICHE COMMAND NOT FOUND
+    if (ft_strcmp(cmd[0], "exit") == 0)
+        return (ft_exit(var, cmd), 1);
     else if (ft_strcmp(cmd[0], "pwd") == 0 && go_in_builtin(cmd[1]) == 1)
         return (ft_pwd(), 1); 
     else if (ft_strcmp(cmd[0], "cd") == 0)

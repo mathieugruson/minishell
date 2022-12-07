@@ -99,7 +99,6 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		do_builtin(var, var->cmd[0]);
 		return ;
 	}
-	printf("c1\n");
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	(*pid) = fork();
@@ -112,9 +111,11 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 		dup2(var->fdin, 0);
 		dup2(var->fdout, 1);
 		ft_close_pipe_fd(var);
-		ft_init_arg(arg, var);
 		if (!do_builtin(var, (*var).cmd[var->exec]))
+		{
+			ft_init_arg(arg, var);
 			ft_execve((*var).arg, targ, (*var).env, var);
+		}
 		exit (127);
 	}
 	ft_unlink(var->redir, var->exec);
