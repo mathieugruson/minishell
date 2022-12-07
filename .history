@@ -215,3 +215,8 @@ cd ll ll
 cd ll ll
 cd ll ll
 cd ll ll
+cd tete
+ls
+cd ../mini_cyril/
+env
+cd rr
