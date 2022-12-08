@@ -1,2 +1,6 @@
 ls
 cd ..
+env
+env | grep PATH
+env | grep PWD
+env | grep PWD

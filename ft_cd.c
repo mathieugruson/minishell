@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 14:59:27 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:17:17 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,25 @@ int ft_cd(char **cmd, int i, t_m *var)
 		
 	path = NULL;
 	newpath = NULL;
-	printf("c0\n");
-	path = getcwd(path, 0);
-	printf("c0bis\n");	
+
 	len = ft_tablen(cmd);
-	printf("c0ter len : %i\n", len);	
 	if (len == 1 || (cmd[1] && cmd[1][0] == '~' && !cmd[2]))
 	{
-		printf("c2\n");
 		newpath = import_user("HOME=", var);
-		printf("c3\n");
-		if (chdir(newpath) != 0) // update user
-			return (1);
+		if (chdir(newpath) != 0)
+			return (printf("cd : HOME not set\n"), 1);
 		return (0);
 	}
-	else if (len > 2)
+	if (len > 2)
 		return (write(2, "cd: too many arguments\n", 23), 130);
-	else if (cmd[1][0] != '/')
+	path = getcwd(path, 0);
+	if (!path)
+	{
+        printf("chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");    
+        return (2);
+    }
+	export_env("OLDPWD", path, var);
+	if (cmd[1][0] != '/')
 	{
 		path = ft_strjoin_free(path, "/");
 		path = ft_strjoin_free(path, cmd[i]);

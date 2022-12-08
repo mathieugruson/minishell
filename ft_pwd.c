@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:15:09 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 14:18:23 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:09:29 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int ft_pwd(void)
 	pwd = NULL;
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
+    {
+        printf("pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");    
         return (2);
+    }
     else
     {
         write(1, pwd, ft_strlen(pwd));

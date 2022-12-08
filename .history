@@ -152,3 +152,18 @@ ls
 cd
 cd
 ls
+ls
+mkdir test_01
+ls
+mkdir test01/test02
+mkdir test_01/test_02
+cd test_01/test_02
+mkdir test1
+mkdir test1/test2
+cd test1/test2
+env
+ls
+cd libs
+env | grep PWd
+env | grep PWD
+cd libs
