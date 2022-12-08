@@ -179,3 +179,14 @@ $R
 $R
 egsegs
 $USER
+ls
+unset PATH
+ls
+ls
+echo R
+echo $PATH
+unset PATH
+ls
+touch z2
+exit
+l
