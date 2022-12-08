@@ -75,3 +75,6 @@ cd ..
 cd ..
 ls
 echo $_
+pwd
+cd ~
+ls

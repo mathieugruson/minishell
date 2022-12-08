@@ -189,25 +189,6 @@ int	ft_puttriplelen(char ***test, t_m *var)
 	return (var->tablen);
 }
 
-int export_last_args(t_m *var)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while(var->cmd[i])
-	{
-		j = 0;
-		while(var->cmd[i][j])
-			j++;
-		i++;
-	}
-	printf("var : %s\n", var->cmd[i - 1][j - 1]);
-	export_env("_=", var->cmd[i - 1][j - 1], var);
-	return (1);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
@@ -230,7 +211,7 @@ int	main(int argc, char **argv, char **envp)
 		free(var.args_line);
 		ft_puttriplelen(var.cmd, &var);
 		ft_exec(&var, var.cmd);
-		export_last_args(&var);
+		update_last_env(&var);
 		free_all(&var);
 	}
 	return (0);

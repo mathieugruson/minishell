@@ -6,13 +6,13 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:28:56 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 13:30:13 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 13:35:23 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.c"
+#include "minishell.h"
 
-int export_last_env(t_m *var)
+int update_last_env(t_m *var)
 {
 	int i;
 	int j;

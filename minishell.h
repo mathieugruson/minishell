@@ -297,6 +297,6 @@ void	ft_signal(int i);
 
 /* update_last_env.c */
 
-int export_last_env(t_m *var);
+int update_last_env(t_m *var);
 
 #endif
