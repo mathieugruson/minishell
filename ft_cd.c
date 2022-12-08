@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 13:36:59 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 13:38:07 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int ft_cd(char **cmd, int i, t_m *var)
 	len = ft_tablen(cmd);
 	if ((len == 1 || (cmd[1] && cmd[1][0] == '~')) && !cmd[2])
 	{
-		if (chdir("/mnt/nfs/homes/mgruson") != 0)		
+		if (chdir("/mnt/nfs/homes/mgruson") != 0) // update user
 			return (1);
 	}
 	else if (len > 2)
