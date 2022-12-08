@@ -228,3 +228,4 @@ ls
 cat << E
 ls
 ls > z2
+ls
