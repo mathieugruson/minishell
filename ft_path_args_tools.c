@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:59:05 by chillion          #+#    #+#             */
-/*   Updated: 2022/11/30 16:24:05 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:40:45 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,4 @@ void	ft_cleanheredoc_fd(char *str, char *buffer, char *comp, int fd1)
 	free(buffer);
 	(void)comp;
 	(void)fd1;
-	// free(comp);
-	// close(fd1);
 }

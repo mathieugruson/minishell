@@ -229,3 +229,8 @@ cat << E
 ls
 ls > z2
 ls
+ls
+echo $USER
+ls
+ls
+env
