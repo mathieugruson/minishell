@@ -197,3 +197,15 @@ ls
 cd
 ls
 cd ~
+pwd
+pwd
+cd
+ls
+cd ..
+ls
+cd
+ls
+cd
+cd ~
+lls
+ls
