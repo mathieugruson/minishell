@@ -6,32 +6,17 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:44:01 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 13:49:06 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:55:06 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-Subject : reproduction of echo function 
-
-It handles several cases :
-echo -n XXX
-echo -nnnnnn (which works the same as echo -n) (no matter the number of n)
-echo -nXXXX (which)
-echo XXXXX
-echo $USER (printf handle this behaviour)
-echo '$USER'
-echo "$USER"
-
-*/
 
 int	is_n_option(char *str)
 {
 	int	i;
 
 	i = 0;
-	
 	if (str[i++] != '-')
 		return (0);
 	if (str[i++] != 'n')
@@ -47,8 +32,8 @@ int	is_n_option(char *str)
 
 int	ft_echo(char **cmd)
 {
-	int i;
-	
+	int	i;
+
 	if (!cmd[1])
 	{
 		write(1, "\n", 1);

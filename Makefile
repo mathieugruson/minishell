@@ -27,7 +27,8 @@ NC = \033[0m
 
 SRCS =	minishell.c	\
 		ft_parsing.c \
-		mathieu_utils.c \
+		minishell_utils.c \
+		minishell_utils2.c \
 		is_cmdline_valid.c \
 		clean_args.c \
 		ft_pwd.c \

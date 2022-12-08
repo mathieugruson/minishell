@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:14:54 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/08 12:38:23 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:55:34 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_create_env(t_m *var, char **envp)
 {
-	int i;
-	
+	int	i;
+
 	if (!envp)
 	{
 		(*var).env = (char **)malloc(sizeof(char *) * 1);

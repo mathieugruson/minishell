@@ -95,19 +95,18 @@ int	malloc_redir(char ***redir, char **args, t_m *var);
 int malloc_cmd(char ***cmd, char **args, t_m *var);
 
 
-/* mathieu_utils.c */
+/* minishell_utils.c */
+
+char	*ft_strcpy(char *dest, char *src);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_tablen(char **tab);
+int		ft_intlen(int nbr);
+int		ft_strcmplen(char ***redir, char *str);
+
+/* minishell_utils2.c */
 
 void	ft_putdoubletab(char **tab);
 void	ft_puttripletab(char ***test);
-int		ft_tablen(char **tab);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_tabsort_cmp(char **s1, char **s2);
-int		ft_tabunsort_cmp(char **tab1, char **tab2);
-void	*ft_memcpy_mathieu(void *dest, void *src, size_t n);
-int		ft_intlen(int nbr);
-int		ft_strlenint(char *str);
-int		ft_strcmplen(char ***redir, char *str);
-char	*ft_strcpy(char *dest, char *src);
 
 /* is_cmdline_valid.c */
 
