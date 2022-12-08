@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:48:30 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/05 16:33:29 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 16:56:12 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	set_in_cmd(char **args, t_m *var)
 	if (!var->redir)
 	{
 		free(var->args_line);
-		free_doubletab(var->env);
 		free_tripletab(var->cmd);
 		free_doubletab(args);
 		return (2);
