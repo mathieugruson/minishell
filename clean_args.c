@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 19:49:45 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 18:25:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,27 @@ char *remove_quote(char *str, int quote, int i)
 
 char *clear_quote(char *str)
 {
-	int i = 0;
-	int dq = 0;
-	int sq = 0;
-	
-	while(str[i])
+	int	i;
+	int	dq;
+	int	sq;
+
+	i = 0;
+	dq = 0;
+	sq = 0;
+	while (str[i])
 	{
-		if (str[i] == 34)
+		if (str[i] == 34 && dq++ > -1)
 		{
-			dq++;
 			if (dq == 2 && (sq == 2 || sq == 0 || !is_in_quote(str, i)))
-			{	
+			{
 				str = remove_quote(str, 34, i);
 				dq = 0;
 				sq = 0;
 				i = i - 2;
 			}
 		}
-		else if (str[i] == 39)
+		else if (str[i] == 39 && sq++ > -1)
 		{
-			sq++;
 			if (sq == 2 && (dq == 2 || dq == 0 || !is_in_quote(str, i)))
 			{
 				str = remove_quote(str, 39, i);
@@ -95,7 +96,7 @@ char ***clean_args(char ***cmd)
 
 	i = 0;
 	j = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		j = 0;
 		while((cmd[i][j] && j == 0) || (cmd[i][j] && j >= 1 && \
