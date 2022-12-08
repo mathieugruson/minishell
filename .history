@@ -167,3 +167,15 @@ cd libs
 env | grep PWd
 env | grep PWD
 cd libs
+export R=TA
+echo $R
+unset R
+echo $R
+$R
+$R
+fsefsef
+$R
+$R
+$R
+egsegs
+$USER

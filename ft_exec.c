@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/01 17:37:24 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:07:00 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 	execve(pcmd, option, envp);
 	if (stat(pcmd, &buff) == 0)
 	{
+		if (pcmd[ft_strlen(pcmd) - 1] == '/')
+			exit (0);
 		write(2, "minishell: ", ft_strlen("minishell: "));
 		write(2, pcmd, ft_strlen(pcmd));
 		write(2, ": Permission denied\n", ft_strlen(": Permission denied\n"));
