@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 12:55:48 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:47:08 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int do_builtin(t_m *var, char **cmd)
     else if (ft_strcmp(cmd[0], "pwd") == 0 && go_in_builtin(cmd[1]) == 1)
         return (ft_pwd(), 1); 
     else if (ft_strcmp(cmd[0], "cd") == 0)
-        return (ft_cd(cmd, 1, var), 1); 
+        return (ft_cd(cmd, 1, var), printf("c1\n"), 1); 
     else if (ft_strcmp(cmd[0], "echo") == 0)
 		return (ft_echo(cmd), 1); 
     else if (ft_strcmp(cmd[0], "export") == 0) // TO DO
