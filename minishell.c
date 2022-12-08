@@ -37,10 +37,14 @@ void	ft_init_commands_history(t_m *var)
 			close((*var).h_fd);
 			(*var).args_line = ft_strdup(str);
 			free(str);
-			// rl_clear_history();
 			str = NULL;
 			break ;
 		}
+		// else if (!ft_strlen(str))
+		// {
+		// 	if (*str)
+		// 		free(str);
+		// }
 	}
 }
 
@@ -137,7 +141,7 @@ int	ft_init_all_pipe(t_m *var)
 	return (0);
 }
 
-void	ft_free_void(int **tab)
+void	ft_free_inttab(int **tab)
 {
 	int i;
 
@@ -159,6 +163,8 @@ int	ft_exec(t_m *var, char ***args)
 		return (printf("malloc error\n"), 1);
 	var->pid[var->tablen] = 0;
 	ft_init_all_pipe(var);
+	// if (var->tablen == 1)
+	// 	ft_do_fork(var, args[0][0], args[0], &var->pid[0]);
 	if (var->tablen >= 1)
 	{
 		while ((var->exec) < var->tablen)
@@ -167,7 +173,7 @@ int	ft_exec(t_m *var, char ***args)
 			var->exec++;
 		}
 	}
-	ft_free_void(var->pipex);
+	ft_free_inttab(var->pipex);
 	ft_daddy(var, var->pid, var->tablen);
 	return (0);
 }
@@ -192,14 +198,14 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	if (argc != 1)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
-	if (ft_env(&var, envp) == -1)
+	if (ft_create_env(&var, envp) == -1)
 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
 	while (1)
 	{
 		var.args_line = NULL;
 		ft_init_commands_history(&var);
 		if (!var.args_line)
-			return (ft_free_split(var.env) , printf("exit\n"), 0);
+			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
 		if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
 			return (2);
 		free(var.args_line);

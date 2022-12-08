@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/06 19:17:10 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 12:43:14 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*remove_wrong_env(char *str, int end, int start)
 char	*basic_env(char *str, char **envp, t_index *i)
 {
 		i->start = ++i->i;
-		while (str[i->i] && isalnum(str[i->i]))
+		while (str[i->i] && (isalnum(str[i->i]) || str[i->i] == '_'))
 			i->end = ++i->i;
 		i->j = is_in_env(envp, str, i->end, i->start);
 		if (i->j > -1)
@@ -113,7 +113,7 @@ char	*new_env_var(char *str, char **envp)
 	i = initialize_index();
 	while (str[i.i])
 	{
-		if (str[i.i] == '$' && (ft_isalpha(str[i.i + 1]) > 0) \
+		if (str[i.i] == '$' && ((ft_isalpha(str[i.i + 1]) > 0) || str[i.i + 1] == '_') \
 		&& !is_in_simple_quote(str, i.i))
 			str = basic_env(str, envp, &i);
 		if (str[i.i] == '$' && str[i.i + 1] == '?'

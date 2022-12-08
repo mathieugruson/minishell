@@ -30,13 +30,15 @@ SRCS =	minishell.c	\
 		mathieu_utils.c \
 		is_cmdline_valid.c \
 		clean_args.c \
+		ft_pwd.c \
 		set_in_cmd.c \
 		is_in_quote.c \
 		initialize_index.c \
 		get_args.c \
 		free_minishell.c  \
-		ft_env_unset.c	\
+		ft_env.c	\
 		ft_export.c	\
+		ft_unset.c	\
 		ft_fork.c	\
 		ft_exec.c	\
 		ft_path_args_tools.c	\
@@ -58,7 +60,7 @@ SRCS =	minishell.c	\
 		ft_unlink.c \
 		get_status.c \
 		has_quote.c \
-		ft_pwd.c \
+		ft_create_env.c \
 
 BONUS = \
 

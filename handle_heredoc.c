@@ -6,7 +6,7 @@
 /*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/07 12:35:01 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:50:29 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	**malloc_heredoc(t_m *var)
 	int	heredoc_len;
 
 	heredoc_len = ft_strcmplen(var->redir, "<<");
-	printf("ft_strcmplen : %i\n", ft_strcmplen(var->redir, "<<"));
 	var->heredoc = ft_calloc(sizeof(char *), (heredoc_len + 1));
 	if (!var->heredoc)
 	{
