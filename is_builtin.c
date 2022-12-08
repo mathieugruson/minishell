@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 12:22:27 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 12:55:48 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int do_builtin(t_m *var, char **cmd)
     // if (ft_strcmp(cmd[0], "unset") == 0) // TO DO
     //     return(ft_unset(cmd), 1);
     if  (ft_strcmp(cmd[0], "env") == 0)
-        return(ft_env(cmd), 1);		
+        return(ft_env(var->env), 1);		
     return (0);
 }
 

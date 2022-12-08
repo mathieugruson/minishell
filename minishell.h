@@ -258,6 +258,7 @@ int is_env_builtin(char **cmd);
 
 /* ft_cd.c */
 
+int	export_env(char *name, char *word, t_m *var);
 int ft_cd(char **argv, int i, t_m *var);
 
 /* ft_exit.c */
@@ -293,5 +294,9 @@ void	handle_sigint_2(int sig);
 void	ft_fd_init(t_m *var);
 void	ft_pipe_read_write(t_m *var);
 void	ft_signal(int i);
+
+/* update_last_env.c */
+
+int export_last_env(t_m *var);
 
 #endif

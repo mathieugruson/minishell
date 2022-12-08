@@ -189,6 +189,25 @@ int	ft_puttriplelen(char ***test, t_m *var)
 	return (var->tablen);
 }
 
+int export_last_args(t_m *var)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while(var->cmd[i])
+	{
+		j = 0;
+		while(var->cmd[i][j])
+			j++;
+		i++;
+	}
+	printf("var : %s\n", var->cmd[i - 1][j - 1]);
+	export_env("_=", var->cmd[i - 1][j - 1], var);
+	return (1);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_m	var;
@@ -206,11 +225,12 @@ int	main(int argc, char **argv, char **envp)
 		ft_init_commands_history(&var);
 		if (!var.args_line)
 			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
-		if (ft_parsing(&var, envp, &var.cmd, &var.redir) == 2)
+		if (ft_parsing(&var, var.env, &var.cmd, &var.redir) == 2)
 			return (2);
 		free(var.args_line);
 		ft_puttriplelen(var.cmd, &var);
 		ft_exec(&var, var.cmd);
+		export_last_args(&var);
 		free_all(&var);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 12:09:16 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 13:28:42 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	find_env_name_line(char *name, char **env)
 	int i;
 
 	i = 0;
-	while(env[i] && ft_strncmp(name, env[i], 4) != 0)
+	while(env[i] && ft_strncmp(name, env[i], ft_strlen(name)) != 0)
 	{
 		i++;
 	}
@@ -52,10 +52,13 @@ int ft_cd(char **cmd, int i, t_m *var)
 	path = getcwd(path, 0);
 	len = ft_tablen(cmd);
 	if (len == 1)
-		return (write(2, "cd only not handled\n", 21), 130);
-	if (len > 2)
+	{
+		if (chdir("/mnt/nfs/homes/mgruson") != 0)		
+			return (1);
+	}
+	else if (len > 2)
 		return (write(2, "cd: too many arguments\n", 23), 130);
-	if (cmd[i][0] != '/')
+	else if (cmd[1][0] != '/')
 	{
 		path = ft_strjoin_free(path, "/");
 		path = ft_strjoin_free(path, cmd[i]);
@@ -64,7 +67,7 @@ int ft_cd(char **cmd, int i, t_m *var)
 	}
 	else 
 	{
-		if (chdir(cmd[i]) != 0)
+		if (chdir(cmd[1]) != 0)
 			printf("cd: %s No such file or directory\n", cmd[i]);
 	}
 	newpath = getcwd(newpath, 0);

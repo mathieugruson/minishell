@@ -61,6 +61,7 @@ SRCS =	minishell.c	\
 		get_status.c \
 		has_quote.c \
 		ft_create_env.c \
+		update_last_env.c \
 
 BONUS = \
 

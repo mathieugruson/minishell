@@ -8,3 +8,70 @@ echo $USER
 echo |_
 echo $_
 export *=test
+ls
+cd ~
+cd ~ ttt
+cd
+ls
+cd
+ls
+cd
+pwd
+ls
+export LA=libs
+env | grep LA
+export
+env
+env
+env | grep TA
+export TY=libs
+env | grep TY
+cd $TY
+pwd
+;s
+echo $TY
+export QW=tttt
+echo $QW
+env | grep QW
+echo $USER
+export RE=TTTTT
+echo $RE
+export RE=libs
+cd $RE
+cd
+pwd
+echo $HOME
+ls
+cd
+cd
+cat test
+echo $_
+echo $_
+cat test
+cat | cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+cat e
+env
+cat e
+env
+cat test.txt
+env
+cat e
+cat e
+export TEST=T
+cat -e
+ls
+cd ..
+cd ..
+cd ..
+ls
+echo $_
