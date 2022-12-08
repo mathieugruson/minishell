@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 15:17:17 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/08 16:46:59 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ char *import_user(char *name, t_m *var)
 	return(&var->env[line][5]);
 }
 
+int cd_need_path(char **cmd, int len, t_m *var, char *newpath)
+{
+	if (len == 1 || (cmd[1] && cmd[1][0] == '~' && !cmd[2]))
+	{
+		newpath = import_user("HOME=", var);
+		if (chdir(newpath) != 0)
+			return (printf("cd : HOME not set\n"), 0);
+		return (0);
+	}
+	if (len > 2)
+		return (write(2, "cd: too many arguments\n", 23), 0); //130
+	return (1);
+}
+
 int ft_cd(char **cmd, int i, t_m *var)
 {
 	char	*path;
@@ -57,17 +71,10 @@ int ft_cd(char **cmd, int i, t_m *var)
 		
 	path = NULL;
 	newpath = NULL;
-
 	len = ft_tablen(cmd);
-	if (len == 1 || (cmd[1] && cmd[1][0] == '~' && !cmd[2]))
-	{
-		newpath = import_user("HOME=", var);
-		if (chdir(newpath) != 0)
-			return (printf("cd : HOME not set\n"), 1);
+
+	if (!cd_need_path(cmd, len, var, newpath))
 		return (0);
-	}
-	if (len > 2)
-		return (write(2, "cd: too many arguments\n", 23), 130);
 	path = getcwd(path, 0);
 	if (!path)
 	{

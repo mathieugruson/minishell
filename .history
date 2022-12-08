@@ -190,3 +190,10 @@ ls
 touch z2
 exit
 l
+ls
+ls
+ls
+ls
+cd
+ls
+cd ~
