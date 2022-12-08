@@ -285,6 +285,12 @@ int ft_env(char **env);
 
 /* get_status.c */
 
+/* is_redir.c */
+
+int	is_redir_out(char **redir);
+int	is_redir(char **redir);
+
+
 char	*get_status(char *str, int end, int start, char *status);
 
 /* has_quote.c */

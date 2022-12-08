@@ -223,3 +223,8 @@ kls
 ls
 ls
 ls
+lk
+ls
+cat << E
+ls
+ls > z2
