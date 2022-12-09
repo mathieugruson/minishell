@@ -67,3 +67,5 @@ echo $''HOME
 quit
 make fclean
 exit
+echo $USER
+exit

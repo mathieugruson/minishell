@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 20:10:52 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/09 20:17:06 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,27 @@ char	*new_env_var(char *str, char **envp)
 	t_index	i;
 
 	i = initialize_index();
-	while (str[i.i])
+	while (str[++i.n])
 	{
-		if (str[i.i] == '$' && ((ft_isalpha(str[i.i + 1]) > 0) || \
-		str[i.i + 1] == '_') && !is_in_simple_quote(str, i.i))
+		if (str[i.n] == '$' && ((ft_isalpha(str[i.n + 1]) > 0) || \
+		str[i.n + 1] == '_') && !is_in_simple_quote(str, i.n))
 			str = basic_env(str, envp, &i);
-		if (str[i.i] == '$' && str[i.i + 1] == '?' \
-		&& !is_in_simple_quote(str, i.i))
+		if (str[i.n] == '$' && str[i.n + 1] == '?' \
+		&& !is_in_simple_quote(str, i.n))
 		{
-			str = get_status(str, (i.i + 2), (i.i + 1), ft_itoa(exit_status)); // "2" a remplacer par la variable status
-			i.i = i.i - 1 + ft_intlen(2);
+			str = get_status(str, (i.n + 2), (i.n + 1), ft_itoa(exit_status)); // "2" a remplacer par la variable status
+			i.n = i.n - 1 + ft_intlen(2);
 		}
-		if (str[i.i] == '$' && (ft_isdigit(str[i.i + 1]) > 0 \
-		|| (str[i.i + 1] == 34 || str[i.i + 1] == 39)) \
-		&& !is_in_simple_quote(str, i.i))
+		if (str[i.n] == '$' && (ft_isdigit(str[i.n + 1]) > 0 \
+		|| (str[i.n + 1] == 34 || str[i.n + 1] == 39)) \
+		&& !is_in_simple_quote(str, i.n))
 		{	
-			if (ft_isdigit(str[i.i + 1]) > 0)
-				str = ft_strcpy(&str[i.i], &str[i.i + 2]);
+			if (ft_isdigit(str[i.n + 1]) > 0)
+				str = ft_strcpy(&str[i.n], &str[i.n + 2]);
 			else
-				str = ft_strcpy(&str[i.i], &str[i.i + 1]);
-			str = clear_quote(&str[i.i]);
+				str = ft_strcpy(&str[i.n], &str[i.n + 1]);
+			str = clear_quote(&str[i.n]);
 		}
-		i.i++;
 	}
 	return (str);
 }
