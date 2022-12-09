@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 18:10:03 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:41:13 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void free_tripletab(char ***tab)
 		j = 0;
 		while(tab[i][j])
 		{
-			// printf("free : %s\n", tab[i][j]);
 			free(tab[i][j]);
 			tab[i][j] = NULL;
 			j++;

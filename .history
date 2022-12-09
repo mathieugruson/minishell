@@ -1,448 +1,69 @@
+minishell
+$?
+lfdgdfg
+$?
+./minishell
 ls
-ls | grep h | grep c |grep o
+minishell
+ls
+./minishell
+ls
+ls -la
+./minishell
+ls -la
+minishell
+ls
+./libs
+ls
+./libs/
+ls
+./libs
+./libs/
+ls
+ls -la
+/usr/bin/ls
+minishell
+$?
+./minishell
+$?
+ls
+./minishell
+./minishell
+ls
 exit
-fdp
-ls
-fefe
-fdp
 minishell
 exit
-l
-minishell
-ls
-minishell
-minishell
-minishell
 exit
-is_redir.c
+./minishell
 minishell
-minishell
-bash
 ls
-dadad
-minishell
-\n
-  
-    
-  
-   
-  
-    
-    
-   
-   
-   
-   
-   
-  
-:
-!
-!!
-:
-!
-!
-:
-<<
-<<
-<<
-<<
-<<
-<<<<
-<<
-<<<<
-<<<<
-<<<<<
-/
-/
-//
-/.
-/./../
-\\\\
--
-|
-echo '|'
-|
-|
-echo '$USER'
-|
-make
-./m
-|
-|
-|
-<<
-| hola
-| | |
->>|><
-|
-<
->
-| hola
-| | |
->>|><
-&&
-;;
-()
-&&
-(
-""
-""
-  
-  
-  
-ls
-  
-  
-ls
-  
-ls
-  
-ls
-  
-ls
-  
-  
-ls
-  
- 
-ls
- 
-ls
-  
- 
-ls
- 
-ls
- 
-  
-ls
-  
-   
-la
-la
-ls
-ls
-    
- 
-ls
- 
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
-ls
-  
-ls
- 
-ls
- 
-ls
-  
-ls
- 
- 
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
-  
-  
-  
-ls
-  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
-ls
- 
- 
-ls
- 
-ls
- 
- 
- 
- 
- 
- 
- 
- 
- 
-ls
-ls
-ls
- 
-ls
- 
-ls
- 
- 
- 
-ls
- 
-ls
- 
- 
- 
- 
- 
- 
- 
- 
- 
-ls
-ls
- 
- 
- 
-ls
- 
-ls
- 
- 
- 
- 
- 
- 
- 
- 
-ls
- 
- 
-ls
-ls
- 
- 
-  
-ls
- 
- 
-ls
- 
-ls
- 
-ls
- 
- 
-ls
-ls
- 
- 
-ls
- 
-make
-ls
- 
-ls
-ls
-env
- 
- 
-ls
- 
- 
-ls
- 
- 
-ls
- 
- 
- 
-ls
-ls
- 
-ls
- 
- 
- 
 exit
 ls
- 
-exi
-exit
+./libs
+/minishell
 ls
-*/*
-~
-ABC=HOLA
-Makefile
-echo
-echo -n
-echo -n
-echohola
-echo-nhola
-echo    hOlq
-$> ""''echo hola""'''' que""'' tal""''
-$> ""''echo
-"e"cho
-""echo
- 
- 
-echo ls
- echo ls
-"" echo ls
- ""echo ls
-""''echo
-""''echo ls
-""''echo hola
-echo -n -n hola que
-echo $?
-echo $?$
-echo $HOME
-echo \$HOME
-echo [$HOME]
-echo [$HOME
-echo $UID
-env | grep UID
+/minishell
+$?
 echo $9HOME
-echo $9HOME
-echo $HOME%
-echo $HOME*
-echo -n $rrrr
-echo > <
-echo | |
-.echo.
->>echo>>
+exit
 echo $""
-echo '$'""
-echo "HO""ME"
-echo "$HO""ME"
- 
-echo $RRRR
-ls
-"e"'c'ho 'b'"o"nj"o"'u'r
-echo "$DONTEXIST" "Makefile"
-?HOME
-?$HOME
-$LESS$VAR
-sleep 3 | sleep 3
-env hola
-env hola
-env la
-env env
-env ls
-export
-export ""
-export =
-export %
-export $?
-export 9HOLQ
-export _HOLA=hhh
-echo $_HOLA
-unset _HOLA
-export ___HOLA=tttt
-echo $___HOLA
-export HOL@=tttt
-export HOL\\\\LA=tttt
-export HOL!LA=tttt
-export HOLA+=bonjour
-export HOLA+=bonjour
+echo $9HOME
+echo $''
+echo $9HOME
+echo $""
+exit
+echo $""
+echo $9HOME
+echo $HOME9
+echo $HOLA*
 echo $HOLA
-export HOLA =bonjour
-export HOLA=bonjour
-export HOLA=yo
-echo $HOLA
-export HOLA=" -n bonjour"
-echo $HOLA
-export HOLA=" -n bonjour"/
-echo $HOLA
-export ""=""
-export HOLA=p
-export BYE=w
-"$HOLA""$BYE"d
-unset =======
-unset =
-unset ++++
-history
-pwd -p
-cd ./
-pwd
-cd ..
-cd '/'
-cd '/////////'
-env | grep PWD
-echo $OLDPWD
-echo $PWD
-echo $OLDPWD
-cd
-echo $OLDPWD
-exit -55 66
-exit yo -55 66
-exit +42
-exit "666"
-exit | ls
-ls | exit
-ls | exit
-ls | exit 42
-echo | echo
-pwd | echo hola
-cd .. | echo hola
-pwd
-ls -la | greo "."
-ls -la | grep "."
-echo hola | cat
-ech|o holq | cat
-cat Makefile | cat -e cat -e 
-cat Makefile | cat -e | cat -e 
-pwd || ls
-echo > z1 yo > z2 t
-< Makefile .
-cat .
-cat < ../pwd
-ls >libs/z1
-cat << T
-<< E
-<< E
-cat Make*file
+echo $PWD*
+echo $USER
+echo $USER#
+echo $USER
+echo $USERE
+echo ""
+echo $''HOME
+quit
+make fclean
+exit

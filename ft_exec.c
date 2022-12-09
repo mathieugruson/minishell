@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/08 17:43:51 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:58:57 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	exit_status;
 
 void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 {
@@ -42,8 +44,15 @@ void	ft_arg_with_path(char *arg, int *cmd)
 	{
 		ft_putstr_fd(arg, 2);
 		write(2, ": Is a directory\n", 18);
+		exit_status = 126;
+		exit(126);
 		(*cmd) = -3;
 		return ;
+	}
+	if (arg && ft_strlen(arg) > 2)
+	{
+		if (arg[0] != '.' && arg[1] != '/')
+			return ;
 	}
 	if (fd != -1)
 		close(fd);
