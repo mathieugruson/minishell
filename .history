@@ -1,279 +1,448 @@
 ls
-echo $_
-echo $_
-echo $USER
-echo $_
-echo $_
-echo $USER
-echo |_
-echo $_
-export *=test
+ls | grep h | grep c |grep o
+exit
+fdp
 ls
-cd ~
-cd ~ ttt
-cd
-ls
-cd
-ls
-cd
-pwd
-ls
-export LA=libs
-env | grep LA
-export
-env
-env
-env | grep TA
-export TY=libs
-env | grep TY
-cd $TY
-pwd
-;s
-echo $TY
-export QW=tttt
-echo $QW
-env | grep QW
-echo $USER
-export RE=TTTTT
-echo $RE
-export RE=libs
-cd $RE
-cd
-pwd
-echo $HOME
-ls
-cd
-cd
-cat test
-echo $_
-echo $_
-cat test
-cat | cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-cat e
-env
-cat e
-env
-cat test.txt
-env
-cat e
-cat e
-export TEST=T
-cat -e
-ls
-cd ..
-cd ..
-cd ..
-ls
-echo $_
-pwd
-cd ~
-ls
-cd
-cd
-cd
-cd
-cd
-ls
-ls
-ls
-echo e
-ls
-ls
-ls
-ls
-ls
-ls
-ls
-ls
-cd
-ls
-env
-wd
-pwd
-ls
-ls
-cd $HOME
-ls
-ls
-ls
-ls
-cd
-ls
-cd
-ls
-ls
-cd
-cd
-pwd
-cd
-ls
-cd
-cd
-ls
-cd
-cd
-cd
-cd
-cd
-cd
-cd
-cd
-cd
-cd
-ls
-pwd 
-cd ..
-cd
-cd
-cd
-pwd
-cd
-cd
-cd
-cd
-cd
-cd
-;s
-ls
-cd
-cd
-cd
-ls
-cd
-cd
-ls
-ls
-mkdir test_01
-ls
-mkdir test01/test02
-mkdir test_01/test_02
-cd test_01/test_02
-mkdir test1
-mkdir test1/test2
-cd test1/test2
-env
-ls
-cd libs
-env | grep PWd
-env | grep PWD
-cd libs
-export R=TA
-echo $R
-unset R
-echo $R
-$R
-$R
-fsefsef
-$R
-$R
-$R
-egsegs
-$USER
-ls
-unset PATH
-ls
-ls
-echo R
-echo $PATH
-unset PATH
-ls
-touch z2
+fefe
+fdp
+minishell
 exit
 l
+minishell
+ls
+minishell
+minishell
+minishell
+exit
+is_redir.c
+minishell
+minishell
+bash
+ls
+dadad
+minishell
+\n
+  
+    
+  
+   
+  
+    
+    
+   
+   
+   
+   
+   
+  
+:
+!
+!!
+:
+!
+!
+:
+<<
+<<
+<<
+<<
+<<
+<<<<
+<<
+<<<<
+<<<<
+<<<<<
+/
+/
+//
+/.
+/./../
+\\\\
+-
+|
+echo '|'
+|
+|
+echo '$USER'
+|
+make
+./m
+|
+|
+|
+<<
+| hola
+| | |
+>>|><
+|
+<
+>
+| hola
+| | |
+>>|><
+&&
+;;
+()
+&&
+(
+""
+""
+  
+  
+  
+ls
+  
+  
+ls
+  
+ls
+  
+ls
+  
+ls
+  
+  
+ls
+  
+ 
+ls
+ 
+ls
+  
+ 
+ls
+ 
+ls
+ 
+  
+ls
+  
+   
+la
+la
+ls
+ls
+    
+ 
+ls
+ 
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+  
+ls
+ 
+ls
+ 
+ls
+  
+ls
+ 
+ 
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+  
+  
+  
+ls
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ls
+ 
+ 
+ls
+ 
+ls
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ls
 ls
 ls
+ 
 ls
-cd
+ 
 ls
-cd ~
-pwd
-pwd
-cd
+ 
+ 
+ 
 ls
-cd ..
+ 
 ls
-cd
-ls
-cd
-cd ~
-lls
-ls
-echo "
-ls
-ls
-ls
-ls
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ls
 ls
+ 
+ 
+ 
 ls
-cd
+ 
 ls
-kls
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ls
+ 
+ 
 ls
 ls
+ 
+ 
+  
 ls
-lk
+ 
+ 
 ls
-cat << E
+ 
 ls
-ls > z2
+ 
+ls
+ 
+ 
 ls
 ls
-echo $USER
+ 
+ 
+ls
+ 
+make
+ls
+ 
 ls
 ls
 env
+ 
+ 
+ls
+ 
+ 
+ls
+ 
+ 
+ls
+ 
+ 
+ 
 ls
 ls
+ 
 ls
-ls
-ls
-kls
-ls
-echo "l's"
-ls
-ls
-ls
-ls
-ls
-cd
-ls
-echo "l's"
-echo "l's'"
-echo "l'"""""s'"
-echo "l'S"
-echo "l's"
-echo ""''""''
-echo ""''""''r
-echo "l's"
-echo "l""s"
-echo "l's"
-echo "L's"
-echo math"'i'
-echo math"'i'"'"e"'
-te"'t'"6'"e"'
-echo te"'t'"6'"e"'
-te"'t'"6'"e"'
-echo te"'t'"6'"e"'
-te"'t'"6'"e"'
-echo te"'t'"6'"e"'
-echo "l">"s"
-echo test"te't'"
-ls
+ 
+ 
+ 
 exit
-exit 55 55
-exit 55 55
-ls | exit
-exit 55 55
 ls
+ 
+exi
+exit
+ls
+*/*
+~
+ABC=HOLA
+Makefile
+echo
+echo -n
+echo -n
+echohola
+echo-nhola
+echo    hOlq
+$> ""''echo hola""'''' que""'' tal""''
+$> ""''echo
+"e"cho
+""echo
+ 
+ 
+echo ls
+ echo ls
+"" echo ls
+ ""echo ls
+""''echo
+""''echo ls
+""''echo hola
+echo -n -n hola que
+echo $?
+echo $?$
+echo $HOME
+echo \$HOME
+echo [$HOME]
+echo [$HOME
+echo $UID
+env | grep UID
+echo $9HOME
+echo $9HOME
+echo $HOME%
+echo $HOME*
+echo -n $rrrr
+echo > <
+echo | |
+.echo.
+>>echo>>
+echo $""
+echo '$'""
+echo "HO""ME"
+echo "$HO""ME"
+ 
+echo $RRRR
+ls
+"e"'c'ho 'b'"o"nj"o"'u'r
+echo "$DONTEXIST" "Makefile"
+?HOME
+?$HOME
+$LESS$VAR
+sleep 3 | sleep 3
+env hola
+env hola
+env la
+env env
+env ls
+export
+export ""
+export =
+export %
+export $?
+export 9HOLQ
+export _HOLA=hhh
+echo $_HOLA
+unset _HOLA
+export ___HOLA=tttt
+echo $___HOLA
+export HOL@=tttt
+export HOL\\\\LA=tttt
+export HOL!LA=tttt
+export HOLA+=bonjour
+export HOLA+=bonjour
+echo $HOLA
+export HOLA =bonjour
+export HOLA=bonjour
+export HOLA=yo
+echo $HOLA
+export HOLA=" -n bonjour"
+echo $HOLA
+export HOLA=" -n bonjour"/
+echo $HOLA
+export ""=""
+export HOLA=p
+export BYE=w
+"$HOLA""$BYE"d
+unset =======
+unset =
+unset ++++
+history
+pwd -p
+cd ./
+pwd
+cd ..
+cd '/'
+cd '/////////'
+env | grep PWD
+echo $OLDPWD
+echo $PWD
+echo $OLDPWD
+cd
+echo $OLDPWD
+exit -55 66
+exit yo -55 66
+exit +42
+exit "666"
+exit | ls
+ls | exit
+ls | exit
+ls | exit 42
+echo | echo
+pwd | echo hola
+cd .. | echo hola
+pwd
+ls -la | greo "."
+ls -la | grep "."
+echo hola | cat
+ech|o holq | cat
+cat Makefile | cat -e cat -e 
+cat Makefile | cat -e | cat -e 
+pwd || ls
+echo > z1 yo > z2 t
+< Makefile .
+cat .
+cat < ../pwd
+ls >libs/z1
+cat << T
+<< E
+<< E
+cat Make*file

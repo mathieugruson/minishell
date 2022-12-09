@@ -2,6 +2,8 @@
 
 #include "minishell.h"
 
+int exit_status;
+
 void	ft_history_init_fd(char *file, int *fd)
 {
 	int	t;
@@ -61,15 +63,25 @@ void	ft_print_split(char **str)
 	ft_printf("-----------------\n");
 }
 
-void	handle_sigint_2(int sig)
-{
-	int status = 0;
 
-	(void)status;
-	status += sig;
+void	handle_sigint_3(int sig)
+{
+	exit_status += sig;
 	if (sig == 2)
 	{
-		status = 130;
+		exit_status = 130;
+		printf("\n");
+		signal(SIGINT, SIG_IGN);
+		exit(0);
+	}
+}
+
+void	handle_sigint_2(int sig)
+{
+	exit_status += sig;
+	if (sig == 2)
+	{
+		exit_status = 130;
 		printf("\n");
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -78,8 +90,10 @@ void	handle_sigint_2(int sig)
 
 void handle_sigint_1(int sig)
 {
+	exit_status += sig;
 	if (sig == SIGINT)
 	{
+		exit_status = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -92,24 +106,55 @@ void handle_sigint_1(int sig)
 	}
 }
 
+void	ft_init_heredoc(t_m *var)
+{
+	pid_t	pid;
+	
+	var->h_status = open(".TMPHERESTATUS", O_RDWR | O_CREAT, 0644);
+	close(var->h_status);
+	(pid) = fork();
+	if ((pid) == -1)
+		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
+	if ((pid) == 0)
+	{
+
+		if (ft_strcmplen(var->redir, "<<") > 0)
+			handle_heredoc_child(var);
+		unlink(".TMPHERESTATUS");
+		exit(1);
+	}
+	else
+	{
+		signal(SIGINT, SIG_IGN);
+		wait(&pid);
+		var->h_status = open(".TMPHERESTATUS", O_RDWR);
+		if (var->h_status != -1)
+		{
+			unlink(".TMPHERESTATUS");
+			// ft_unlink(var->redir, 0);
+		}
+		ft_signal(1);
+	}
+	return ;
+}
+
 void	ft_daddy(t_m *var, int *pid, int nbcmd)
 {
 	int	i;
-	int	status;
 
 	i = 0;
-	status = 0;
 	(void)var;
-	while (i < nbcmd && nbcmd != 0)
+	while (i < nbcmd && nbcmd != 0 && var->h_status == -1)
 	{
-		waitpid(pid[i], &status, 0);
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			status = 128 + WTERMSIG(status);
+		waitpid(pid[i], &exit_status, 0);
+		if (WIFEXITED(exit_status))
+			exit_status = WEXITSTATUS(exit_status);
+		else if (WIFSIGNALED(exit_status))
+			exit_status = 128 + WTERMSIG(exit_status);
 		i++;
 	}
 }
+
 
 int	ft_init_pipe(t_m *var, int i)
 {
@@ -162,10 +207,11 @@ int	ft_exec(t_m *var, char ***args)
 	if (!var->pid)
 		return (printf("malloc error\n"), 1);
 	var->pid[var->tablen] = 0;
+	ft_init_heredoc(var);
 	ft_init_all_pipe(var);
 	// if (var->tablen == 1)
 	// 	ft_do_fork(var, args[0][0], args[0], &var->pid[0]);
-	if (var->tablen >= 1)
+	if (var->tablen >= 1 && var->h_status == -1)
 	{
 		while ((var->exec) < var->tablen)
 		{
@@ -198,6 +244,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	if (argc != 1)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
+	initialize_var(&var);
 	if (ft_create_env(&var, envp) == -1)
 		return (ft_printf("Error : Malloc for keep env fail\n"), 1);
 	while (1)
@@ -206,13 +253,19 @@ int	main(int argc, char **argv, char **envp)
 		ft_init_commands_history(&var);
 		if (!var.args_line)
 			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
-		if (ft_parsing(&var, var.env, &var.cmd, &var.redir) == 2)
-			return (2);
+		// printf("c1%s!\n", var.args_line);
+		ft_parsing(&var, var.env, &var.cmd, &var.redir);
+		// printf("c2\n");
 		free(var.args_line);
 		ft_puttriplelen(var.cmd, &var);
+		// printf("c3\n");
 		ft_exec(&var, var.cmd);
+		// printf("c4\n");
 		update_last_env(&var);
+		// printf("c5\n");
 		free_all(&var);
+		// printf("c6\n");
+
 	}
 	return (0);
 }

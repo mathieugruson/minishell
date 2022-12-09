@@ -46,6 +46,10 @@ typedef struct s_minishell
 	char 	**heredoc;
 	int 	status;
 	int		*pid;
+	int		h_status;
+	int		fd_status_in;
+	int		fd_status_out;
+	int		line;
 }	t_m;
 
 typedef struct s_index
@@ -115,7 +119,7 @@ int		is_cmdline_valid(char *str);
 /* clean_quote.c */
 
 char	***clean_args(char ***cmd);
-char	*clear_quote(char *str, int dq, int sq);
+char	*clear_quote(char *str);
 
 /* replace_env_var.c */
 
@@ -227,7 +231,7 @@ int		ft_trunc_init_fd(char *file, int *fd);
 int		ft_eof_find(char *str, char *comp, int i, t_m *var);
 void	ft_write_here_sign(char c);
 void	ft_write_here_sign(char c);
-void	ft_heredoc_fd(t_m *var, int n, int j);
+void	ft_heredoc_fd(t_m *var, int n);
 void	ft_check_heredoc(char *argv, char *stop, t_m *var);
 
 
@@ -303,5 +307,12 @@ void	ft_signal(int i);
 /* update_last_env.c */
 
 int update_last_env(t_m *var);
+char	*get_heredoc_child(t_m *var, int k);
+int	handle_heredoc_child(t_m *var);
+void	handle_sigint_3(int sig);
+
+/*t initialize_var.c */
+
+void	initialize_var(t_m *var);
 
 #endif
