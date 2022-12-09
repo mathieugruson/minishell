@@ -115,7 +115,7 @@ int		is_cmdline_valid(char *str);
 /* clean_quote.c */
 
 char	***clean_args(char ***cmd);
-char	*clear_quote(char *str);
+char	*clear_quote(char *str, int dq, int sq);
 
 /* replace_env_var.c */
 

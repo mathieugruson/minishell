@@ -6,23 +6,23 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:28:56 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 13:35:23 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:01:41 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int update_last_env(t_m *var)
+int	update_last_env(t_m *var)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	i = 0;
-	while(var->cmd[i])
+	while (var->cmd[i])
 	{
 		j = 0;
-		while(var->cmd[i][j])
+		while (var->cmd[i][j])
 			j++;
 		i++;
 	}

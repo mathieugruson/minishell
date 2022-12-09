@@ -249,3 +249,31 @@ ls
 ls
 cd
 ls
+echo "l's"
+echo "l's'"
+echo "l'"""""s'"
+echo "l'S"
+echo "l's"
+echo ""''""''
+echo ""''""''r
+echo "l's"
+echo "l""s"
+echo "l's"
+echo "L's"
+echo math"'i'
+echo math"'i'"'"e"'
+te"'t'"6'"e"'
+echo te"'t'"6'"e"'
+te"'t'"6'"e"'
+echo te"'t'"6'"e"'
+te"'t'"6'"e"'
+echo te"'t'"6'"e"'
+echo "l">"s"
+echo test"te't'"
+ls
+exit
+exit 55 55
+exit 55 55
+ls | exit
+exit 55 55
+ls
