@@ -219,3 +219,9 @@ echo $USER
 exit
 echo $?
 exit
+echo $?$USER
+echo $?$USER$?
+echo $?$USER$?$?
+echo $?$USER$$USER$LANG
+echo "$U"SEr
+exit
