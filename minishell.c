@@ -201,6 +201,8 @@ int	ft_exec(t_m *var, char ***args)
 {
 	var->exec = 0;
 	var->tabexec = 0;
+	if (!args)
+		return (0);
 	var->pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
 	if (!var->pid)
 		return (printf("malloc error\n"), 1);
@@ -253,13 +255,18 @@ int	main(int argc, char **argv, char **envp)
 		ft_init_commands_history(&var);
 		if (!var.args_line)
 			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
-		if (ft_parsing(&var, var.env, &var.cmd, &var.redir) == 2)
-			return (2);
+		ft_parsing(&var, var.env, &var.cmd, &var.redir);
+		printf("c1\n");
 		free(var.args_line);
+		printf("c2\n");
 		ft_puttriplelen(var.cmd, &var);
+		printf("c3\n");
 		ft_exec(&var, var.cmd);
+		printf("c4\n");
 		update_last_env(&var);
+		printf("c5\n");
 		free_all(&var);
+		printf("c6\n");
 	}
 	return (0);
 }
