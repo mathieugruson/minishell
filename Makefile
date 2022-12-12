@@ -13,6 +13,7 @@ OBJ_DIR := objects/
 AR := ar rc
 RM := rm
 VAL := valgrind --leak-check=full --track-origins=yes --trace-children=yes --track-fds=yes
+LEAK := valgrind --suppressions=valgrind_readline_leaks_ignore.txt --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt
 # VAL := valgrind --leak-check=full --track-origins=yes --log-file="LogVal" --show-leak-kinds=all --track-fds=yes
 
 BLACK = \033[1;30m
@@ -36,7 +37,8 @@ SRCS =	minishell.c	\
 		is_in_quote.c \
 		initialize_index.c \
 		get_args.c \
-		free_minishell.c  \
+		free_minishell1.c  \
+		free_minishell2.c  \
 		ft_env.c	\
 		ft_export.c	\
 		ft_unset.c	\
@@ -53,7 +55,7 @@ SRCS =	minishell.c	\
 		malloc_redir.c \
 		malloc_cmd.c \
 		malloc_args.c \
-		is_builtin.c \
+		builtin.c \
 		ft_cd.c \
 		ft_exit.c \
 		ft_echo.c \
@@ -65,6 +67,7 @@ SRCS =	minishell.c	\
 		update_last_env.c \
 		is_redir.c \
 		initialize_var.c \
+		ft_signal.c \
 
 BONUS = \
 
@@ -123,6 +126,9 @@ test : all
 	@cat .history
 	@echo "${BLUE}###${GREEN}Lecture du fichier Outfile${BLUE}###${NC}"
 	@cat test2
+
+leak : all
+	${LEAK} ./${SOFT_NAME}
 
 test1 : all
 	${VAL} env -i ./${SOFT_NAME}

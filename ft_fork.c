@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 17:27:56 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 18:37:10 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_fork_fail(t_m *var)
 		free((*var).arg);
 	if ((*var).split_path)
 		ft_free_split((*var).split_path);
-	if (((*var).fdin))
+	if (var->fdin != 0 && var->fdin != -1)
 		close((*var).fdin);
-	if ((*var).fdout)
+	if (var->fdout != 1 && var->fdout != -1)
 		close((*var).fdout);
 }
 
@@ -34,7 +34,7 @@ void	ft_arg_check_fullpath(char *arg, t_m *var)
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		free_child(var);
-		return (exit_status = 127, exit(127));
+		exit(127);
 	}
 	if ((*var).pcmd_line == 0) // si non full path
 	{
@@ -50,12 +50,9 @@ void	ft_init_arg(char *argv, t_m *var)
 	ft_arg_check_fullpath(argv, var); // check full path
 	if ((*var).pcmd_line == 0) // si non full path
 	{
-		(*var).pcmd_line = ft_check_access(argv , (*var).split_path); // check la bonne ligne et keep ligne
+		(*var).pcmd_line = ft_check_access(argv , (*var).split_path, var); // check la bonne ligne et keep ligne
 		if ((*var).pcmd_line == -2) // (*var).arg = strdup(argv); // si aucune ligne on recup la commande seule
-			{
-				free_child(var);
-				return (ft_free_split((*var).split_path), exit_status = 127, exit(127));
-			}
+				return (free_child(var), ft_free_split((*var).split_path), exit(127));
 		else
 			(*var).arg = (*var).split_path[(*var).pcmd_line]; // si ligne ok arg == bonne ligne ex : /usr/bin/echo
 		ft_free_split_exclude_line((*var).split_path, (*var).pcmd_line); // free reste du char ** de path
@@ -82,6 +79,10 @@ void	ft_close_pipe_fd(t_m *var)
 			close(var->pipex[i][1]);
 		i++;
 	}
+	if (var->fdin != 0 && var->fdin != -1) // 
+		close((*var).fdin); //
+	if (var->fdout != 1 && var->fdout != -1) //
+		close((*var).fdout); //
 }
 
 void	ft_init_fd_redir(t_m *var)
@@ -108,7 +109,6 @@ void	ft_init_fd_redir(t_m *var)
 
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 {
-	(void)targ;
 	ft_init_fd_redir(var);
 	if (is_env_builtin(var->cmd[0]) && var->tablen == 1) 
 	{
@@ -123,24 +123,23 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	if ((*pid) == 0)
 	{
 		if (var->fd_status_in == 1 || var->fd_status_out == 1)
-			return (free_child(var), exit(1));
+			return (ft_close_pipe_fd(var), free_child(var), exit(1));
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		dup2(var->fdin, 0);
 		dup2(var->fdout, 1);
 		ft_close_pipe_fd(var);
-		if (!do_builtin(var, (*var).cmd[var->exec]))
+		if (do_builtin(var, (*var).cmd[var->exec]) == -1)
 		{
 			ft_init_arg(arg, var);
 			ft_execve((*var).arg, targ, (*var).env, var);
 		}
-		free_child(var);
-		exit (127);
+		return (free_child(var), ft_fork_fail(var), exit(exit_status));
 	}
 	ft_unlink(var->redir, var->exec);
-	if (var->fdin != 0)
-		close(var->fdin);
-	if (var->fdout != 1)
-		close(var->fdout);
+	if (var->fdin != 0 && var->fdin != -1)
+		close((*var).fdin);
+	if (var->fdout != 1 && var->fdout != -1)
+		close((*var).fdout);
 	return ;
 }

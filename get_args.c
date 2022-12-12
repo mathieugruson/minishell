@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 12:41:21 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 11:42:47 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 18:04:17 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	get_args(char ***args, char *s, char c, t_m *var)
 {	
 	if (!s)
 		return (2);
-	*args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *)); // 1 free
+	*args = (char **)ft_calloc((double_pointer_nbr(s, c) + 1), sizeof(char *)); 
 	if (!*args)
 	{
 		free(var->args_line);

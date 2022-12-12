@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 16:55:12 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 21:07:07 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,4 @@ void	ft_heredoc_fd(t_m *var, int n)
 		write((*var).fdin, "\n", 2);
 	}
 	return (ft_cleanheredoc_fd(NULL, str, (*var).comp, (*var).fdin));
-}
-
-void	ft_signal(int i)
-{
-	if (i == 1)
-	{
-		signal(SIGINT, handle_sigint_1); /* ctrl + c  affiche un nouveau prompt */
-		signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
-	}
-	if (i == 2)
-	{
-		signal(SIGINT, handle_sigint_2);
-		signal(SIGQUIT, SIG_IGN);
-	}
-	if (i == 3)
-	{
-		signal(SIGINT, handle_sigint_3);
-		signal(SIGQUIT, SIG_IGN);
-	}
 }

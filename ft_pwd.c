@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:15:09 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 15:56:23 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 18:03:32 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	exit_status;
 
 int	go_in_builtin(char *str)
 {
@@ -31,9 +33,10 @@ int	ft_pwd(void)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		printf("pwd: error retrieving current directory: getcwd: \
-		cannot access parent directories: No such file or directory\n");
-		return (2);
+		exit_status = 1;
+		write(2, "pwd: error retrieving current directory: getcwd: \
+		cannot access parent directories: No such file or directory\n", 112);
+		return (1);
 	}
 	else
 	{

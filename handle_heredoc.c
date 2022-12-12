@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 17:15:28 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 18:30:59 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ int	malloc_heredoc(t_m *var)
 	heredoc_len = ft_strcmplen(var->redir, "<<");
 	var->heredoc = ft_calloc(sizeof(char *), (heredoc_len + 1));
 	if (!var->heredoc)
-	{
-		printf("malloc heredoc\n");
-		free_parent(var);
-		return (0);
-	}
+		return (free_parent(var), 0);
 	return (1);
 }
 
@@ -35,6 +31,7 @@ char	*get_heredoc(t_m *var, int k)
 	(*var).heredoc_status = 1;
 	itoa = ft_itoa(k);
 	str = ft_strjoin(".heredoc", itoa);
+	free((*var).comp);
 	free(itoa);
 	return (str);
 }
@@ -64,7 +61,6 @@ int	handle_heredoc(t_m *var)
 		}
 		i.i++;
 	}
-	free((*var).comp);
 	return (free(var->heredoc), 0);
 }
 
@@ -81,6 +77,7 @@ char	*get_heredoc_child(t_m *var, int k)
 	free(itoa);
 	ft_trunc_init_fd(str, &(*var).fdin);
 	ft_heredoc_fd(var, 1);
+	free((*var).comp);
 	close((*var).fdin);
 	return (str);
 }
@@ -110,7 +107,6 @@ int	handle_heredoc_child(t_m *var)
 		i.i++;
 	}
 	free(var->heredoc);
-	free((*var).comp);
 	return (0);
 }
 

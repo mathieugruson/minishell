@@ -24,8 +24,6 @@ void	ft_init_commands_history(t_m *var)
 	str = NULL;
 	while (1)
 	{
-		// if (str)
-		// 	free(str);
 		ft_signal(1);
 		str = readline("minishell>");
 		if (!str)
@@ -64,10 +62,9 @@ void	handle_sigint_3(int sig)
 	exit_status += sig;
 	if (sig == 2)
 	{
-		exit_status = 130;
-		printf("\n");
+		write(1, "\n", 2);
 		signal(SIGINT, SIG_IGN);
-		exit(0);
+		exit(130);
 	}
 }
 
@@ -77,7 +74,7 @@ void	handle_sigint_2(int sig)
 	if (sig == 2)
 	{
 		exit_status = 130;
-		printf("\n");
+		write(1, "\n", 2);
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
@@ -89,7 +86,7 @@ void handle_sigint_1(int sig)
 	if (sig == SIGINT)
 	{
 		exit_status = 130;
-		printf("\n");
+		write(1, "\n", 2);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -102,6 +99,8 @@ void	ft_init_heredoc(t_m *var)
 	
 	var->h_status = open(".heredocstatus", O_RDWR | O_CREAT, 0644);
 	close(var->h_status);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	(pid) = fork();
 	if ((pid) == -1)
 		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
@@ -110,13 +109,13 @@ void	ft_init_heredoc(t_m *var)
 		if (ft_strcmplen(var->redir, "<<") > 0)
 			handle_heredoc_child(var);
 		unlink(".heredocstatus");
-		free_child(var);
+		free_child_heredoc(var);
 		exit(1);
 	}
 	else
 	{
 		signal(SIGINT, SIG_IGN);
-		waitpid(pid, &exit_status, 0);
+		waitpid(pid, 0, 0);
 		exit_status = 130;
 		var->h_status = open(".heredocstatus", O_RDWR);
 		ft_signal(1);
@@ -129,9 +128,11 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 	int	i;
 
 	i = 0;
-	(void)var;
+	ft_signal(2);
 	while (i < nbcmd && nbcmd != 0 && var->h_status == -1)
 	{
+		if (is_env_builtin(var->cmd[0]) && var->tablen == 1)
+			break;
 		waitpid(pid[i], &exit_status, 0);
 		if (WIFEXITED(exit_status))
 			exit_status = WEXITSTATUS(exit_status);
@@ -139,6 +140,7 @@ void	ft_daddy(t_m *var, int *pid, int nbcmd)
 			exit_status = 128 + WTERMSIG(exit_status);
 		i++;
 	}
+	ft_signal(1);
 	if (var->h_status > 2)
 	{
 		close(var->h_status);
@@ -178,29 +180,16 @@ int	ft_init_all_pipe(t_m *var)
 	return (0);
 }
 
-void	ft_free_inttab(int **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
 int	ft_exec(t_m *var, char ***args)
 {
 	var->exec = 0;
 	var->tabexec = 0;
-	var->h_status = -1; ///////////
-	if (args == NULL)
+	var->h_status = -1;
+	if (!args)
 		return (0);
 	var->pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
 	if (!var->pid)
-		return (free_parent(var));
+		return (free_parent(var), 1);
 	var->pid[var->tablen] = 0;
 	if (ft_strcmplen(var->redir, "<<") > 0)
 		ft_init_heredoc(var);
@@ -215,7 +204,6 @@ int	ft_exec(t_m *var, char ***args)
 	}
 	if (var->h_status  != -1)
 		ft_unlink_all(var, 0);
-	// ft_free_inttab(var->pipex);
 	ft_daddy(var, var->pid, var->tablen);
 	return (0);
 }
@@ -223,7 +211,9 @@ int	ft_exec(t_m *var, char ***args)
 int	ft_puttriplelen(char ***test, t_m *var)
 {
 	var->tablen = 0;
-	if (test == NULL)
+	if (!test || !*test)
+		return (var->tablen);
+	if (!*test[0])
 		return (var->tablen);
 	while(test[var->tablen] != NULL)
 		var->tablen++;
@@ -236,7 +226,6 @@ int	main(int argc, char **argv, char **envp)
 
 	ft_signal(1);
 	(void)argv;
-	(void)envp;
 	if (argc != 1)
 		return (ft_printf("Error : Wrong Number of arguments\n"), 1);
 	initialize_var(&var);
@@ -247,7 +236,7 @@ int	main(int argc, char **argv, char **envp)
 		var.args_line = NULL;
 		ft_init_commands_history(&var);
 		if (!var.args_line)
-			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
+			return (free_doubletab(var.env), rl_clear_history(), write(2, "exit\n", 6), 0);
 		if (!will_return_nothing(var.args_line) && is_cmdline_valid(var.args_line))
 		{
 			ft_parsing(&var, var.env, &var.cmd, &var.redir);
@@ -258,6 +247,5 @@ int	main(int argc, char **argv, char **envp)
 		}
 		free(var.args_line);
 	}
-	free_doubletab(var.env);
 	return (0);
 }

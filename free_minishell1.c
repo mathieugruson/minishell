@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_minishell.c                                   :+:      :+:    :+:   */
+/*   free_minishell1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 17:29:20 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 20:11:27 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	free_child(t_m *var)
-{
-	free_parent(var);
-	free(var->args_line);
-	free_doubletab(var->env);
-	return (0);
-}
-
-int	free_parent(t_m *var)
-{
-	free_tripletab(var->redir);
-	free_tripletab(var->cmd);
-	free(var->pid);
-	ft_free_inttab(var->pipex);
-	return (1);
-}
 
 void	free_error_doubletab(char **str, int i)
 {

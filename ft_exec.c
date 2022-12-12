@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 17:26:26 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:49:54 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 		exit(126);
 	}
 	free_child(var);
+	free((*var).arg); // checker si cause leaks
+	ft_free_split((*var).split_path); // checker si cause leaks
 	exit(127);
 }
 
@@ -43,7 +45,6 @@ void	ft_arg_with_path(char *arg, int *cmd, t_m *var)
 	{
 		ft_putstr_fd(arg, 2);
 		write(2, ": Is a directory\n", 18);
-		exit_status = 126;
 		free_child(var);
 		exit(126);
 		(*cmd) = -3;
@@ -92,7 +93,7 @@ void	ft_add_arg_totchar(char **str, char *arg, char c)
 	}
 }
 
-int	ft_check_access(char *argv, char **split)
+int	ft_check_access(char *argv, char **split, t_m *var)
 {
 	int	i;
 	int	fd;
@@ -108,13 +109,11 @@ int	ft_check_access(char *argv, char **split)
 	}
 	if (fd == -1)
 	{
-		i = 0;
-		while (argv[i] && argv[i] != ' ')
-		{
-			write(2, &argv[i], 1);
-			i++;
-		}
-		write(2, ": command not found\n", 21);
+		ft_putstr_fd(argv, 2);
+		if (var->cmd[var->exec][0][0] == '/')
+			write(2, ": No such file or directory\n", 29);
+		else
+			write(2, ": command not found\n", 21);
 		return (-2);
 	}
 	return (i);
