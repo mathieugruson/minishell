@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 12:09:56 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:29:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,30 @@ void	free_doubletab(char **str)
 
 void free_tripletab(char ***tab)
 {
-	int i;
-	int j;
-	
-	i = 0;
-	j = 0;
-	if (!tab)
-		return ;
-	
-	while (tab[i])
-	{
-		j = 0;
-		while(tab[i][j])
-		{
-			free(tab[i][j]);
-			tab[i][j] = NULL;
-			j++;
-		}		
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	if (tab)
-	{
-		free(tab);
-		tab = NULL;
-	}
+    int i;
+    int j;
+    
+    i = 0;
+    if (!tab)
+        return ;
+    while(tab[i])
+        i++;
+    while (--i >= 0)
+    {
+        j = 0;
+        while(tab[i][j])
+            j++;
+        while(--j >= 0)
+        {
+            free(tab[i][j]);
+            tab[i][j] = NULL;
+        }
+        free(tab[i]);
+        tab[i] = NULL;
+    }
+    if (tab)
+    {
+        free(tab);
+        tab = NULL;
+    }
 }

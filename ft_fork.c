@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 15:46:26 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:27:56 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	ft_fork_fail(t_m *var)
 		close((*var).fdout);
 }
 
-void	ft_arg_check_fullpath(char *arg, t_m*var)
+void	ft_arg_check_fullpath(char *arg, t_m *var)
 {
-	ft_arg_with_path(arg, &(*var).pcmd_line); //arg == command[0] - pcmd_line == -3 si directory ou -1 si full path
+	ft_arg_with_path(arg, &(*var).pcmd_line, var); //arg == command[0] - pcmd_line == -3 si directory ou -1 si full path
 	if (!var->path &&  var->pcmd_line != -1)
 	{
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
+		free_child(var);
 		return (exit_status = 127, exit(127));
 	}
 	if ((*var).pcmd_line == 0) // si non full path
@@ -122,7 +123,7 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	if ((*pid) == 0)
 	{
 		if (var->fd_status_in == 1 || var->fd_status_out == 1)
-			return (exit(1));
+			return (free_child(var), exit(1));
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		dup2(var->fdin, 0);

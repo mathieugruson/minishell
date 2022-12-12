@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/09 14:07:23 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:55:12 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ft_heredoc_fd(t_m *var, int n)
 		}
 		if (ft_strcmp(clear_quote((*var).comp), str) == 0)
 			return ;
-		printf("cmp : %s\n", (*var).comp);
 		if (quote == 1)
 			str = new_env_var_heredoc(str, var->env, var);
 		write((*var).fdin, str, ft_strlen(str));

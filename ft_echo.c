@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:44:01 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 14:46:57 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 16:55:37 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_echo(char **cmd)
 		i++;
 	while (cmd[i])
 	{
-		printf("cmd[i] %s , len : %li\n", cmd[i], ft_strlen(cmd[i]));
 		write(1, cmd[i], ft_strlen(cmd[i]));
 		if (cmd[i + 1])
 			write(1, " ", 1);

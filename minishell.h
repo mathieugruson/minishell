@@ -205,7 +205,7 @@ void	ft_fork_fail(t_m *var);
 
 /* ft_exec.c */
 void	ft_execve(char *pcmd, char **option, char **envp, t_m *var);
-void	ft_arg_with_path(char *arg, int *cmd);
+void	ft_arg_with_path(char *arg, int *cmd, t_m *var);
 void	ft_add_arg_totchar(char **str, char *arg, char c);
 int		ft_check_access(char *argv, char **split);
 

@@ -1,321 +1,78 @@
 ls
+cd
 ls
-cat e
+cd
+ls
 exit
 ls
+cd
+cd
+ls
+mkdir a
+cd a
+env | grep h
+env
+exit
+env
+env
+env | grep h
 ls | grep h
- 
- 
- 
-echo -n matheiu
+ls|greph
+ls|grep h
+exit 66 66
+exit tt tt
+exit 66
+exit 66
+exit 66
+exit | ls
 exit
-echo -n mathiu
+echo madame > z1
+echo madame > z1 > z2
+echo madame
 exit
-echo -n minishell
-exi
+echo oui | echo nono
 exit
-echo -m mathieu
+echo oui | echo non
+cd .. | echo "hola"
+ifconfig | grep ":"
+echo hola || cat
+cat << E
 exit
-echo 55 55
+cat << E
 exit
-s
-ls
+cat << E > z1
 exit
-ls
-echo mathieu
-ls
-echo math
-make
+cat << E
 exit
-ls
-echo mat
+cat << E
+cat << E
 exit
+cat << E
+cat << E << E
 exit
-ls
-echo ma
-echo -n atata
-cd ..
-cd
-cd
-cd
-ls
+cat << E
 exit
-exi
+cat << E
+cat << E << F
+cat << E << F | cat < test.c
+hgfhfhfg
+yug
 exit
-echo m
-echo m
+cat << E
+fefefefef
+cat << E
+echo gggg > z1
+< test.c cat > z2
+echo >> hola >> HOLA
+echo ttt
+echo hola >> J >> Fff
+echo hola >> J >> Fff
 exit
-echo m
-echo m
+cat < eeeeee
 exit
-echo m
-echo m
-echo m
+3r3r3r3
 exit
-echo m
-echo m
-echo m
-ls
-cd
-cd ..
-export A=taaaaa
-echo $A
-exit
-export T=aaaaaaaaaaaaaaa
-echo $T
-echo m
-echo $USE
-export Q=qqqqqqqqq
-echo $Q
-exit
-export Q=qqqqqqqqqqqq
-echo $Q
-export Q=qqqqqqqqqqqq
-echo $Q
-export A=qqqqqqqqqqqq
-echo $A
-export T=tttttttttt
-echo $T
-exit
-export X=xxxxxxxxx
-echo $X
-exit
-export T=ttttttttttttttttttttttttttttt
-echo $T
-exit
-export W=wwww
-echo $?
-ls
-export Z=zzzzzzzzzzz
-echo $z
-exit
-export S=sssssssssssssssssssss
-echo $S
-exit
-export C=cccccc
-echo $C
-exit
-export Q=qqqqqqqqqqqqq
-echo $Q
-exit
-export Q=qqqq
-echo $Q
-exit
-export Q=qqqq
-echo $Q
-exit
-export Q=qqqqqqq
-echo $Q
-export Q=qqqq
-echo $Q
-export Q=qqqq
-echo $Q
-exit
-export Q=qqqqq
-echo $Q
-exit
-export Q=qqq
-echo $Q
-exit
-export Q=qqq
-echo $Q
-export Q=qqqq
-echo $Q
-exit
-export Q=qqqq
-echo $Q
-exit
-echo $?$USER
-exit
-export Q=qqqq
-echo $Q
-echo mathieu
-cd
-unset Q
-echo $Q
-exit
-ls
-cd
-echo m
-exit
-cd ..
-cd
-ls
-ls | grep h
-cd ..
-echo a
-export Q=qqqqq
-echo $Q
-echo $?
-env
-echo mathieu
-echo $_
-exit
-exit
-exit
-exit
-ffffffffff
-echo $?
-exi
-exit
-gggg
-exit
-fffffffff
-echo $?
-exit
-eeeee
-echo $?
-exit
-eeeeeeee
-echo $?
-exit
-eeeeeeeeee
-echo $?
-exit
-gggggg
-echo $?
-exit
-rrrrrrrr
-echo $?
-rrrrrrrr
-echo $USER$?
-echo $?
-exit
-eeeeeee
-echo $?
-echo $USER$?
->>>>
-echo yo
-echo -n -n
-exit
-echo -n -n
-echo -n -n Hola
-echo ""
-echo "            " | cat -e
-echo "test" | cat -e
-echo mathieu | cat -e
-echo mathieu | cat -e
-echo mathieu | cat -e
-exit
-ls | cat -e
-echo $?
-echo --------n
-echo $?
-echo $?$
-echo $?$
-cat $_$
-export t=$USER
-echo $t
-echo $?$
-exit
-echo $
-echo $?$
-echo $HOME
-echo | | 
-echo *
-echo $''HOME
-echo '$HO'ME
-echo "$HO"ME
-echo $"HOME"
-echo "test"
-echo hola''''''''''''
-echo hola""bonjour
-"e"'c'ho 'b'"o"nj"o"'u'r
-$?$?
+efefef
 exit
 ls
 exit
-exit
-sleep 3
-env
-export
-env env
-env hola
-env hola
-env hola
-exit
-env hola
-exit
-env hola
-env
-env hola
-env hola
-env hola
-env
-exit
-env hola
-exit
-env
-env hola
-env hola | ls
-export
-export T=eeeeeeeeee
-echo $T
-unset T
-export ""
-export HOLA=hey
-echo $HOLA$HOLA$HOLA=hey$HOLA
-echo l$HOLA
-export '='
-unset =
-unset ""
-unset lklklk
-exit
-unset PWD
-env | grep PWD
-export T=aaaaa
-export T=+bbbbbb
-echo $T
-export T+=aaaaa
-echo $T
-/bin/echo
-exi
-/bin/echo
-exot
-exit
-/bin/echo
-exit
-/bin/echo efefefe
-/bin/echo GDFGFDGDF
-/bin/echo FSGFDGD
-/bin/echo
-/bin/echo
-/bin/echo
-/bin/echo DFGDFGDFGG
-echo gggggggg
-/bin/echo DFGDFGDFGG
-/bin/echo eee
-ls
-/bin/ls
-/bin/ls -la
-/bin/echo FGDFDGDFGFD
-/bin/echo FGDFDGDFGFD fdGFDGFDDF
-/bin/echo FGDFDGDFGFD fdGFDGFDDF GDFGFDGDFGFDG
-/bin/ls | grep h
-/bin/ls | grep h | grep o
-echo ddd
-ls
-/usr/bin/ls -la
-l$f
-export f="s -la"
-l$f
-pwd
-pwd -p
-cd ..
-pwd hla
-exit
-pwd fff
-pwd
-pwd fff
-exit
-pwd gg
-exit
-pwd
-pwd ggg
-exit
-pwd ggg
-cd ///////////////
-echo m
-cd
-cd ///
-cd ////

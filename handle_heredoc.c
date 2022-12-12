@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 12:09:56 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 17:15:28 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	handle_heredoc(t_m *var)
 		}
 		i.i++;
 	}
+	free((*var).comp);
 	return (free(var->heredoc), 0);
 }
 
@@ -110,7 +111,6 @@ int	handle_heredoc_child(t_m *var)
 	}
 	free(var->heredoc);
 	free((*var).comp);
-	free(var->redir[i.i][i.j + 1]);
 	return (0);
 }
 

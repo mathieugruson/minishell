@@ -110,6 +110,7 @@ void	ft_init_heredoc(t_m *var)
 		if (ft_strcmplen(var->redir, "<<") > 0)
 			handle_heredoc_child(var);
 		unlink(".heredocstatus");
+		free_child(var);
 		exit(1);
 	}
 	else
