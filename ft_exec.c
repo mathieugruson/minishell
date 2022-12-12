@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 17:49:54 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:56:58 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ void	ft_arg_with_path(char *arg, int *cmd, t_m *var)
 	}
 	if (arg && ft_strlen(arg) > 2)
 	{
-		if (arg[0] != '.' && arg[0] != '/')
-		{
-			if (arg[0] != '.' && arg[1] != '/')
-				return ;
-		}
+		if (arg[0] != '.' && arg[0] != '/' && arg[1] != '/') // modifie
+			return ;
 	}
 	if (fd != -1)
 		close(fd);

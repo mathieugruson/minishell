@@ -68,6 +68,7 @@ SRCS =	minishell.c	\
 		is_redir.c \
 		initialize_var.c \
 		ft_signal.c \
+		basic_env.c \
 
 BONUS = \
 

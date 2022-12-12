@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 18:30:59 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:18:11 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	handle_heredoc(t_m *var)
 {
 	t_index		i;
 	int			k;
-	
+
 	k = 0;
 	i = initialize_index();
 	if (!malloc_heredoc(var))
@@ -85,7 +85,6 @@ char	*get_heredoc_child(t_m *var, int k)
 int	handle_heredoc_child(t_m *var)
 {
 	t_index		i;
-	int	k = 0;
 
 	i = initialize_index();
 	if (!malloc_heredoc(var))
@@ -100,8 +99,8 @@ int	handle_heredoc_child(t_m *var)
 				var->redir[i.i][i.j][1] = '\0';
 				(*var).comp = ft_strdup(var->redir[i.i][i.j + 1]);
 				free(var->redir[i.i][i.j + 1]);
-				var->redir[i.i][i.j + 1] = get_heredoc_child(var, k);
-				k++;
+				var->redir[i.i][i.j + 1] = get_heredoc_child(var, i.k);
+				i.k++;
 			}
 		}
 		i.i++;
@@ -109,4 +108,3 @@ int	handle_heredoc_child(t_m *var)
 	free(var->heredoc);
 	return (0);
 }
-

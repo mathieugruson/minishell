@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 21:07:01 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:07:15 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 21:15:03 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_signal(int i)
 {
 	if (i == 1)
 	{
-		signal(SIGINT, handle_sigint_1); /* ctrl + c  affiche un nouveau prompt */
-		signal(SIGQUIT, SIG_IGN); /* ctrl + \  ne fait rien */
+		signal(SIGINT, handle_sigint_1);
+		signal(SIGQUIT, SIG_IGN);
 	}
 	if (i == 2)
 	{

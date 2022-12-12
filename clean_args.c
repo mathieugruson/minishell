@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 16:47:56 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 21:24:05 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*remove_quote(char *str, int quote, int i)
 
 char	*clear_quote(char *str)
 {
-	t_index i;
+	t_index	i;
 
 	i = initialize_index();
 	i.i = -1;

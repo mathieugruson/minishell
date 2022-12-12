@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:03:07 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:13:04 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 21:50:22 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ typedef struct s_index
 	int	counter;
 	int	len;	
 }	t_index;
+
+/* basic_env.c */
+
+char	*remove_wrong_env(char *str, int end, int start);
+char	*add_good_env(char *str, int end, int start, char *envp);
+char	*basic_env(char *str, char **envp, t_index *i);
 
 /* builtin.c */
 
@@ -221,8 +227,6 @@ char	*get_env(char *env, char *envp);
 char	*add_status(char *str, int end, int start, char *status);
 char	**get_env_var(char **args, char **envp);
 char	*new_env_var(char *str, char **envp);
-char	*remove_wrong_env(char *str, int end, int start);
-char	*add_good_env(char *str, int end, int start, char *envp);
 
 /* get_exprt.c */
 

@@ -729,3 +729,18 @@ ls
 exit
 ls
 exit
+cat << E
+exit
+echo $9HOME
+exit
+echo $USER
+echo $USER$?
+echo $UUU
+exit
+echo $?
+echo $USER
+exit
+ks
+s
+ls
+exit

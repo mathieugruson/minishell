@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_std_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:29:52 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 13:12:30 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:59:37 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	get_std_redir(char **redir, t_m *var)
 	i = 0;
 	while (redir[i])
 	{
-		if (ft_strcmp(redir[i], "<") == 0){
-			in(redir[i + 1], 'S', var);}
-		if (ft_strcmp(redir[i], ">>") == 0){
-			out(redir[i + 1], 'D', var);}
-		if (ft_strcmp(redir[i], ">") == 0){
-			out(redir[i + 1], 'S', var);}
+		if (ft_strcmp(redir[i], "<") == 0)
+			in(redir[i + 1], 'S', var);
+		if (ft_strcmp(redir[i], ">>") == 0)
+			out(redir[i + 1], 'D', var);
+		if (ft_strcmp(redir[i], ">") == 0)
+			out(redir[i + 1], 'S', var);
 		i = i + 2;
 	}
 }
