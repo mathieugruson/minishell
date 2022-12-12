@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 18:52:06 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 16:03:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	export_env(char *name, char *word, t_m *var)
 	int	line;
 
 	line = find_env_name_line(name, var->env);
+	free(var->env[line]);
 	var->env[line] = ft_strjoin(name, word);
 	return (0);
 }
@@ -78,7 +79,9 @@ int	ft_cd(char **cmd, int i, t_m *var)
 	}
 	else if (chdir(cmd[1]) != 0)
 		printf("cd: %s No such file or directory\n", cmd[i]);
+	free(path);
 	newpath = getcwd(newpath, 0);
 	export_env("PWD=", newpath, var);
+	free(newpath);
 	return (0);
 }

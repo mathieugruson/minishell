@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/09 19:25:53 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:46:26 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	ft_init_arg(char *argv, t_m *var)
 	{
 		(*var).pcmd_line = ft_check_access(argv , (*var).split_path); // check la bonne ligne et keep ligne
 		if ((*var).pcmd_line == -2) // (*var).arg = strdup(argv); // si aucune ligne on recup la commande seule
-			return (ft_free_split((*var).split_path), exit_status = 127, exit(127));
+			{
+				free_child(var);
+				return (ft_free_split((*var).split_path), exit_status = 127, exit(127));
+			}
 		else
 			(*var).arg = (*var).split_path[(*var).pcmd_line]; // si ligne ok arg == bonne ligne ex : /usr/bin/echo
 		ft_free_split_exclude_line((*var).split_path, (*var).pcmd_line); // free reste du char ** de path
@@ -104,6 +107,7 @@ void	ft_init_fd_redir(t_m *var)
 
 void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 {
+	(void)targ;
 	ft_init_fd_redir(var);
 	if (is_env_builtin(var->cmd[0]) && var->tablen == 1) 
 	{
@@ -114,7 +118,7 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	signal(SIGQUIT, SIG_IGN);
 	(*pid) = fork();
 	if ((*pid) == -1)
-		return (write(2, "Error with fork\n", 17), ft_fork_fail(var));
+		return (free_child(var), write(2, "Error with fork\n", 17), ft_fork_fail(var));
 	if ((*pid) == 0)
 	{
 		if (var->fd_status_in == 1 || var->fd_status_out == 1)
@@ -129,6 +133,7 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 			ft_init_arg(arg, var);
 			ft_execve((*var).arg, targ, (*var).env, var);
 		}
+		free_child(var);
 		exit (127);
 	}
 	ft_unlink(var->redir, var->exec);

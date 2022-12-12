@@ -42,11 +42,6 @@ void	ft_init_commands_history(t_m *var)
 			str = NULL;
 			break ;
 		}
-		// else if (!ft_strlen(str))
-		// {
-		// 	if (*str)
-		// 		free(str);
-		// }
 	}
 }
 
@@ -115,8 +110,6 @@ void	ft_init_heredoc(t_m *var)
 		if (ft_strcmplen(var->redir, "<<") > 0)
 			handle_heredoc_child(var);
 		unlink(".heredocstatus");
-		if (var->redir)
-			free_tripletab(var->redir);
 		exit(1);
 	}
 	else
@@ -201,13 +194,15 @@ int	ft_exec(t_m *var, char ***args)
 {
 	var->exec = 0;
 	var->tabexec = 0;
-	if (!args)
+	var->h_status = -1; ///////////
+	if (args == NULL)
 		return (0);
 	var->pid = (int *)malloc(sizeof(int) * (var->tablen + 1));
 	if (!var->pid)
-		return (printf("malloc error\n"), 1);
+		return (free_parent(var));
 	var->pid[var->tablen] = 0;
-	ft_init_heredoc(var);
+	if (ft_strcmplen(var->redir, "<<") > 0)
+		ft_init_heredoc(var);
 	ft_init_all_pipe(var);
 	if (var->tablen >= 1 && var->h_status == -1)
 	{
@@ -219,7 +214,7 @@ int	ft_exec(t_m *var, char ***args)
 	}
 	if (var->h_status  != -1)
 		ft_unlink_all(var, 0);
-	ft_free_inttab(var->pipex);
+	// ft_free_inttab(var->pipex);
 	ft_daddy(var, var->pid, var->tablen);
 	return (0);
 }
@@ -227,10 +222,7 @@ int	ft_exec(t_m *var, char ***args)
 int	ft_puttriplelen(char ***test, t_m *var)
 {
 	var->tablen = 0;
-
-	if (!test || !*test)
-		return (var->tablen);
-	if (!*test[0])
+	if (test == NULL)
 		return (var->tablen);
 	while(test[var->tablen] != NULL)
 		var->tablen++;
@@ -255,12 +247,16 @@ int	main(int argc, char **argv, char **envp)
 		ft_init_commands_history(&var);
 		if (!var.args_line)
 			return (ft_free_split(var.env), rl_clear_history(), printf("exit\n"), 0);
-		ft_parsing(&var, var.env, &var.cmd, &var.redir);
+		if (!will_return_nothing(var.args_line) && is_cmdline_valid(var.args_line))
+		{
+			ft_parsing(&var, var.env, &var.cmd, &var.redir);
+			ft_puttriplelen(var.cmd, &var);
+			ft_exec(&var, var.cmd);
+			update_last_env(&var);
+			free_parent(&var);
+		}
 		free(var.args_line);
-		ft_puttriplelen(var.cmd, &var);
-		ft_exec(&var, var.cmd);
-		update_last_env(&var);
-		free_all(&var);
 	}
+	free_doubletab(var.env);
 	return (0);
 }

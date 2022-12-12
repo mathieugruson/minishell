@@ -1,0 +1,166 @@
+==1141108== Syscall param wait4(pid) contains uninitialised byte(s)
+==1141108==    at 0x49B245A: wait4 (wait4.c:30)
+==1141108==    by 0x10995E: ft_daddy (in /mnt/nfs/homes/mgruson/minishell/minishell)
+==1141108==    by 0x109D9D: ft_exec (in /mnt/nfs/homes/mgruson/minishell/minishell)
+==1141108==    by 0x109F83: main (in /mnt/nfs/homes/mgruson/minishell/minishell)
+==1141108== 
+==1141179== FILE DESCRIPTORS: 29 open (3 std) at exit.
+==1141179== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 58: /dev/ptmx
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 57: /dev/ptmx
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 56: /dev/ptmx
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 55: /usr/share/code/resources/app/node_modules.asar
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 54: /mnt/nfs/homes/mgruson/.config/Code/logs/20221212T112141/ptyhost.log
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 51: /usr/share/code/resources/app/node_modules.asar
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 50: /dev/shm/.org.chromium.Chromium.Sq4nM6 (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 49: /dev/shm/.org.chromium.Chromium.DSlNDb (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 48: /dev/shm/.org.chromium.Chromium.k6EnYA (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 47: /dev/shm/.org.chromium.Chromium.6zeVPc (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 46: /dev/shm/.org.chromium.Chromium.iYJl6m (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 41: /dev/shm/.org.chromium.Chromium.uuYirQ (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 40: /dev/shm/.org.chromium.Chromium.OHgWs3 (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 39: /usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 38: /dev/shm/.org.chromium.Chromium.b8yRfK (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 37: /dev/shm/.org.chromium.Chromium.lZIo9f (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open AF_UNIX socket 36: <unknown>
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 35: /dev/shm/.org.chromium.Chromium.eCLtBd (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 34: /dev/shm/.org.chromium.Chromium.5DFhAc (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 28: /tmp/.org.chromium.Chromium.X20y1V (deleted)
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 27: /proc/1083962/status
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 26: /proc/1083962/statm
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 25: /mnt/nfs/homes/mgruson/.config/Code/Dictionaries/en-US-10-1.bdic
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 21: /usr/share/code/v8_context_snapshot.bin
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== Open file descriptor 3: /mnt/nfs/homes/mgruson/minishell/LogVal
+==1141179==    <inherited from parent>
+==1141179== 
+==1141179== 
+==1141108== FILE DESCRIPTORS: 29 open (3 std) at exit.
+==1141108== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 58: /dev/ptmx
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 57: /dev/ptmx
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 56: /dev/ptmx
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 55: /usr/share/code/resources/app/node_modules.asar
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 54: /mnt/nfs/homes/mgruson/.config/Code/logs/20221212T112141/ptyhost.log
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 51: /usr/share/code/resources/app/node_modules.asar
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 50: /dev/shm/.org.chromium.Chromium.Sq4nM6 (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 49: /dev/shm/.org.chromium.Chromium.DSlNDb (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 48: /dev/shm/.org.chromium.Chromium.k6EnYA (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 47: /dev/shm/.org.chromium.Chromium.6zeVPc (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 46: /dev/shm/.org.chromium.Chromium.iYJl6m (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 41: /dev/shm/.org.chromium.Chromium.uuYirQ (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 40: /dev/shm/.org.chromium.Chromium.OHgWs3 (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 39: /usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 38: /dev/shm/.org.chromium.Chromium.b8yRfK (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 37: /dev/shm/.org.chromium.Chromium.lZIo9f (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open AF_UNIX socket 36: <unknown>
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 35: /dev/shm/.org.chromium.Chromium.eCLtBd (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 34: /dev/shm/.org.chromium.Chromium.5DFhAc (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 28: /tmp/.org.chromium.Chromium.X20y1V (deleted)
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 27: /proc/1083962/status
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 26: /proc/1083962/statm
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 25: /mnt/nfs/homes/mgruson/.config/Code/Dictionaries/en-US-10-1.bdic
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 21: /usr/share/code/v8_context_snapshot.bin
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== Open file descriptor 3: /mnt/nfs/homes/mgruson/minishell/LogVal
+==1141108==    <inherited from parent>
+==1141108== 
+==1141108== 

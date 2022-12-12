@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:44:01 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 17:55:06 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 14:46:57 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int	ft_echo(char **cmd)
 		return (0);
 	}
 	i = 1;
-	while (is_n_option(cmd[i]))
+	while (cmd[i] && is_n_option(cmd[i]))
 		i++;
 	while (cmd[i])
 	{
+		printf("cmd[i] %s , len : %li\n", cmd[i], ft_strlen(cmd[i]));
 		write(1, cmd[i], ft_strlen(cmd[i]));
 		if (cmd[i + 1])
 			write(1, " ", 1);

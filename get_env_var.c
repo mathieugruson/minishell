@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 22:17:14 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 15:07:36 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*add_good_env(char *str, int end, int start, char *envp)
 	i.len = ft_strlen(str) - (i.count + 1) + ft_strlenenv(envp);
 	env = ft_calloc(sizeof(char), (ft_strlenenv(envp) + 1));
 	env = get_env(env, envp);
-	(void)i;
 	newstring = ft_calloc(sizeof(char), (i.len + 1));
 	while (str[i.i1])
 	{
@@ -37,9 +36,7 @@ char	*add_good_env(char *str, int end, int start, char *envp)
 		while (str[i.i1])
 			newstring[i.i2++] = str[i.i1++];
 	}
-	free(env);
-	free(str);
-	return (newstring);
+	return (free(env), free(str), newstring);
 }
 
 char	*remove_wrong_env(char *str, int end, int start)
@@ -60,8 +57,7 @@ char	*remove_wrong_env(char *str, int end, int start)
 		while (str[i.i1])
 			newstring[i.i2++] = str[i.i1++];
 	}
-	free(str);
-	return (newstring);
+	return (free(str), newstring);
 }
 
 char	*basic_env(char *str, char **envp, t_index *i)
@@ -73,12 +69,12 @@ char	*basic_env(char *str, char **envp, t_index *i)
 	if (i->j > -1)
 	{
 		str = add_good_env(str, i->end, i->start, envp[i->j]);
-		i->i = i->start - 2;
+		i->i = i->start - 1;
 	}
 	else
 	{
 		str = remove_wrong_env(str, i->end, i->start);
-		i->i = i->start - 2;
+		i->i = i->start - 1;
 	}
 	i->j = 0;
 	return (str);
@@ -88,6 +84,7 @@ char	*new_env_var(char *str, char **envp)
 {
 	t_index	i;
 
+	char *itoa;
 	i = initialize_index();
 	while (str[i.i])
 	{
@@ -96,8 +93,12 @@ char	*new_env_var(char *str, char **envp)
 			str = basic_env(str, envp, &i);
 		if (str[i.i] == '$' && str[i.i + 1] == '?' \
 		&& !is_in_simple_quote(str, i.i))
+		{
+			itoa = ft_itoa(exit_status);	
 			str = get_status(str, (i.i + ft_intlen(exit_status) + 1), \
-			(i.i + 1), ft_itoa(exit_status));
+			(i.i + 1), itoa);
+			free(itoa);
+		}
 		if (str[i.i] == '$' && (ft_isdigit(str[i.i + 1]) > 0 \
 		|| (str[i.i + 1] == 34 || str[i.i + 1] == 39)) \
 		&& !is_in_simple_quote(str, i.i))
@@ -108,7 +109,8 @@ char	*new_env_var(char *str, char **envp)
 				str = ft_strcpy(&str[i.i], &str[i.i + 1]);
 			str = clear_quote(&str[i.i]);
 		}
-		i.i++;
+		if (str[i.i])
+			i.i++;
 	}
 	return (str);
 }

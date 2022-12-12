@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:15:09 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/08 17:40:35 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 15:56:23 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 int	go_in_builtin(char *str)
 {
-	int	i;
-
-	i = 0;
 	if (!str)
 		return (1);
 	if (ft_strcmp(str, "-L") == 0 || ft_strcmp(str, "-P") == 0 \
-	|| ft_strcmp(str, "-LP") == 0)
-		return (0);
-	while (str[i] == '-' && i < 2)
-		i++;
-	if (isprint(str[i]))
+	|| ft_strcmp(str, "-LP") == 0 || ft_strcmp(str, "-") == 0 || \
+	ft_strcmp(str, "--") == 0)
 		return (0);
 	return (1);
 }

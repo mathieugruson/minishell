@@ -80,6 +80,7 @@ char	***fill_cmd(char ***cmd, char **args, char ***redir);
 
 /* ft_parsing.c */
 
+int		will_return_nothing(char * str);
 int		ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir);
 int		is_in_quote(char *str, int i);
 int		double_pointer_nbr(char *s, char c);
@@ -151,7 +152,8 @@ void	free_error_tripletab(char ***tab, int i);
 void	free_doubletab(char **s);
 void	free_error_doubletab(char **str, int i);
 void	free_tripletab(char ***tab);
-int		free_all(t_m *var);
+int		free_parent(t_m *var);
+int		free_child(t_m *var);
 
 /* get_exprt.c */
 
@@ -248,7 +250,7 @@ void    get_std_redir(char **redir, t_m *var);
 
 /* handle_heredoc.c */
 
-char	**malloc_heredoc(t_m *var);
+int		malloc_heredoc(t_m *var);
 char	**get_heredoc_filename(char **heredoc, int i);
 char	*get_heredoc(t_m *var, int k);
 int		handle_heredoc(t_m *var);
@@ -316,4 +318,5 @@ void	ft_unlink_all(t_m *var, int i);
 
 void	initialize_var(t_m *var);
 
+void	ft_free_inttab(int **tab);
 #endif

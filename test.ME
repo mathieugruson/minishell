@@ -80,4 +80,6 @@ autres tests :
 https://github.com/solaldunckel/minishell-tester/blob/master/test.sh
 
 A tester encore la dedans :
-https://docs.gooegle.com/spreadsheets/d/1uJHQu0VPsjjBkR4hxOeCMEt3AOM1Hp_SmUzPFhAH-nA/edit#gid=0
+https://docs.google.com/spreadsheets/d/1uJHQu0VPsjjBkR4hxOeCMEt3AOM1Hp_SmUzPFhAH-nA/edit#gid=0
+
+valgrind --leak-check=full --trace-children=no --track-fds=yes --show-leak-kinds=all --suppressions=.ignore_readline -q --log-file="LogVal" ./minishell

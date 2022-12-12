@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/09 19:38:24 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 12:09:56 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**malloc_heredoc(t_m *var)
+int	malloc_heredoc(t_m *var)
 {
 	int	heredoc_len;
 
@@ -20,10 +20,11 @@ char	**malloc_heredoc(t_m *var)
 	var->heredoc = ft_calloc(sizeof(char *), (heredoc_len + 1));
 	if (!var->heredoc)
 	{
-		free_all(var);
-		return (NULL);
+		printf("malloc heredoc\n");
+		free_parent(var);
+		return (0);
 	}
-	return (var->heredoc);
+	return (1);
 }
 
 char	*get_heredoc(t_m *var, int k)
@@ -45,9 +46,8 @@ int	handle_heredoc(t_m *var)
 	
 	k = 0;
 	i = initialize_index();
-	malloc_heredoc(var);
-	if (!var->heredoc)
-		return (2);
+	if (!malloc_heredoc(var))
+		return (0);
 	while (var->redir[i.i])
 	{
 		i.j = -1;
@@ -90,9 +90,8 @@ int	handle_heredoc_child(t_m *var)
 	int	k = 0;
 
 	i = initialize_index();
-	malloc_heredoc(var);
-	if (!var->heredoc)
-		return (2);
+	if (!malloc_heredoc(var))
+		return (0);
 	while (var->redir[i.i])
 	{
 		i.j = -1;
@@ -110,6 +109,8 @@ int	handle_heredoc_child(t_m *var)
 		i.i++;
 	}
 	free(var->heredoc);
+	free((*var).comp);
+	free(var->redir[i.i][i.j + 1]);
 	return (0);
 }
 

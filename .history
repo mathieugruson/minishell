@@ -1,227 +1,321 @@
-minishell
-$?
-lfdgdfg
-$?
-./minishell
 ls
-minishell
 ls
-./minishell
-ls
-ls -la
-./minishell
-ls -la
-minishell
-ls
-./libs
-ls
-./libs/
-ls
-./libs
-./libs/
-ls
-ls -la
-/usr/bin/ls
-minishell
-$?
-./minishell
-$?
-ls
-./minishell
-./minishell
-ls
-exit
-minishell
-exit
-exit
-./minishell
-minishell
-ls
+cat e
 exit
 ls
-./libs
-/minishell
-ls
-/minishell
-$?
-echo $9HOME
+ls | grep h
+ 
+ 
+ 
+echo -n matheiu
 exit
-echo $""
-echo $9HOME
-echo $''
-echo $9HOME
-echo $""
+echo -n mathiu
 exit
-echo $""
-echo $9HOME
-echo $HOME9
-echo $HOLA*
-echo $HOLA
-echo $PWD*
-echo $USER
-echo $USER#
-echo $USER
-echo $USERE
-echo ""
-echo $''HOME
-quit
-make fclean
-exit
-echo $USER
-exit
-echo $USER
-echo $USER
-echo $USER
-echo $USER
-echo $USER$USER
-echo $?$USER
-echo $?$USER
-exit
-echo $?$USER
-echo $USER$USER
-exit
-echo $?$USER
-exit
-echo $?$USER
-exit
-echo $?$USER
-echo $?$USER
-exiy
-exit
-echo $USER$USER
-echo $?$USER
-exit
-echo $?$USER
-exit
-echo $?$USER
-exit
-echo $?$USER
-exit
-echo $?
-exit
-echo $USER$USER
+echo -n minishell
 exi
 exit
-echo $?
+echo -m mathieu
 exit
-echo $?
+echo 55 55
 exit
-echo $?
-exit
-echo $?
-echo $USER$USER
-exit
-echo $?
-exit
-echo $?
-exit
-echo $?
-exit
-echo $?
-exit
-echo $>
+s
 ls
-echo $>
-echo $?
-echo $USER$USER
 exit
-exhot $>
-|
-|
-|
-|
-|
-|
-|
 ls
-echo $?>
-echo $USER$USER
- 
-    
+echo mathieu
 ls
-   
+echo math
+make
 exit
-echo $9HOME
+ls
+echo mat
 exit
 exit
 ls
-| 
-echo $9HOME
-echo $HOME
-echo $?$HOME
-exit
-echo $?$HOME
-exit
-echo $?$USER
-echo $?$HOME
-echo $?
-echo $?$HOME
-exit
-echo $?
-echo $?$USER
-echo $USER
-echo $?$USER
-exit
-echo $?
-echo $USER
-echo $?$USER
-exit
-echo $?
-echo $?USER
-echo $?$?
-echo $USER$USER
-exit
-echo $?
-echo $?$USER
-echo $?$HONE
-echo $?$HOME
-exit
-echo $?$USER
-echo $?$USER
-exit
-echo $USER
-echo $?
-echo $?$USER
-echo $?$USER
-ech
-echo
-echo $?$USER
+echo ma
+echo -n atata
+cd ..
+cd
+cd
+cd
 ls
+exit
+exi
+exit
+echo m
+echo m
+exit
+echo m
+echo m
+exit
+echo m
+echo m
+echo m
+exit
+echo m
+echo m
+echo m
+ls
+cd
+cd ..
+export A=taaaaa
+echo $A
+exit
+export T=aaaaaaaaaaaaaaa
+echo $T
+echo m
+echo $USE
+export Q=qqqqqqqqq
+echo $Q
+exit
+export Q=qqqqqqqqqqqq
+echo $Q
+export Q=qqqqqqqqqqqq
+echo $Q
+export A=qqqqqqqqqqqq
+echo $A
+export T=tttttttttt
+echo $T
+exit
+export X=xxxxxxxxx
+echo $X
+exit
+export T=ttttttttttttttttttttttttttttt
+echo $T
+exit
+export W=wwww
+echo $?
+ls
+export Z=zzzzzzzzzzz
+echo $z
+exit
+export S=sssssssssssssssssssss
+echo $S
+exit
+export C=cccccc
+echo $C
+exit
+export Q=qqqqqqqqqqqqq
+echo $Q
+exit
+export Q=qqqq
+echo $Q
+exit
+export Q=qqqq
+echo $Q
+exit
+export Q=qqqqqqq
+echo $Q
+export Q=qqqq
+echo $Q
+export Q=qqqq
+echo $Q
+exit
+export Q=qqqqq
+echo $Q
+exit
+export Q=qqq
+echo $Q
+exit
+export Q=qqq
+echo $Q
+export Q=qqqq
+echo $Q
+exit
+export Q=qqqq
+echo $Q
+exit
 echo $?$USER
 exit
-$?$USER
-echo $?$USER
+export Q=qqqq
+echo $Q
+echo mathieu
+cd
+unset Q
+echo $Q
 exit
-echo $?$USER
-echo $?$USER
+ls
+cd
+echo m
 exit
-echo $?$USER
-echo $?$USER
-echo $?$USER
-echo $USER$USER
-echo $USER$USER$?
-echo $USER$?$USER
-exit
+cd ..
+cd
+ls
+ls | grep h
+cd ..
+echo a
+export Q=qqqqq
+echo $Q
+echo $?
+env
+echo mathieu
 echo $_
-echo $9HOME
-echo $HOME
-echo $HOME#
 exit
-echo $9HOME
-echo $HOME
-echo $?$HOME
-echo "$HOME"
-echo "$?"
-echo "$?
-echo '$?'
 exit
-echo $USER
 exit
+exit
+ffffffffff
+echo $?
+exi
+exit
+gggg
+exit
+fffffffff
 echo $?
 exit
-echo $?$USER
-echo $?$USER$?
-echo $?$USER$?$?
-echo $?$USER$$USER$LANG
-echo "$U"SEr
+eeeee
+echo $?
 exit
+eeeeeeee
+echo $?
+exit
+eeeeeeeeee
+echo $?
+exit
+gggggg
+echo $?
+exit
+rrrrrrrr
+echo $?
+rrrrrrrr
+echo $USER$?
+echo $?
+exit
+eeeeeee
+echo $?
+echo $USER$?
+>>>>
+echo yo
+echo -n -n
+exit
+echo -n -n
+echo -n -n Hola
+echo ""
+echo "            " | cat -e
+echo "test" | cat -e
+echo mathieu | cat -e
+echo mathieu | cat -e
+echo mathieu | cat -e
+exit
+ls | cat -e
+echo $?
+echo --------n
+echo $?
+echo $?$
+echo $?$
+cat $_$
+export t=$USER
+echo $t
+echo $?$
+exit
+echo $
+echo $?$
+echo $HOME
+echo | | 
+echo *
+echo $''HOME
+echo '$HO'ME
+echo "$HO"ME
+echo $"HOME"
+echo "test"
+echo hola''''''''''''
+echo hola""bonjour
+"e"'c'ho 'b'"o"nj"o"'u'r
+$?$?
+exit
+ls
+exit
+exit
+sleep 3
+env
+export
+env env
+env hola
+env hola
+env hola
+exit
+env hola
+exit
+env hola
+env
+env hola
+env hola
+env hola
+env
+exit
+env hola
+exit
+env
+env hola
+env hola | ls
+export
+export T=eeeeeeeeee
+echo $T
+unset T
+export ""
+export HOLA=hey
+echo $HOLA$HOLA$HOLA=hey$HOLA
+echo l$HOLA
+export '='
+unset =
+unset ""
+unset lklklk
+exit
+unset PWD
+env | grep PWD
+export T=aaaaa
+export T=+bbbbbb
+echo $T
+export T+=aaaaa
+echo $T
+/bin/echo
+exi
+/bin/echo
+exot
+exit
+/bin/echo
+exit
+/bin/echo efefefe
+/bin/echo GDFGFDGDF
+/bin/echo FSGFDGD
+/bin/echo
+/bin/echo
+/bin/echo
+/bin/echo DFGDFGDFGG
+echo gggggggg
+/bin/echo DFGDFGDFGG
+/bin/echo eee
+ls
+/bin/ls
+/bin/ls -la
+/bin/echo FGDFDGDFGFD
+/bin/echo FGDFDGDFGFD fdGFDGFDDF
+/bin/echo FGDFDGDFGFD fdGFDGFDDF GDFGFDGDFGFDG
+/bin/ls | grep h
+/bin/ls | grep h | grep o
+echo ddd
+ls
+/usr/bin/ls -la
+l$f
+export f="s -la"
+l$f
+pwd
+pwd -p
+cd ..
+pwd hla
+exit
+pwd fff
+pwd
+pwd fff
+exit
+pwd gg
+exit
+pwd
+pwd ggg
+exit
+pwd ggg
+cd ///////////////
+echo m
+cd
+cd ///
+cd ////

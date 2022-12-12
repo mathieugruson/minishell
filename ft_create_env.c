@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:14:54 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/08 17:55:34 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/12 11:42:42 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	ft_create_env(t_m *var, char **envp)
 	(*var).env[i] = 0;
 	i = -1;
 	while (envp[++i])
+	{
 		(*var).env[i] = ft_strdup(envp[i]);
+	}
 	return (0);
 }
 

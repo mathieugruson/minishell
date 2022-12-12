@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/09 19:58:57 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:47:34 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,18 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 		write(2, "minishell: ", ft_strlen("minishell: "));
 		write(2, pcmd, ft_strlen(pcmd));
 		write(2, ": Permission denied\n", ft_strlen(": Permission denied\n"));
+		free_parent(var);
+		free_doubletab(var->env);
+		free(var->args_line);
+		ft_free_inttab(var->pipex);
+		free_doubletab(var->env);
 		exit(126);
 	}
+	free_parent(var);
+	free_doubletab(var->env);
+	free(var->args_line);
+	ft_free_inttab(var->pipex);
+	free_doubletab(var->env);
 	free((*var).arg);
 	ft_free_split((*var).split_path);
 	write(2, "EXIT 127 FAIL\n", 15);
@@ -51,8 +61,11 @@ void	ft_arg_with_path(char *arg, int *cmd)
 	}
 	if (arg && ft_strlen(arg) > 2)
 	{
-		if (arg[0] != '.' && arg[1] != '/')
-			return ;
+		if (arg[0] != '.' && arg[0] != '/')
+		{
+			if (arg[0] != '.' && arg[1] != '/')
+				return ;
+		}
 	}
 	if (fd != -1)
 		close(fd);
