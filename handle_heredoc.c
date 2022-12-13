@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:46:03 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:18:11 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 13:09:49 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	handle_heredoc(t_m *var)
 		i.j = -1;
 		while (var->redir[i.i][++i.j])
 		{
-			if (strcmp(var->redir[i.i][i.j], "<<") == 0)
+			if (ft_strcmp(var->redir[i.i][i.j], "<<") == 0)
 			{
 				var->redir[i.i][i.j][1] = '\0';
 				(*var).comp = ft_strdup(var->redir[i.i][i.j + 1]);
@@ -94,7 +94,7 @@ int	handle_heredoc_child(t_m *var)
 		i.j = -1;
 		while (var->redir[i.i][++i.j])
 		{
-			if (strcmp(var->redir[i.i][i.j], "<<") == 0)
+			if (ft_strcmp(var->redir[i.i][i.j], "<<") == 0)
 			{
 				var->redir[i.i][i.j][1] = '\0';
 				(*var).comp = ft_strdup(var->redir[i.i][i.j + 1]);

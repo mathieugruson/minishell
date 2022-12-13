@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_std_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:29:52 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:59:37 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 12:29:07 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern int exit_status;
+extern int	g_exit_status;
 
 void	out(char *redir_file, char c, t_m *var)
 {
@@ -20,16 +20,16 @@ void	out(char *redir_file, char c, t_m *var)
 	if (var->fdout != 1)
 		close(var->fdout);
 	if (c == 'S')
-		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (c == 'D')
-		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0777);
+		var->fdout = open(redir_file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (var->fdout == -1)
 	{
 		ft_putstr_fd(redir_file, 2);
 		perror(" ");
 		var->fd_status_out = 1;
 		var->fdout = 1;
-		exit_status = 1;
+		g_exit_status = 1;
 		return ;
 	}
 }
@@ -41,14 +41,14 @@ void	in(char *redir_file, char c, t_m *var)
 		close(var->fdin);
 	if (c == 'S')
 	{
-		var->fdin = open(redir_file, O_RDONLY, 0777);
+		var->fdin = open(redir_file, O_RDONLY);
 		if (var->fdin == -1)
 		{
 			ft_putstr_fd(redir_file, 2);
 			perror(" ");
 			var->fd_status_in = 1;
 			var->fdin = 0;
-			exit_status = 1;
+			g_exit_status = 1;
 			return ;
 		}
 	}

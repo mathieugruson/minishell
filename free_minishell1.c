@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_minishell1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:02:40 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:26:50 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 10:52:07 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_error_doubletab(char **str, int i)
 	str = NULL;
 }
 
-void free_error_tripletab(char ***tab, int i)
+void	free_error_tripletab(char ***tab, int i)
 {
 	while (i >= 0)
 	{
@@ -33,12 +33,12 @@ void free_error_tripletab(char ***tab, int i)
 		i--;
 	}	
 	free(tab);
-	tab = NULL;	
+	tab = NULL;
 }
 
 void	free_doubletab(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -54,15 +54,13 @@ void	free_doubletab(char **str)
 	}
 }
 
-void free_tripletab(char ***tab)
+void	free_tripletab(char ***tab)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	while (tab && tab[i])
 		i++;
 	while (--i >= 0)
 	{

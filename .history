@@ -1,746 +1,238 @@
-minishell
-$?
-lfdgdfg
-$?
-./minishell
+cat < .history
+cat .history 
+cat .history | cat
+cat < .history 
+cat .history 
+cat < .history 
+cat < .history 
+cat < .history | cat
+cat < .history | cat | grep |
+cat < .history | cat | grep "|"
+cat < .history | grep "|"
+cat .history | grep h
+cat < .history | grep h
+cat < .history | grep h
 ls
-minishell
+cat < .history 
+cat .history 
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history 
+cat .history | grep "|"
+cat < .history 
+cat < .history | grep h
+cat .history 
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep h
+cat .history | grep "|" | grep "<"
+cat .history | grep "|"
+cat .history | grep "|" | grep "<"
 ls
-./minishell
+cat .history 
+cat << .history 
+cat .history 
+cat .history | grep "|"
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h | grep a
+ls | grep h | grep a | grep u
+ls | grep h
+ls | grep h
+ls
+ls | grep h
+ls | grep h
+ls
+cat << E
+cat << E
+ls | grep h
+cat << E
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls
+ls
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls
+ls | grep h
+ls | grep h
+ls | grep h
 ls
 ls -la
-./minishell
-ls -la
-minishell
-ls
-./libs
-ls
-./libs/
-ls
-./libs
-./libs/
-ls
-ls -la
-/usr/bin/ls
-minishell
-$?
-./minishell
-$?
-ls
-./minishell
-./minishell
-ls
-exit
-minishell
-exit
-exit
-./minishell
-minishell
-ls
-exit
-ls
-./libs
-/minishell
-ls
-/minishell
-$?
-export Z="ls -la"
-$Z
-ls -la
+dfdgd
 cat << E
-$?
 cat << E
-$?
-gdfg
-df
-g
-dfg
-df
 cat << E
-$?
 cat << E
-$?
-$?
-$?
-$?
-$?
-$?
-$?
-$?
-ls
-$?
-cd 55 55
-$?
 cat << E
-$?
-cqt << w
-$?
-fgfdg
-fd
-tr
-$?
-$?
-echo dgfgdfg
-$?
-cd
-cd
-cd
-echo
-$?
-echo RETERT
-$?
-ls | echo RETRET
-$?
-export
-$?
-env
-$?
-export
-$?
-export
-$?
-unset
-$?
-$?
-cat << w
-$?
-cat << w
-$?
-$?
-$?
-$?
-$?
-$?
-cat << w
-$?
-cat << w
-$?
-ls -la | grep h |grep _ | grep o | grep w
-ls -la | grep h |grep _ | grep o | grep w | grep M
-ls -la | grep h |grep _ | grep o | grep w | grep M | grep Z
-$?
-ls -la | grep h |grep _ | grep o | grep w | grep M | grep Z
-$?
-ls -la | grep h |grep _ | grep o | grep w | grep M
-$?
-ls -la | grep h |grep _ | grep o | grep w | grep M < GFDGFDG
-$?
-touch a | cat < DFSSDFSD | touch b
+cat << E
+cat << E
+cat << E
 ls
-rm a b
-ls
-mkdir a
-mkdir a/b
-cd a/b/
-cat << f
-fdsfdsf
-dsfdsfdsfddsfsdf
-sdfdsfdsfdsf
-f
-ls
-cd FGDGDFGDFG
-$?
-ls | cd
-$?
-ls | cd GFDGFDGDF
-$?
-ls
-$?
-ls < DSFSDF
-$?
-dqsdqsd
-$?
-cd GFGDFGDFGDF
-$?
-cd FHGHFH*
-$?
-cd
-cd GFDGDFGDFG
-$?
-cd
-export 45454
-£?
-export 45454
-$?
-export
-$?
-export 9gdf
-$?
-export gfgd-
-$?
-export gfgd
-$?
-export
-$?
-export gfgd
-$?
-export gfdgfdg
-$?
-export gfdgfdg5
-$?
-export gfdgfdg5_
-$?
-export gfdgf-dg5_
-$?
-export Z=GFDG
-$?
-export
-$?
-export Z="GFDG"
-$?
-export
-$?
-env
-$?
-env fghfhgf
-$?
-export Z=GFDG
-env
-unset PATH
-ls
-$?
-tmp
 test
-echo DGFFDGDF
-pwd
-cd ..
-pwd
-export PATH=DFGFDG
+dfsdf
 ls
-cqty
-fdgdf
-cd
-ls | exit 45645645654654645645645
-exit 45645645654654645645645
-exit 55 555555 555
-exit 55 55
-exit 9999
-exit 55 ghfh
-exit 65 65
-exit 55 55
-exit 55 55
-exit 55 55
-$?
-exit 55
-exit 27
-exit TR
-exit 34
-pwd
-$?
-cat << f
-$?
-ls
-$?
-ls
-cat /gdf
-$?
-/bin
-$?
-ls
-libs/
-$?
-:libs
-/libs
-$?
-libs/
-libs
-$?
-/home/bekx/mini1/.minishell
-$?
-.minishell
-.minishell
-/tmp
-/gfgfdgfd
-ls
-fdsfdsfs
-/fgdfgfdg
-$?
-$?
- 
- 
- 
- fdsfds
-env -i ls
-$?
-env
-$?
-ls | env
-$?
-ls
-$?
-ls | ls
-$?
-env | dsfdsf
-$?
-env | dsfdsf | env
-$?
-env | dsfdsf | ls
-env | cat | cat m
-env | cat | grep m
-$?
-eefsdfs
-$?
-libs:
-$?
-libs/
-$?
-:libs
-/libs
-$?
-dsqdqsdqs
-$?
-cat |ls
-cat |ls
-cat |ls
-ls
-exit 55 fdsfds
-$?
-exit 66
-exsit 66
-$?
-exit 66
-exit 66
-exit 77
-exit 88
-exit 9
-exit 44
-exit 77
-exit 6
-exit 99
-exit 77
-exit 99
-exit 55
-exit 66
-exit 66
-exit 66
-exit 66
-exit 66
-exit 77
-exit 77
-exit 99
-exit 88
-exit 99
-exit 88
-exit 99
-exit 99
-exit 66
-exit 99
-exit 88
-exit 66
-exit 77
-exit 99
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-ls
-ls
-ls
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-echo
-ls
- 
-echo
-ls
-exit 55
-ls
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-<< F
+test
+cat << E
+cat << E
+cat << E
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+cat << E
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+cat << E
+cat << E
+sd
 ls
 ls | grep h
-exit
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
 ls
-echo FDGFD
-exit 55
-exit 55
-ls
-exit 55
-exit 55
-ls
-exit 55
-ls
-exit 55
-exit 55
+cat << E
 ls
 ls
+ls | grep h
+cat << E | ls | grep h
+cat << E | ls | grep h
+ls << E | grep h < z3
+ls << E | grep h < z3
 ls
-ls
-ls
-exit 55
-ls
-ls
-echo
-echo
-echo
-echo
-exit 55
-ls
-ls
-ls
-ls
-ls
-ls
-ls
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
 ls | grep h
 ls
 ls
 ls
 ls
-grep h
+ls
+;s
+ls
+ls
+ls
+ls
+cat << E
+cat << E
+cat << E
+cat << E
+ls
+ls
+ls
+cat << E
+ls
+cat << E
+ls
 ls | grep h
 ls
-exit %%
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
+ls | grep h
 ls
-ls
-ls
-cat < GFDGDFG
-$?
-cd
-echo GFDGDFGGF
-echo GFDGDFGDF
-ech oFGHFHFH
-echo oFGHFHFH
-g
-echo oFGHFHFH
-TRYTRYT
-echo oFGHFHFH
-echo oFGHFHFH
-echo oFGHFHFH
-echo oFGHFHFH
-ls
-echo oFGHFHFH
-echo oFGHFHFH
-echo oFGHFHFH
-echo IPO
-echo YY
-echo TRYTR
-ls
-echo YTYT
-ls | echo YTRYTR | cat
-ls | echo 6f5d4g56df4gd5 | cat
-echo gfhghgfhfgh
-echo TRETRETR
-echo FGGFHGHF
-echo TRYRTY
-echo GFDGDF
-$?
-cat << E
-$?
-cat << E
-4?
-$?
-$?
+ls | grep h > test5456.txt
+ls | grep h > test587867.txt
 ls
 cat << E
-4?
-cat << E
-$?
-cat << g
-$?
-cat << g
-$?
+cat << E | grep a
+cat << E | grep a
+ls | grep h
+fdsfsd
+fdsfsd | fdsfsdfsdf
+ls | grep h
 ls
-$?
-echo DFGDFGDFG
-$?
-echo YTRYRTYRT
-echo FDGDGFDGFD
-$?
-$?
-cat << E
-$?
-export
-$?
-echo YUYTUTu
-$?
-$?
-pwd
-$?
-cd 
-exit 55
-exit 55 55
-$?
-exit 55 55
-$?
-exit 55
-exit %%
-exit 55
-ls | exit 55 55
-$?
-$?
-pwd
-pwd
-$?
-pwd
-cd ..
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
 ls
-pwd
-pwd
-pwd
-pwd
-$?
-echo HGJHGJHG
-$?
-cd ..
-echo UYTUTYU
-echo HGHFHFG
-pwd
-echo TRYRTYRT
-unset
-$?
-unset
-$?
-unset
-$?
-pwd
-$?
-dgdfgdfgdfg
-$?
-pwd
-$?
-echo JGHJGHJGH
-exit 55 fghgfhfgh
-$?
-ls
-ls
-4?
-$?
-pwd
-$?
-exit 55 gfhgf
-exit 55
-exit 55
-exit 55 fghgfh
-$?
-pwd
-$?
-echo TRYRT
-$?
-echo FDGDFG
-ls | exit 55
-$?
-ls
-$?
-ls | exit 55
-$?
-pwd
-$?
-echo TYTRYTRY
-pwd
-ls | exit 55
-$?
-ls
-cd
-ls | export +fdgfdg | ls
-ls | echo FDGDGDFG | ls
-ls | export +dgdfgdfgfd | ls
-$?
-ls
-cat | exit 55 fdgdfgdf | cat
-$?
-ls
-echo DFGFDGG
-pwd
-ls
-pwd
-$?
-ls
-$?
-dsfdsfsd
-$?
-export +fdgfdg
-$?
-export +fdgfdg=GDFGDFG
-unset $?
-$?
-$?
-$?
-$?
-$?
-ls
-$?
-exit 77
-ls
-efhske ksu fsfh sfjf jsf e
-echo $?
-cat < HFGFGHFG
-cat < test.ME 
-cat << F
-exit
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h | grep c | grep u
+ls | grep h | grep c | grep u
+ls | grep h | grep c
+ls | grep o
+ls | greo o
+ls | grep o
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
+ls | grep h
 cat << E
 ls
-echo HGFHFGH
-pwd
-cat << F << G | cat | cat > Z1
-cat << G << K
-cat < FDGDFGFDGDF
-cat < FDGDFGFDGDF | cat < gfdgfdg
-cat < DGFDGFDGF | cat < GFDGFDGDF
-cat < GDFGFDGFDG | cat < GFHGF
-cat < GFHGFHFGHFG
-cat < GFHGFHFGHFG | cat < HGHGFHFGH
-/bin/ec2metadata 
-exit ((
-/bin/X11
-/bin/X11 | /bin/X11
-exit
-/bin/X11 | /bin/X11
-/bin/X11 | /bin/X11
-exit
-/bin/X11 | /bin/X11
-exit
-exit
-exit
-/bin/X11 | /bin/X11
-exit
-/bin/X11 | /bin/X11
-exit 55 fdgfdg
-$?
-exit 55
-exit
-exit 55
-/dev/stdin cat | cat | cat | ls /dev/stdout
-< /dev/stdin cat | cat | cat | ls > /dev/stdout
-< /dev/stdin sleep 5 | sleep 5 > /dev/stdout
-time sleep 5 | sleep 5
-libs/ | libs/
-$?
-unset PATH
-ls
-export PATH=/usr/bin
-ls
-ls > T5
-cat < T5 > t6
-cat < T7 > t6 | cat t6
-exit
-cat < T7 > t5 | cat < t6
-cat < T7 > t5 | cat -e < t6
-cat < T7 > t5 | cat -e < t6 | exit 55 | ls
-cat << H | echo HGHGHFGH > t5
-cat << H | echo HGHGHFGH > t5
-exit GG
-exit GG
-ls | exit gg gg | ls
-exit gg gg
-exit
-ls | exit gg gg | ls
-exi
-exit
-ls | exit 55 gg | ls
-exit 55 gg
-make 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit gg
-exit gg
-exit
-exit 55 55
-exit gg gg
-exit 55 gg
-exit 55
-exit gg
-exit
-exit 55 55
-exit gg
-exit gg gg 
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit 55
-exit
-exit gg gg
-exit gg gg
-exit gg
-exit 55
-exit 55 gg
-exit 55 55
-exit
-exit 55 55 | exit 55 55
-exit
-exit 55 55 | exit 55 55
-exit | exit
-exit gg gg | exit gg gg 
-exit 55 gg | exit 55 gg
-exit 55 | exit 55
-exit gg | exit gg
-exit gg | exit 55
-exit gg | exit 55 gg
-exit gg | exit 55 gg | gfhgfhgfhfg
-exit
-ls
-exit
-ls
-unset PATH
-exit
-unset PATH
-echo $PATH
-exit
-ls
-exit
-ls
-exit
 cat << E
-exit
-echo $9HOME
-exit
-echo $USER
-echo $USER$?
-echo $UUU
-exit
-echo $?
-echo $USER
-exit
-ks
-s
+cat << E
 ls
-exit
+cat << E
+cat << E
+ls
+echo fdsFDSFERTERt
+echo fdsFDSFERTERt > dfsdf4sd4f65s4f
+cat dfsdf4sd4f65s4f 
+ls | grep h

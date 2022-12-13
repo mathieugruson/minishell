@@ -6,13 +6,13 @@
 /*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 17:44:11 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:47:41 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern int	exit_status;
+extern int	g_exit_status;
 
 int	find_env_name_line(char *name, char **env)
 {
@@ -51,14 +51,14 @@ int	cd_need_path(char **cmd, int len, t_m *var, char *newpath)
 		newpath = import_user("HOME=", var);
 		if (chdir(newpath) != 0)
 		{
-			exit_status = 1;
+			g_exit_status = 1;
 			return (write(2, "cd : HOME not set\n", 19), 0);
 		}
 		return (0);
 	}
 	if (len > 2)
 	{
-		exit_status = 1;
+		g_exit_status = 1;
 		return (write(2, "cd: too many arguments\n", 24), 0);
 	}
 	return (1);
@@ -75,21 +75,20 @@ int	ft_cd(char **cmd, int i, t_m *var)
 		return (0);
 	path = getcwd(path, 0);
 	if (!path)
-		return (write(2, "chdir: error retrieving current directory: getcwd: \
-		cannot access parent directories: No such file or directory\n", 112), 1);
+		return (write(2, "No such file or directory\n", 27), 1);
 	export_env("OLDPWD=", path, var);
 	if (cmd[1][0] != '/')
 	{
 		path = ft_strjoin_free(path, "/");
 		path = ft_strjoin_free(path, cmd[i]);
 		if (chdir(path) != 0)
-			return (write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2), write (2, " No such file or directory\n", 28), 1);
+			return (write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2) \
+			, write (2, " No such file or directory\n", 28), 1);
 	}
 	else if (chdir(cmd[1]) != 0)
-		return (write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2), write (2, " No such file or directory\n", 28), 1);
-	free(path);
+		return (write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2) \
+		, write (2, " No such file or directory\n", 28), 1);
 	newpath = getcwd(newpath, 0);
 	export_env("PWD=", newpath, var);
-	free(newpath);
-	return (0);
+	return (free(path), free(newpath), 0);
 }

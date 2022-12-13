@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:03:07 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:50:22 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 13:07:41 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,18 +164,34 @@ int		ft_check_fd_status(char *file, int *fd);
 int		ft_append_init_fd(char *file, int *fd);
 int		ft_trunc_init_fd(char *file, int *fd);
 
-/* ft_fork.c */
-void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid);
-void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid);
+/* ft_fork_utils.c */
+
+void	ft_close_pipe_fd(t_m *var);
 void	ft_init_arg(char *argv, t_m *var);
 void	ft_arg_check_fullpath(char *argv, t_m*var);
 void	ft_fork_fail(t_m *var);
+
+/* ft_fork.c */
+
+void	ft_do_fork(t_m *var, char *arg, char **targ, int *pid);
+void	ft_secur_fd(t_m *var);
+void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid);
 
 /* ft_heredoc */
 
 char	*basic_env_heredoc(char *str, char **envp, t_index *i);
 char	*new_env_var_heredoc(char *str, char **envp, t_m *var);
 void	ft_heredoc_fd(t_m *var, int n);
+
+/* ft_heredoc */
+
+void	ft_history_init_fd(char *file, int *fd);
+void	ft_init_commands_history(t_m *var);
+
+/* ft_init_pipe */
+
+int		ft_init_pipe(t_m *var, int i);
+int		ft_init_all_pipe(t_m *var);
 
 /* ft_parsing.c */
 
@@ -198,10 +214,14 @@ int		go_in_builtin(char *str);
 /* ft_signal.c */
 
 void	ft_signal(int i);
+void	handle_sigint_1(int sig);
+void	handle_sigint_2(int sig);
+void	handle_sigint_3(int sig);
 
 /* ft_unlink.c */
 
 void	ft_unlink(char ***redir, int i);
+void	ft_unlink_all(t_m *var, int i);
 
 /* ft_unset.c */
 
@@ -224,6 +244,7 @@ char	*get_env(char *env, char *envp);
 
 /* get_env_var.c */
 
+char	*exception_env(char *str, t_index *i);
 char	*add_status(char *str, int end, int start, char *status);
 char	**get_env_var(char **args, char **envp);
 char	*new_env_var(char *str, char **envp);
@@ -247,9 +268,10 @@ void	get_std_redir(char **redir, t_m *var);
 /* handle_heredoc.c */
 
 int		malloc_heredoc(t_m *var);
-char	**get_heredoc_filename(char **heredoc, int i);
 char	*get_heredoc(t_m *var, int k);
 int		handle_heredoc(t_m *var);
+char	*get_heredoc_child(t_m *var, int k);
+int		handle_heredoc_child(t_m *var);
 
 /* has_quote.c */
 
@@ -265,7 +287,7 @@ void	initialize_var(t_m *var);
 
 /* is_cmdline_valid.c */
 
-int		is_cmdline_valid(char *str);
+int		is_cmdline_valid(char *str, int argc, char **argv);
 
 /* is_in_quote.c  */
 
@@ -308,18 +330,13 @@ int		ft_strcmplen(char ***redir, char *str);
 
 void	ft_putdoubletab(char **tab);
 void	ft_puttripletab(char ***test);
+int		ft_puttriplelen(char ***test, t_m *var);
 
 /* minishell.c */
 
-void	handle_sigint_2(int sig);
-void	ft_history_init_fd(char *file, int *fd);
-void	ft_init_commands_history(t_m *var);
-void	ft_print_split(char **str);
-void	handle_sigint_1(int sig);
-void	ft_free_split(char **str);
+void	ft_init_heredoc(t_m *var);
 void	ft_daddy(t_m *var, int *pid, int nbcmd);
 int		ft_exec(t_m *var, char ***args);
-int		ft_puttriplelen(char ***test, t_m *var);
 
 /* set_in_cmd.c */
 
@@ -333,9 +350,5 @@ void	handle_environment_variables(char **argv, char **envp);
 /* update_last_env.c */
 
 int		update_last_env(t_m *var);
-char	*get_heredoc_child(t_m *var, int k);
-int		handle_heredoc_child(t_m *var);
-void	handle_sigint_3(int sig);
-void	ft_unlink_all(t_m *var, int i);
 
 #endif

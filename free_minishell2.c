@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_minishell2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:10:54 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:02:51 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 10:49:01 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	free_parent(t_m *var)
 
 void	ft_free_inttab(int **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])

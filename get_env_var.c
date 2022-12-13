@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:31:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:53:52 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 10:43:34 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern int	exit_status;
+extern int	g_exit_status;
 
 char	*exception_env(char *str, t_index *i)
 {
@@ -29,7 +29,7 @@ char	*new_env_var(char *str, char **envp)
 	t_index	i;
 	char	*itoa;
 
-	itoa = ft_itoa(exit_status);
+	itoa = ft_itoa(g_exit_status);
 	i = initialize_index();
 	while (str[i.i])
 	{
@@ -38,7 +38,7 @@ char	*new_env_var(char *str, char **envp)
 			str = basic_env(str, envp, &i);
 		if (str[i.i] == '$' && str[i.i + 1] == '?' \
 		&& !is_in_simple_quote(str, i.i))
-			str = get_status(str, (i.i + ft_intlen(exit_status) + 1), \
+			str = get_status(str, (i.i + ft_intlen(g_exit_status) + 1), \
 			(i.i + 1), itoa);
 		if (str[i.i] == '$' && (ft_isdigit(str[i.i + 1]) > 0 \
 		|| (str[i.i + 1] == 34 || str[i.i + 1] == 39)) \

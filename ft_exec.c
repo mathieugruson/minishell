@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/12 21:56:58 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 11:52:21 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern int	exit_status;
+extern int	g_exit_status;
 
 void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 {
@@ -27,11 +27,13 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 		write(2, pcmd, ft_strlen(pcmd));
 		write(2, ": Permission denied\n", ft_strlen(": Permission denied\n"));
 		free_child(var);
+		free((*var).arg);
+		ft_free_split((*var).split_path);
 		exit(126);
 	}
 	free_child(var);
-	free((*var).arg); // checker si cause leaks
-	ft_free_split((*var).split_path); // checker si cause leaks
+	free((*var).arg);
+	ft_free_split((*var).split_path);
 	exit(127);
 }
 
@@ -52,7 +54,7 @@ void	ft_arg_with_path(char *arg, int *cmd, t_m *var)
 	}
 	if (arg && ft_strlen(arg) > 2)
 	{
-		if (arg[0] != '.' && arg[0] != '/' && arg[1] != '/') // modifie
+		if (arg[0] != '.' && arg[0] != '/' && arg[1] != '/')
 			return ;
 	}
 	if (fd != -1)
