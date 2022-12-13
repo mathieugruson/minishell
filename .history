@@ -265,3 +265,34 @@ echo "'e
 echo "'e"
 echo "'e'"
 exit
+env | grep LANG
+env
+env | grep h
+env | grep h
+env | grep h
+env | grep -a h
+grep -Pa '\x00' env
+
+env | grep -Pa '\x00'
+
+env
+env | grep LANG
+env | grep LANG
+cat env
+env | grep G
+exit
+env | grep H
+exit
+env
+exit
+env | grep h
+exit
+env | grep h
+exit
+env
+env | grep h
+exit
+env | grep h
+exit
+env | grep h
+exit
