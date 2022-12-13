@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:41:20 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/13 11:47:41 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/13 20:26:41 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*import_user(char *name, t_m *var)
 	int	line;
 
 	line = find_env_name_line(name, var->env);
+	if (line == ft_tablen(var->env))
+		return (NULL);
 	return (&var->env[line][5]);
 }
 
@@ -82,7 +84,7 @@ int	ft_cd(char **cmd, int i, t_m *var)
 		path = ft_strjoin_free(path, "/");
 		path = ft_strjoin_free(path, cmd[i]);
 		if (chdir(path) != 0)
-			return (write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2) \
+			return (free(path), write(2, "cd: ", 5), ft_putstr_fd(cmd[i], 2) \
 			, write (2, " No such file or directory\n", 28), 1);
 	}
 	else if (chdir(cmd[1]) != 0)

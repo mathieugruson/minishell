@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:10:48 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/12 21:24:05 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 20:09:10 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	***clean_args(char ***cmd)
 			cmd[i][j] = clear_quote(cmd[i][j]);
 			j++;
 		}
+		if (cmd[i])
 		i++;
 	}
 	return (cmd);

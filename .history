@@ -236,3 +236,32 @@ echo fdsFDSFERTERt
 echo fdsFDSFERTERt > dfsdf4sd4f65s4f
 cat dfsdf4sd4f65s4f 
 ls | grep h
+cd fefefeef
+echo
+exit
+cd fefefef
+echo e
+echo "'e
+echo "'e"
+exit
+unset HOME
+cd
+exit
+unset PATH
+cd
+unset HOME
+cd
+unset HOME
+cd
+echo m
+exit
+unset HOME
+cd
+exit
+unset HOME
+cd
+exit
+echo "'e
+echo "'e"
+echo "'e'"
+exit
