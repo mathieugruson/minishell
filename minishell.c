@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:29:26 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/14 15:04:20 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/14 18:36:47 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!var.args_line)
 			return (free_doubletab(var.env), rl_clear_history(), \
 			write(2, "exit\n", 6), 0);
-		if (!will_return_nothing(var.args_line) && \
+		if (!will_return_nothing(var.args_line, &var) && \
 		is_cmdline_valid(var.args_line, argc, argv))
 		{
 			ft_parsing(&var, var.env, &var.cmd, &var.redir);
