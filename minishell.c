@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:29:26 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/14 18:36:47 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 13:12:23 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_init_heredoc(t_m *var)
 		var->h_status = open(".heredocstatus", O_RDWR);
 		ft_signal(1);
 	}
+	return ;
 }
 
 void	ft_daddy(t_m *var, int *pid, int nbcmd)
@@ -113,7 +114,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!var.args_line)
 			return (free_doubletab(var.env), rl_clear_history(), \
 			write(2, "exit\n", 6), 0);
-		if (!will_return_nothing(var.args_line, &var) && \
+		if (!will_return_nothing(var.args_line) && \
 		is_cmdline_valid(var.args_line, argc, argv))
 		{
 			ft_parsing(&var, var.env, &var.cmd, &var.redir);

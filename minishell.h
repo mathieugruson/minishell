@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:03:07 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/14 18:35:13 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/13 13:07:41 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ int		ft_init_all_pipe(t_m *var);
 
 /* ft_parsing.c */
 
-int		will_return_nothing(char *str, t_m *var);
+int		will_return_nothing(char *str);
 int		ft_parsing(t_m *var, char **envp, char ****cmd, char ****redir);
 int		is_in_quote(char *str, int i);
 int		double_pointer_nbr(char *s, char c);
