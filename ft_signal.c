@@ -75,6 +75,7 @@ void	handle_sigint_3(int sig)
 	{
 		write(1, "\n", 2);
 		signal(SIGINT, SIG_IGN);
-		exit(130);
+		g_exit_status = -42;
+		close(0);
 	}
 }

@@ -42,4 +42,5 @@ void	ft_unlink_all(t_m *var, int i)
 		}
 		i++;
 	}
+	ft_close_pipe_fd(var);
 }

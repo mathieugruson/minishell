@@ -71,9 +71,9 @@ void	ft_close_pipe_fd(t_m *var)
 	i = 0;
 	while (var->pipex[i])
 	{
-		if (var->pipex[i][0] != 0)
+		if (var->pipex[i][0] > 2)
 			close(var->pipex[i][0]);
-		if (var->pipex[i][1] != 1)
+		if (var->pipex[i][1] > 2)
 			close(var->pipex[i][1]);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:46:47 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/13 12:25:33 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:12:27 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,27 @@ char	*new_env_var_heredoc(char *str, char **envp, t_m *var)
 	return (free(itoa), str);
 }
 
+void	ft_heredoc_without_eof(t_m *var)
+{
+	write(2, "warning: don't find end-of-file (wanted `", 42);
+	ft_putstr_fd((*var).comp, 2);
+	write(2, "')\n", 4);
+}
+
 void	ft_heredoc_fd(t_m *var, int n)
 {
 	char	*str;
 	int		quote;
 
-	(void)n;
 	quote = !has_quote(var->comp);
 	ft_signal(3);
 	while (n > 0)
 	{
 		str = readline(">");
-		if (!str)
-		{
-			write(2, "warning: don't find end-of-file (wanted `", 42);
-			ft_putstr_fd((*var).comp, 2);
-			write(2, "')\n", 4);
+		if (g_exit_status == -42)
 			return ;
-		}
+		if (!str)
+			return (ft_heredoc_without_eof(var));
 		if (ft_strcmp(clear_quote((*var).comp), str) == 0)
 			return ;
 		if (quote == 1)

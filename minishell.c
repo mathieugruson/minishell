@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:29:26 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/13 13:12:23 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:04:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	ft_init_heredoc(t_m *var)
 	{
 		if (ft_strcmplen(var->redir, "<<") > 0)
 			handle_heredoc_child(var);
-		unlink(".heredocstatus");
+		if (g_exit_status != -42)
+			unlink(".heredocstatus");
 		return (free_child_heredoc(var), exit(1));
 	}
 	else
@@ -40,7 +41,6 @@ void	ft_init_heredoc(t_m *var)
 		var->h_status = open(".heredocstatus", O_RDWR);
 		ft_signal(1);
 	}
-	return ;
 }
 
 void	ft_daddy(t_m *var, int *pid, int nbcmd)
