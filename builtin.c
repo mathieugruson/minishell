@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 12:03:04 by mgruson           #+#    #+#             */
-/*   Updated: 2022/12/13 11:44:01 by chillion         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:30:21 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	is_str_digit(char *str)
 
 int	do_builtin(t_m *var, char **cmd)
 {
+	if (!cmd[0])
+		return (-1);
 	g_exit_status = 0;
 	if (ft_strcmp(cmd[0], "exit") == 0)
 		return (ft_exit(var, cmd), g_exit_status);
@@ -57,6 +59,8 @@ int	do_builtin(t_m *var, char **cmd)
 
 int	is_env_builtin(char **cmd)
 {
+	if (!cmd[0])
+		return (-1);
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		return (1);
 	if (ft_strcmp(cmd[0], "export") == 0)

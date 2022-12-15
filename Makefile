@@ -58,6 +58,7 @@ SRCS =	basic_env.c \
 		is_cmdline_valid.c \
 		is_in_quote.c \
 		is_redir.c \
+		main_utils.c \
 		malloc_args.c \
 		malloc_cmd.c \
 		malloc_redir.c \
