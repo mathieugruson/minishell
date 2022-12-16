@@ -6,7 +6,7 @@
 /*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 17:56:23 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/15 18:26:39 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/16 15:08:20 by mgruson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 	struct stat	buff;
 
 	execve(pcmd, option, envp);
-	write(2, "c2\n", 4);
 	if (stat(pcmd, &buff) == 0)
 	{
 		if (pcmd[ft_strlen(pcmd) - 1] == '/')
 		{
+			ft_close_pipe_fd(var);
 			free_child(var);
 			free((*var).arg);
 			ft_free_split((*var).split_path);
@@ -32,15 +32,14 @@ void	ft_execve(char *pcmd, char **option, char **envp, t_m *var)
 		write(2, "minishell: ", ft_strlen("minishell: "));
 		write(2, pcmd, ft_strlen(pcmd));
 		write(2, ": Permission denied\n", ft_strlen(": Permission denied\n"));
+		ft_close_pipe_fd(var);
 		free_child(var);
 		free((*var).arg);
 		ft_free_split((*var).split_path);
 		exit(126);
 	}
-	free_child(var);
-	free((*var).arg);
-	ft_free_split((*var).split_path);
-	exit(127);
+	return (ft_close_pipe_fd(var), free_child(var), free((*var).arg), \
+	ft_free_split((*var).split_path), exit(127));
 }
 
 void	ft_arg_with_path(char *arg, int *cmd, t_m *var)
@@ -53,6 +52,7 @@ void	ft_arg_with_path(char *arg, int *cmd, t_m *var)
 	{
 		ft_putstr_fd(arg, 2);
 		write(2, ": Is a directory\n", 18);
+		ft_close_pipe_fd(var);
 		free_child(var);
 		exit(126);
 		(*cmd) = -3;

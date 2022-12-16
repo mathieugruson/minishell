@@ -30,7 +30,7 @@ int	is_in_double_quote(char *str, int i)
 				return (0);
 		}
 		if (str[j] && str[j] == 34 && j < i)
-		{	
+		{
 			j++;
 			while (str[j] && str[j] != 34)
 				j++;
@@ -64,7 +64,8 @@ int	is_in_simple_quote(char *str, int i)
 			if (str[j] != 0 && j > i)
 				return (1);
 		}
-		j++;
+		if (str[j])
+			j++;
 	}
 	return (0);
 }
@@ -93,7 +94,7 @@ int	is_in_quote(char *str, int i)
 				return (1);
 		}
 		if (str[j])
-		j++;
+			j++;
 	}
 	return (0);
 }
