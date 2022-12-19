@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgruson <mgruson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chillion <chillion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:31:02 by chillion          #+#    #+#             */
-/*   Updated: 2022/12/16 15:24:33 by mgruson          ###   ########.fr       */
+/*   Updated: 2022/12/16 18:36:11 by chillion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_do_pipe_fork(t_m *var, char *arg, char **targ, int *pid)
 	ft_init_fd_redir(var);
 	if (is_env_builtin(var->cmd[0]) && var->tablen == 1 \
 	&& do_builtin(var, var->cmd[0]) != INT_MIN)
-		return ;
+		return (ft_close_pipe_fd(var));
 	ft_signal(4);
 	(*pid) = fork();
 	if ((*pid) == -1)
